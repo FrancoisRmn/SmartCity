@@ -2,4 +2,13 @@
     <string name="app_name">SmartCity</string>
     <string name="inscription">S\'inscrire</string>
     <string name="connection">Se connecter</string>
+    <string name="informations_personnelles">Informations personnelles</string>
+    <string name="Name">Nom</string>
+    <string name="FirstName">Prenom</string>
+    <string name="mail">Mail</string>
+    <string name="Password">Mot de passe</string>
+    <string name="ConfirmPassword">Confirmer le mot de passe</string>
+    <string name="Tel">Numéro de téléphone</string>
+    <string name="FirstNameInput">Prénom</string>
+    <string name="NameInput">Nom</string>
 </resources>
