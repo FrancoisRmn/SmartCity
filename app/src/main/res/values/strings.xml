@@ -11,4 +11,6 @@
     <string name="Tel">Numéro de téléphone</string>
     <string name="FirstNameInput">Prénom</string>
     <string name="NameInput">Nom</string>
+    <string name="pas_encore_de_compte">Pas encore de compte ?</string>
+    <string name="login">Login</string>
 </resources>
