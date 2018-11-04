@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_eat"
+        android:icon="@drawable/ic_restaurant_black_24dp"
+        android:title="@string/restaurant" />
+    <item
+        android:id="@+id/nav_drink"
+        android:icon="@drawable/ic_local_bar_black_24dp"
+        android:title="@string/drink" />
+    <item
+        android:id="@+id/nav_market"
+        android:icon="@drawable/ic_lens_black_24dp"
+        android:title="@string/market" />
+    <item
+        android:id="@+id/nav_direction"
+        android:icon="@drawable/ic_directions_black_24dp"
+        android:title="@string/direction" />
+    <item
+        android:id="@+id/nav_settings"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="@string/settings" />
+</menu>
