@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
         inscriptionButton = findViewById(R.id.InscriptionButton);
 
+        connectionButton = findViewById(R.id.ConnectionButton);
         inscriptionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
