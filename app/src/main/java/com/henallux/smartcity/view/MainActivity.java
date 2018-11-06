@@ -12,7 +12,7 @@ import com.henallux.smartcity.R;
 public class MainActivity extends AppCompatActivity {
 
     private Button inscriptionButton;
-
+    private Button connectionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +27,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        connectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,BottomMenu.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -38,5 +47,5 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-    }//Ajout d'un commentaire
+    }
 }
