@@ -23,5 +23,6 @@
     <string name="shopping">Shopping</string>
     <string name="createButton">Créer le compte</string>
     <string name="nconnect">NConnect</string>
-    <string name="drinkTitle">Liste des bars</string>
+    <string name="drinkTitle">Bar</string>
+    <string name="restaurant">Restaurant</string>
 </resources>
