@@ -38,5 +38,5 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-    }
+    }//Ajout d'un commentaire
 }
