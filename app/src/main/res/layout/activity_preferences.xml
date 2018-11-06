@@ -12,7 +12,7 @@
         android:layout_marginStart="131dp"
         android:layout_marginLeft="131dp"
         android:layout_marginTop="38dp"
-        android:text="Vos préférenes"
+        android:text="@string/preferences"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,23 +33,23 @@
         <CheckBox android:id="@+id/checkbox_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bar"
+            android:text="@string/bar"
             android:onClick="onCheckboxClicked"/>
         <CheckBox android:id="@+id/checkbox_shopping"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shopping"
+            android:text="@string/shopping"
             android:onClick="onCheckboxClicked"/>
         <CheckBox android:id="@+id/checkbox_restaurant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Restaurant"
+            android:text="@string/restaurant"
             android:onClick="onCheckboxClicked"/>
 
         <Button
-            android:id="@+id/ConnectionButton"
+            android:id="@+id/creationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Connexion" />
+            android:text="@string/createButton" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
