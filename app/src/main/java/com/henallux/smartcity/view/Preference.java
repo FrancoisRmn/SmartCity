@@ -36,13 +36,11 @@ public class Preference extends AppCompatActivity {
             case R.id.checkbox_bar:
                 if (checked){
                     Toast.makeText(Preference.this, "Vous avez cliquez sur un checkbox !", Toast.LENGTH_SHORT).show();
-
                 }
                 else
                 {
 
                 }
-
                 break;
             case R.id.checkbox_restaurant:
                 if (checked){
