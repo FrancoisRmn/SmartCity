@@ -13,7 +13,7 @@
     <string name="NameInput">Nom</string>
     <string name="pas_encore_de_compte">Pas encore de compte ?</string>
     <string name="login">Login</string>
-    <string name="restaurant">Restaurant</string>
+    <string name="restaurant">Liste des restaurant</string>
     <string name="drink">Drink</string>
     <string name="market">Market</string>
     <string name="direction">Direction</string>
@@ -24,4 +24,6 @@
     <string name="createButton">Créer le compte</string>
     <string name="nconnect">NConnect</string>
     <string name="drinkTitle">Liste des bars</string>
+    <string name="liste_des_magasins">Liste des magasins</string>
+    <string name="parametres">Paramètres</string>
 </resources>
