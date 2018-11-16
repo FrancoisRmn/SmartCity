@@ -32,4 +32,5 @@
     <string name="barCheckBox">Bar</string>
     <string name="shoppingCheckBox">Shopping</string>
     <string name="tourismeCheckBox">Tourisme</string>
+    <string name="informationSettings">Information</string>
 </resources>
