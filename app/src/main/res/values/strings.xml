@@ -25,5 +25,11 @@
     <string name="nconnect">NConnect</string>
     <string name="drinkTitle">Liste des bars</string>
     <string name="liste_des_magasins">Liste des magasins</string>
-    <string name="parametres">Paramètres</string>
+    <string name="settingsTitle">Paramètres</string>
+    <string name="h1Settings">Mes centres d\'intérêts</string>
+    <string name="firstCheckBox">Bar</string>
+    <string name="restaurantCheckBox">Restauration</string>
+    <string name="barCheckBox">Bar</string>
+    <string name="shoppingCheckBox">Shopping</string>
+    <string name="tourismeCheckBox">Tourisme</string>
 </resources>
