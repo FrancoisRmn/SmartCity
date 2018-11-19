@@ -13,10 +13,6 @@
         android:icon="@drawable/ic_lens_black_24dp"
         android:title="@string/market" />
     <item
-        android:id="@+id/nav_direction"
-        android:icon="@drawable/ic_directions_black_24dp"
-        android:title="@string/direction" />
-    <item
         android:id="@+id/nav_settings"
         android:icon="@drawable/ic_settings_black_24dp"
         android:title="@string/settings" />

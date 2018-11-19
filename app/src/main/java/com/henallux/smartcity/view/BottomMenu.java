@@ -36,9 +36,6 @@ public class BottomMenu extends AppCompatActivity {
                         case R.id.nav_market:
                             selectedFragment = new MarketFragment();
                             break;
-                        case R.id.nav_direction:
-                            selectedFragment = new DirectionFragment();
-                            break;
                         case R.id.nav_settings:
                             selectedFragment = new SettingsFragment();
                             break;
