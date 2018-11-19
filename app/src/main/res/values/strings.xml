@@ -33,4 +33,9 @@
     <string name="shoppingCheckBox">Shopping</string>
     <string name="tourismeCheckBox">Tourisme</string>
     <string name="informationSettings">Information</string>
+    <string name="titleFragmentElementDetail">Burger King</string>
+    <string name="descriptionElementDetailTitle">Description</string>
+    <string name="descriptionElementDetail">Burger King est une entreprise familial à but non lucratif. En effet, l\'entrerprise ne recherche jamais le bénéfice mais plûtôt la satisfaction du client .... blablalbalblab</string>
+    <string name="scheduleTitle">Heure d\'ouverture</string>
+    <string name="schedule"> Lundi : 8h00-12h00, 13h00-17h00 \n Mardi : 8h00-12h00, 13h00-17h00 \n Mercredi: 8h00-12h00, 13h00-17h00 \n Jeudi : 8h00-12h00, 13h00-17h00 \n Vendredi : 8h00-12h00, 13h00-17h00 \n Samedi : 8h00-12h00 \n Dimanche : /</string>
 </resources>
