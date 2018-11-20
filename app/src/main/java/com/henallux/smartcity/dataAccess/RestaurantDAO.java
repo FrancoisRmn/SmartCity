@@ -20,7 +20,7 @@ public class RestaurantDAO {
             Log.i("Async","Début getAllRestaurants");
 
 
-            URL url = new URL("http://localhost:5000/api/Values");
+            URL url = new URL("http://localhost:5000/api/Restaurants");
             HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
             BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 

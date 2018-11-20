@@ -22,5 +22,7 @@ private Button boutonValider;
                 startActivity(new Intent(InfoPersos.this, Preference.class));
             }
         });
+
+        //TODO Verif formulaire
     }
 }
