@@ -42,4 +42,5 @@
     <string name="contact">Tél: 0475 45 78 96 \nFixe: 081 74 52 20\nEmail : burgerKing@hotmail.com</string>
     <string name="callButton">Appeler</string>
     <string name="sendMailButton">Envoyer un email</string>
+    <string name="nextTitle">Suivant</string>
 </resources>
