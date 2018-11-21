@@ -43,13 +43,13 @@
         <CheckBox android:id="@+id/checkbox_restaurant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/restaurant"
+            android:text="@string/restaurantTitle"
             android:onClick="onCheckboxClicked"/>
 
         <Button
             android:id="@+id/creationButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/createButton" />
+            android:text="@string/createAccountButton" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

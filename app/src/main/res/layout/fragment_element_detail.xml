@@ -68,7 +68,8 @@
                 android:id="@+id/imageBurgerKing1"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                app:srcCompat="@mipmap/ic_launcher_foreground" />
+                app:srcCompat="@mipmap/ic_launcher_foreground"
+                android:contentDescription="TODO" />
             <TextView
                 android:id="@+id/contactTitle"
                 android:layout_width="wrap_content"

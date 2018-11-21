@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
-        android:text="@string/liste_des_magasins"
+        android:text="@string/storesTitle"
         android:textSize="30sp" />
 
     <SearchView

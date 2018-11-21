@@ -34,7 +34,7 @@
         android:layout_marginStart="39dp"
         android:layout_marginLeft="39dp"
         android:layout_marginTop="111dp"
-        android:text="@string/h1Settings" />
+        android:text="@string/centerOfInterestH1" />
 
     <CheckBox
         android:id="@+id/checkBox"
