@@ -16,10 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.InfoPersos"></activity>
-        <activity android:name=".view.Preference"></activity>
-        <activity android:name=".view.BottomMenu">
-
+        <activity
+            android:name=".view.InfoPersos"
+            android:label="Informations personelles"
+            android:parentActivityName=".view.MainActivity"
+            >
+        </activity>
+        <activity
+            android:name=".view.Preference"
+            android:label="Préférences"
+            android:parentActivityName=".view.InfoPersos"
+            ></activity>
+        <activity
+            android:name=".view.BottomMenu"
+            android:label="NConnect"
+            android:parentActivityName=".view.Preference"
+            >
         </activity>
     </application>
 
