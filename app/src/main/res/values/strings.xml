@@ -38,7 +38,7 @@
     <string name="scheduleTitle">Heure d\'ouverture</string>
     <string name="schedule"> Lundi : 8h00-12h00, 13h00-17h00 \n Mardi : 8h00-12h00, 13h00-17h00 \n Mercredi: 8h00-12h00, 13h00-17h00 \n Jeudi : 8h00-12h00, 13h00-17h00 \n Vendredi : 8h00-12h00, 13h00-17h00 \n Samedi : 8h00-12h00 \n Dimanche : /</string>
     <string name="imageTitle">Images</string>
-    <string name="contactTitle">contactTitle</string>
+    <string name="contactTitle">Contact</string>
     <string name="contact">Tél: 0475 45 78 96 \nFixe: 081 74 52 20\nEmail : burgerKing@hotmail.com</string>
     <string name="callButton">Appeler</string>
     <string name="sendMailButton">Envoyer un email</string>

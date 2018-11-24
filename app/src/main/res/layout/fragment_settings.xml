@@ -12,15 +12,19 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="25dp"
         android:text="@string/settingsTitle"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:layout_alignLeft="@+id/settingsTitle2" />
 
     <TextView
         android:id="@+id/settingsTitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="374dp"
+        android:layout_marginStart="93dp"
+        android:layout_marginLeft="93dp"
+        android:layout_marginTop="308dp"
         android:text="@string/informationSettings"
         android:textSize="30sp" />
 
@@ -38,33 +42,42 @@
 
     <CheckBox
         android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
+        android:layout_width="78dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="163dp"
+        android:layout_marginTop="159dp"
+        android:layout_marginEnd="-45dp"
+        android:layout_toStartOf="@+id/h1Settings"
         android:text="@string/barCheckBox" />
 
     <CheckBox
         android:id="@+id/checkBox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="211dp"
+        android:layout_marginStart="61dp"
+        android:layout_marginTop="216dp"
         android:text="@string/restaurantCheckBox" />
 
     <CheckBox
         android:id="@+id/checkBox3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="225dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="202dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginBottom="323dp"
         android:text="@string/shoppingCheckBox" />
 
     <CheckBox
         android:id="@+id/checkBox4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="181dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="197dp"
+        android:layout_marginTop="159dp"
         android:text="@string/tourismeCheckBox" />
 </RelativeLayout>

@@ -14,13 +14,14 @@ import android.view.ViewGroup;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.RestaurantDAO;
+import com.henallux.smartcity.model.Address;
 import com.henallux.smartcity.model.Restaurant;
 
 import java.util.ArrayList;
 
 public class RestaurantFragment extends Fragment {
 
-    private RecyclerView personsToDisplay;
+    private RecyclerView restaurantsToDisplay;
 
     @Nullable
     @Override
@@ -31,11 +32,11 @@ public class RestaurantFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        new LoadRestaurants().execute();
         View view = getView();
-        personsToDisplay = view.findViewById(R.id.RestaurantRecyclerView);
+        restaurantsToDisplay = view.findViewById(R.id.RestaurantRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-        personsToDisplay.setLayoutManager(layoutManager);
+        restaurantsToDisplay.setLayoutManager(layoutManager);
+        new LoadRestaurants().execute();
     }
 
     private class LoadRestaurants extends AsyncTask<String, Void, ArrayList<Restaurant>>{
@@ -46,9 +47,23 @@ public class RestaurantFragment extends Fragment {
 
             ArrayList<Restaurant> restaurants = new ArrayList<>();
             try{
+                //restaurants = restaurantDAO.getAllRestaurants();
+                Address address = new Address("Rue de l'ange", "5550", 10);
+                ArrayList<String> moyensPayements = new ArrayList<String>();
+                Restaurant restaurant = new Restaurant();
+                restaurant.setNomCommerce("Burger King");
+                restaurant.setAddress(address);
+                restaurant.setDescription("Restauration rapide");
+                restaurant.setMail("burgerking@yahoo.com");
+                restaurants.add(restaurant );
 
-
-                restaurants = restaurantDAO.getAllRestaurants();
+                Address address2 = new Address("Rue de fer", "5550", 13);
+                Restaurant restaurant2 = new Restaurant();
+                restaurant2.setNomCommerce("Pizza hut");
+                restaurant2.setAddress(address2);
+                restaurant2.setDescription("");
+                restaurant2.setMail("pizza_hut@yahoo.com");
+                restaurants.add(restaurant2);
             }catch (Exception e){
                 Log.i("Async",e.getMessage());
 
@@ -61,7 +76,7 @@ public class RestaurantFragment extends Fragment {
         @Override
         protected void onPostExecute(ArrayList<Restaurant> restaurants) {
             RecyclerView.Adapter adapter = new RestaurantAdapter(restaurants);
-            personsToDisplay.setAdapter(adapter);
+            restaurantsToDisplay.setAdapter(adapter);
         }
     }
 }
