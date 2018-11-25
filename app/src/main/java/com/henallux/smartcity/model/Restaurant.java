@@ -20,6 +20,10 @@ public class Restaurant {
 
     public Restaurant(){}
 
+    public Restaurant(String nomCommerce) {
+        this.nomCommerce = nomCommerce;
+    }
+
     @Override
     public String toString() {
         return "Restaurant : " + this.nomCommerce + " \n"+ address;
