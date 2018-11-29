@@ -19,8 +19,6 @@ public class MarketDAO {
 
     public ArrayList<Market> getAllMarkets() throws Exception{
         Log.i("Async","Début getAllCommerces");
-
-
         URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Commerces");
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
         BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.Utils.Utils;
 
 public class InfoPersos extends AppCompatActivity {
 private Button validateButton;
@@ -44,23 +45,23 @@ private EditText phoneInput;
     public boolean checkForms()
     {
         boolean isValid = true;
-        if(isEmpty(nameInput)){
+        if(Utils.isEmpty(nameInput)){
             Toast.makeText(this, "Vous n'avez pas entré de nom", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(isEmpty(firstNameInput)){
+        if(Utils.isEmpty(firstNameInput)){
             Toast.makeText(this, "Vous n'avez pas entré de prénom", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(isEmpty(mailInput)){
+        if(Utils.isEmpty(mailInput)){
             Toast.makeText(this, "Vous n'avez pas insérer d'email", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(isEmpty(passWordInput)){
+        if(Utils.isEmpty(passWordInput)){
             Toast.makeText(this, "Vous n'avez pas entré de mot de passe", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(isEmpty(confirmPassWordInput)){
+        if(Utils.isEmpty(confirmPassWordInput)){
             Toast.makeText(this, "Vous n'avez pas entré de mot de passe", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -70,7 +71,7 @@ private EditText phoneInput;
         }
 
 
-        if(!isEmpty(phoneInput)){
+        if(!Utils.isEmpty(phoneInput)){
             try{
                 Integer.parseInt(phoneInput.getText().toString().replace("\\s", ""));
                 if(phoneInput.getText().length()>10){
@@ -88,10 +89,5 @@ private EditText phoneInput;
             return false;
         }
         return isValid;
-    }
-
-    private boolean isEmpty(EditText editText)
-    {
-        return editText.getText().toString().trim().length() == 0;
     }
 }

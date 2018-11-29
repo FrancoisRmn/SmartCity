@@ -133,7 +133,6 @@ public class RestaurantFragment extends Fragment {
 
                 e.printStackTrace();
             }
-            Log.i("Async","Fin de doInBackGround");
             return restaurants;
         }
 

@@ -45,10 +45,9 @@ public class MarketFragment extends Fragment {
 
             ArrayList<Market> markets = new ArrayList<>();
             try{
-
+                markets = new MarketDAO().getAllMarkets();
             }catch (Exception e){
                 Log.i("Async",e.getMessage());
-
                 e.printStackTrace();
             }
             Log.i("Async","Fin de doInBackGround (market)");
