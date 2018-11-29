@@ -20,7 +20,6 @@ public class LoadRestaurantsTask extends AsyncTask<String, Void, ArrayList<Resta
     private FragmentManager fragmentManager;
     private Activity activity;
     private RestaurantViewModel restaurantViewModel;
-    private ListView listViewRestaurants;
 
     public LoadRestaurantsTask(FragmentManager fragmentManager, Activity activity) {
         super();
@@ -32,57 +31,49 @@ public class LoadRestaurantsTask extends AsyncTask<String, Void, ArrayList<Resta
     protected void onPreExecute() {
         super.onPreExecute();
     }
+
+    @Override
+    protected void onPostExecute(ArrayList<Restaurant> restaurants)
+    {
+        //((RestaurantViewModel)restaurantViewModel).setRestaurants(restaurants);
+        Log.d("LoadRestaurantTask", "On rentre dans onPostExecute");
+    }
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
     }
+
     @Override
     protected ArrayList<Restaurant> doInBackground(String... strings) {
-        ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
+        ArrayList<Restaurant> restaurants = new ArrayList<>();
         Log.d("LoadRestaurantTask", "On rentre dans doInBackground");
-        if (isCancelled()) {
-            Log.d("doInBackground", "Call on method isCancelled() ");
-        }
-        else
-        {
-            int size = strings.length;
-            if (size == 1) {
-                try {
-                    Address address = new Address("Rue de l'ange", "5550", 10);
-                    ArrayList<String> moyensPayements = new ArrayList<String>();
-                    Restaurant restaurant = new Restaurant();
-                    restaurant.setNomCommerce("Burger King");
-                    restaurant.setAddress(address);
-                    restaurant.setDescription("Restauration rapide");
-                    restaurant.setMail("burgerking@yahoo.com");
-                    restaurants.add(restaurant );
 
-                    Address address2 = new Address("Rue de fer", "5550", 13);
-                    Restaurant restaurant2 = new Restaurant();
-                    restaurant2.setNomCommerce("Pizza hut");
-                    restaurant2.setAddress(address2);
-                    restaurant2.setDescription("");
-                    restaurant2.setMail("pizza_hut@yahoo.com");
-                    restaurants.add(restaurant2);
+        try {
+            Log.d("LoadRestaurantTask", "On ajoute les restaurants");
+            Address address = new Address("Rue de l'ange", "5550", 10);
+            ArrayList<String> moyensPayements = new ArrayList<String>();
+            Restaurant restaurant = new Restaurant();
+            restaurant.setNomCommerce("Burger King");
+            restaurant.setAddress(address);
+            restaurant.setDescription("Restauration rapide");
+            restaurant.setMail("burgerking@yahoo.com");
+            restaurants.add(restaurant );
 
-                } catch (Exception e) {
-                    Log.d("Exception", e.getMessage());
-                }
-            }
-            else
-            {
-                restaurants.add(new Restaurant("Pas de localite trouve"));
-            }
+            Address address2 = new Address("Rue de fer", "5550", 13);
+            Restaurant restaurant2 = new Restaurant();
+            restaurant2.setNomCommerce("Pizza hut");
+            restaurant2.setAddress(address2);
+            restaurant2.setDescription("");
+            restaurant2.setMail("pizza_hut@yahoo.com");
+            restaurants.add(restaurant2);
+
+        } catch (Exception e) {
+            Log.d("Exception", e.getMessage());
         }
+
         Log.d("LoadRestaurantTask", "On retourne les restaurants");
-        restaurantViewModel.setRestaurants(restaurants);
+        //restaurantViewModel.setRestaurants(restaurants);
+        //onPostExecute(restaurants);
         return restaurants;
-    }
-
-    @Override
-    protected void onPostExecute(ArrayList<Restaurant> restaurants) {
-        //on ajoute a RestaurantViewModel pour la récupérer dans restaurantsFragment
-        Log.d("LoadRestaurantTask", "On rentre dans onPostExecute");
-        restaurantViewModel.setRestaurants(restaurants);
     }
 }

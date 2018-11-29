@@ -37,10 +37,12 @@ public class RestaurantFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_restaurant, container, false);
+
         restaurantViewModel = ViewModelProviders.of(getActivity()).get(RestaurantViewModel.class);
+
         fragmentManager = getFragmentManager();
         loadRestaurantsTask = new LoadRestaurantsTask(fragmentManager, getActivity());
-        loadRestaurantsTask.execute("test");
+        loadRestaurantsTask.execute();
         restaurants = ((RestaurantViewModel)restaurantViewModel).getRestaurants();
         listViewRestaurantsToDisplay = (ListView) view.findViewById(R.id.RestaurantListView);
         final ArrayList<String> restaurantsDescriptions = arrayListRestaurantToArrayListString(restaurants);
@@ -71,12 +73,13 @@ public class RestaurantFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View view = getView();
+        //version avec recycler view
         /*restaurantsToDisplay = view.findViewById(R.id.RestaurantRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         restaurantsToDisplay.setLayoutManager(layoutManager);
         new LoadRestaurants().execute();
         */
-
+        //version avec listView
         /*
         restaurantViewModel = ViewModelProviders.of(getActivity()).get(RestaurantViewModel.class);
         fragmentManager = getFragmentManager();
