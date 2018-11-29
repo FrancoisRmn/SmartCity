@@ -36,6 +36,8 @@ public class RestaurantFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //Essai de faire une listView plus stylée en utilisant une tache synchrone venant d'une classe externe
+        /*
         View view =  inflater.inflate(R.layout.fragment_restaurant, container, false);
 
         restaurantViewModel = ViewModelProviders.of(getActivity()).get(RestaurantViewModel.class);
@@ -53,7 +55,8 @@ public class RestaurantFragment extends Fragment {
         );
         listViewRestaurantsToDisplay.setAdapter(listRestaurantAdapter);
         return view;
-        //return inflater.inflate(R.layout.fragment_restaurant, container, false);
+        */
+        return inflater.inflate(R.layout.fragment_restaurant, container, false);
 
     }
 
@@ -74,11 +77,11 @@ public class RestaurantFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         View view = getView();
         //version avec recycler view
-        /*restaurantsToDisplay = view.findViewById(R.id.RestaurantRecyclerView);
+        restaurantsToDisplay = view.findViewById(R.id.RestaurantRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         restaurantsToDisplay.setLayoutManager(layoutManager);
         new LoadRestaurants().execute();
-        */
+
         //version avec listView
         /*
         restaurantViewModel = ViewModelProviders.of(getActivity()).get(RestaurantViewModel.class);
