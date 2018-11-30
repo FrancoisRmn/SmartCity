@@ -11,6 +11,8 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.Utils.Utils;
+import com.henallux.smartcity.dataAccess.MarketDAO;
+import com.henallux.smartcity.dataAccess.UserDAO;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     private Button connectionButton;
     private EditText loginInput;
     private EditText passwordInput;
+    private UserDAO userDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,23 +41,36 @@ public class MainActivity extends AppCompatActivity {
         connectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean isValid = false;
                 if(checkForms())
                 {
-                    Intent intent = new Intent(MainActivity.this,BottomMenu.class);
-                    startActivity(intent);
+                    userDAO = new UserDAO();
+                    try{
+                        isValid = userDAO.login();
+                    }
+                    catch (Exception e){
+                        System.out.println("Exception" + e);
+                        Toast.makeText(MainActivity.this, "Combinaison login / mot de passe incorrecte !", Toast.LENGTH_SHORT).show();
+                    }
+                    finally {
+                        if(isValid){
+                            Intent intent = new Intent(MainActivity.this,BottomMenu.class);
+                            startActivity(intent);
+                        }
+                    }
                 }
             }
         });
     }
 
-    private boolean checkForms() {
+    public boolean checkForms() {
         boolean isValid = true;
         if(Utils.isEmpty(loginInput)){
             Toast.makeText(this, "Login incorrect !", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if(Utils.isEmpty(loginInput)){
-            Toast.makeText(this, "Mot de passe incorrect !", Toast.LENGTH_SHORT).show();
+        if(Utils.isEmpty(passwordInput)){
+            Toast.makeText(this, "Vous devez rentez un mot de passe !", Toast.LENGTH_SHORT).show();
             return false;
         }
         return isValid;

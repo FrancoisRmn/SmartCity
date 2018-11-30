@@ -61,6 +61,10 @@ private EditText phoneInput;
             Toast.makeText(this, "Vous n'avez pas entré de mot de passe", Toast.LENGTH_SHORT).show();
             return false;
         }
+        if(passWordInput.getText().length() <  6){
+            Toast.makeText(this, "Votre mot de passe doit contenir plus de 6 caractères !", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         if(Utils.isEmpty(confirmPassWordInput)){
             Toast.makeText(this, "Vous n'avez pas entré de mot de passe", Toast.LENGTH_SHORT).show();
             return false;
