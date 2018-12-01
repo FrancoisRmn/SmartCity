@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.henallux.smartcity.ApplicationObject.Application;
+import com.henallux.smartcity.Exception.BadLoginPasswordException;
 import com.henallux.smartcity.view.BottomMenu;
 import com.henallux.smartcity.view.MainActivity;
 
@@ -89,9 +90,16 @@ public class UserDAO {
         @Override
         protected void onPostExecute(String response) {
             application = (Application)this.context;
-            application.setToken(response);
-            Intent intent = new Intent(UserDAO.this.mainActivity,BottomMenu.class);
-            UserDAO.this.mainActivity.startActivity(intent);
+            if(!response.isEmpty())
+            {
+                application.setToken(response);
+                Intent intent = new Intent(UserDAO.this.mainActivity,BottomMenu.class);
+                UserDAO.this.mainActivity.startActivity(intent);
+            }
+            /*else
+            {
+                throw new BadLoginPasswordException("Combinaison login / mdp incorrecte !");
+            }*/
         }
 
         @Override

@@ -43,11 +43,11 @@ public class MarketFragment extends Fragment {
         private MarketDAO marketDAO;
 
         protected ArrayList<Market> doInBackground(String... urls){
-            marketDAO = new MarketDAO();
+            marketDAO = new MarketDAO(getActivity().getApplicationContext());
 
             ArrayList<Market> markets = new ArrayList<>();
             try{
-                markets = new MarketDAO().getAllMarkets();
+                markets = marketDAO.getAllMarkets();
             }catch (Exception e){
                 Log.i("Async",e.getMessage());
                 e.printStackTrace();

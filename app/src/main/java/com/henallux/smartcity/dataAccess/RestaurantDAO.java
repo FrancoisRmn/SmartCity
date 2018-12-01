@@ -33,7 +33,7 @@ public class RestaurantDAO {
         Log.i("restaurants","Bearer " + application.getToken());
         connection.setRequestMethod("GET");
         //connection.connect();
-        Log.i("restaurants","Status de connexion : " + connection.getResponseCode());
+        Log.i("restaurants","Status de connexion RestaurantsController : " + connection.getResponseCode());
         BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
         StringBuilder builder = new StringBuilder();

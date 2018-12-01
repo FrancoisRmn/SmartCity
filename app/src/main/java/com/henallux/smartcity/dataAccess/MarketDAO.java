@@ -1,7 +1,9 @@
 package com.henallux.smartcity.dataAccess;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.model.Market;
 import com.henallux.smartcity.model.Restaurant;
 
@@ -16,11 +18,21 @@ import java.util.ArrayList;
 import javax.net.ssl.HttpsURLConnection;
 
 public class MarketDAO {
+    private Context context;
+    private Application application;
+
+    public MarketDAO(Context context) {
+        this.context = context;
+    }
 
     public ArrayList<Market> getAllMarkets() throws Exception{
+        application =(Application)this.context;
         Log.i("Async","Début getAllCommerces");
         URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Commerces");
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
+        Log.i("restaurants","Bearer " + application.getToken());
+        connection.setRequestMethod("GET");
+        Log.i("restaurants","Status de connexion CommerceController : " + connection.getResponseCode());
         BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
         StringBuilder builder = new StringBuilder();
