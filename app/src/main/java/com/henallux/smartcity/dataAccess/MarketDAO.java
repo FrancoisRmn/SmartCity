@@ -38,9 +38,9 @@ public class MarketDAO {
         Market market;
         JSONArray jsonArray = new JSONArray(stringJSON);
         for (int i=0; i<jsonArray.length(); i++){
-            JSONObject jsonPerson = jsonArray.getJSONObject(i);
+            JSONObject jsonMarket = jsonArray.getJSONObject(i);
             Gson object = new GsonBuilder().create();
-            market = object.fromJson(jsonPerson.toString(), Market.class);
+            market = object.fromJson(jsonMarket.toString(), Market.class);
             markets.add(market);
         }
         return markets;

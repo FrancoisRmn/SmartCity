@@ -10,6 +10,9 @@ import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.view.BottomMenu;
 import com.henallux.smartcity.view.MainActivity;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,7 +37,7 @@ public class UserDAO {
         getUserAsyncTask = new GetUserAsyncTask(this.applicationContext, username, password).execute();
     }
 
-    public static String makePostRequest(String stringUrl, String payload) throws IOException {
+    public static String makePostRequest(String stringUrl, String payload) throws IOException, Exception {
         URL url = new URL(stringUrl);
         HttpURLConnection uc = (HttpURLConnection) url.openConnection();
         String line;
@@ -59,7 +62,16 @@ public class UserDAO {
         }
         uc.disconnect();
         Log.i("Login",jsonString.toString());
-        return jsonString.toString();
+        //return jsonString.toString();
+        return JsonToStringToken(jsonString.toString());
+    }
+
+    public static String JsonToStringToken(String stringJson) throws Exception
+    {
+        String token="";
+        JSONObject jsonToken = new JSONObject(stringJson);
+        token = jsonToken.getString("access_token");
+        return token;
     }
 
     private class GetUserAsyncTask extends AsyncTask<String, Void, String> {
@@ -94,6 +106,10 @@ public class UserDAO {
                 return response;
             } catch (IOException ex) {
                 ex.printStackTrace();
+                return "";
+            }
+            catch (Exception e) {
+                e.printStackTrace();
                 return "";
             }
         }

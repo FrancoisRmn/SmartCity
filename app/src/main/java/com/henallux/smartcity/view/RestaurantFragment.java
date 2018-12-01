@@ -107,11 +107,12 @@ public class RestaurantFragment extends Fragment {
         private RestaurantDAO restaurantDAO;
 
         protected ArrayList<Restaurant> doInBackground(String... urls){
-            restaurantDAO = new RestaurantDAO();
+            restaurantDAO = new RestaurantDAO(getActivity().getApplicationContext());
 
             ArrayList<Restaurant> restaurants = new ArrayList<>();
             try{
-                //restaurants = restaurantDAO.getAllRestaurants();
+                restaurants = restaurantDAO.getAllRestaurants();
+                /*
                 Address address = new Address("Rue de l'ange", "5550", 10);
                 ArrayList<String> moyensPayements = new ArrayList<String>();
                 Restaurant restaurant = new Restaurant();
@@ -128,6 +129,7 @@ public class RestaurantFragment extends Fragment {
                 restaurant2.setDescription("");
                 restaurant2.setMail("pizza_hut@yahoo.com");
                 restaurants.add(restaurant2);
+                */
             }catch (Exception e){
                 Log.i("Async",e.getMessage());
 
