@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
+
+import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.Utils.Utils;
 import com.henallux.smartcity.dataAccess.MarketDAO;
@@ -41,23 +43,21 @@ public class MainActivity extends AppCompatActivity {
         connectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isValid = false;
                 if(checkForms())
                 {
-                    userDAO = new UserDAO();
+                    userDAO = new UserDAO(getApplicationContext(), MainActivity.this);
                     try{
-                        isValid = userDAO.login();
+                        userDAO.login(loginInput.getText().toString(), passwordInput.getText().toString());
                     }
                     catch (Exception e){
                         System.out.println("Exception" + e);
                         Toast.makeText(MainActivity.this, "Combinaison login / mot de passe incorrecte !", Toast.LENGTH_SHORT).show();
                     }
-                    finally {
-                        if(isValid){
-                            Intent intent = new Intent(MainActivity.this,BottomMenu.class);
-                            startActivity(intent);
-                        }
-                    }
+                    /*finally {
+                        Intent intent = new Intent(MainActivity.this,BottomMenu.class);
+                        startActivity(intent);
+
+                    }*/
                 }
             }
         });

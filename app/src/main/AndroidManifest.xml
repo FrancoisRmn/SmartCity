@@ -3,6 +3,7 @@
     package="com.henallux.smartcity">
     <uses-permission android:name="android.permission.INTERNET" />
     <application
+        android:name=".ApplicationObject.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_nconnect"
         android:label="@string/app_name"

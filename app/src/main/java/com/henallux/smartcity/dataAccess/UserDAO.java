@@ -1,8 +1,14 @@
 package com.henallux.smartcity.dataAccess;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.henallux.smartcity.ApplicationObject.Application;
+import com.henallux.smartcity.view.BottomMenu;
+import com.henallux.smartcity.view.MainActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,11 +21,17 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class UserDAO {
     private AsyncTask getUserAsyncTask;
+    private Context applicationContext;
+    private Activity mainActivity;
 
-    public boolean login() throws Exception{
+    public UserDAO(Context applicationContext, Activity mainActivity) {
+        this.applicationContext = applicationContext;
+        this.mainActivity = mainActivity;
+    }
+
+    public void login(String username, String password){
         Log.i("Login","Début de login dans UserDAO");
-        getUserAsyncTask = new GetUserAsyncTask().execute("");
-        return true;
+        getUserAsyncTask = new GetUserAsyncTask(this.applicationContext, username, password).execute();
     }
 
     public static String makePostRequest(String stringUrl, String payload) throws IOException {
@@ -50,16 +62,35 @@ public class UserDAO {
         return jsonString.toString();
     }
 
-    private class GetUserAsyncTask extends AsyncTask<String, String, String> {
+    private class GetUserAsyncTask extends AsyncTask<String, Void, String> {
+        private Context context;
+        private Application application;
+        private String username;
+        private String password;
+
+        public GetUserAsyncTask(Context context, String username, String password) {
+            this.context = context;
+            this.username = username;
+            this.password = password;
+        }
+
+        @Override
+        protected void onPostExecute(String response) {
+            application = (Application)this.context;
+            application.setToken(response);
+            Intent intent = new Intent(UserDAO.this.mainActivity,BottomMenu.class);
+            UserDAO.this.mainActivity.startActivity(intent);
+        }
 
         @Override
         protected String doInBackground(String... params) {
             try {
                 String response = makePostRequest("https://sc-nconnect.azurewebsites.net/api/jwt",
                         "{\n" +
-                                "\t\"Username\":\"janedoe\",\n" +
-                                "\t\"Password\":\"123\"\n" +
+                                "\t\"Username\":\""+this.username+"\",\n" +
+                                "\t\"Password\":\""+this.password+"\"\n" +
                                 "}");
+
                 return response;
             } catch (IOException ex) {
                 ex.printStackTrace();
