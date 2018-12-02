@@ -74,9 +74,6 @@ public class UserDAO {
         String token="";
         JSONObject jsonToken = new JSONObject(stringJson);
         token = jsonToken.getString("access_token");
-        if(token.isEmpty()){
-            throw new BadLoginPasswordException("Combinaison login/mot de passe incorrecte !");
-        }
         return token;
     }
 
