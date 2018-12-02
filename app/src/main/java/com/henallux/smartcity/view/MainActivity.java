@@ -53,11 +53,6 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println("Exception" + e);
                         Toast.makeText(MainActivity.this, "Combinaison login / mot de passe incorrecte !", Toast.LENGTH_SHORT).show();
                     }
-                    /*finally {
-                        Intent intent = new Intent(MainActivity.this,BottomMenu.class);
-                        startActivity(intent);
-
-                    }*/
                 }
             }
         });
@@ -66,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean checkForms() {
         boolean isValid = true;
         if(Utils.isEmpty(loginInput)){
-            Toast.makeText(this, "Login incorrect !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Login vide !", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(Utils.isEmpty(passwordInput)){

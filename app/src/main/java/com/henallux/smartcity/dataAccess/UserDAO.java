@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.Exception.BadLoginPasswordException;
@@ -15,6 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -38,7 +40,7 @@ public class UserDAO {
         getUserAsyncTask = new GetUserAsyncTask(this.applicationContext, username, password).execute();
     }
 
-    public static String makePostRequest(String stringUrl, String payload) throws IOException, Exception {
+    public static String makePostRequest(String stringUrl, String payload) throws Exception {
         URL url = new URL(stringUrl);
         HttpURLConnection uc = (HttpURLConnection) url.openConnection();
         String line;
@@ -72,6 +74,9 @@ public class UserDAO {
         String token="";
         JSONObject jsonToken = new JSONObject(stringJson);
         token = jsonToken.getString("access_token");
+        if(token.isEmpty()){
+            throw new BadLoginPasswordException("Combinaison login/mot de passe incorrecte !");
+        }
         return token;
     }
 
@@ -88,7 +93,7 @@ public class UserDAO {
         }
 
         @Override
-        protected void onPostExecute(String response) {
+        protected void onPostExecute(String response){
             application = (Application)this.context;
             if(!response.isEmpty())
             {
@@ -96,10 +101,6 @@ public class UserDAO {
                 Intent intent = new Intent(UserDAO.this.mainActivity,BottomMenu.class);
                 UserDAO.this.mainActivity.startActivity(intent);
             }
-            /*else
-            {
-                throw new BadLoginPasswordException("Combinaison login / mdp incorrecte !");
-            }*/
         }
 
         @Override
@@ -112,7 +113,12 @@ public class UserDAO {
                                 "}");
 
                 return response;
-            } catch (IOException ex) {
+            }
+            catch (FileNotFoundException e){
+                Toast.makeText(UserDAO.this.mainActivity, "Combinaison login/ mdp incorrecte", Toast.LENGTH_SHORT).show();
+                return "";
+            }
+            catch (IOException ex) {
                 ex.printStackTrace();
                 return "";
             }
