@@ -2,8 +2,7 @@ package com.henallux.smartcity.model;
 
 import java.util.List;
 
-public class Restaurant {
-
+public class Bar {
     private String nomCommerce;
     private Address address;
     private List<String> moyensPayements;
@@ -15,16 +14,13 @@ public class Restaurant {
     private String mail;
     private String urlPageFacebook;
     private int coordGPS;
-
     private List<Promotion> promotions;
 
-    public Restaurant(){}
-
-    public Restaurant(String nomCommerce) {
+    public Bar() { }
+    public Bar(String nomCommerce) {
         this.nomCommerce = nomCommerce;
     }
 
-    @Override
     public String toString() {
         return this.nomCommerce;
     }

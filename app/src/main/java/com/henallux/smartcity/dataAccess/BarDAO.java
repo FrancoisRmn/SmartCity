@@ -3,13 +3,14 @@ package com.henallux.smartcity.dataAccess;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.henallux.smartcity.ApplicationObject.Application;
-import com.henallux.smartcity.model.Market;
-import com.henallux.smartcity.model.Restaurant;
+import com.henallux.smartcity.model.Bar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import com.google.gson.*;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -17,22 +18,22 @@ import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class MarketDAO {
+public class BarDAO {
     private Context context;
     private Application application;
 
-    public MarketDAO(Context context) {
+    public BarDAO(Context context) {
         this.context = context;
     }
 
-    public ArrayList<Market> getAllMarkets() throws Exception{
+    public ArrayList<Bar> getAllBars() throws Exception{
         application =(Application)this.context;
         Log.i("Async","Début getAllCommerces");
-        URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Commerces");
+        URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Bars");
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
-        Log.i("Commerce","Bearer " + application.getToken());
+        Log.i("Bar","Bearer " + application.getToken());
         connection.setRequestMethod("GET");
-        Log.i("Commerce","Status de connexion CommerceController : " + connection.getResponseCode());
+        Log.i("Bar","Status de connexion CommerceController : " + connection.getResponseCode());
         BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
         StringBuilder builder = new StringBuilder();
@@ -42,19 +43,19 @@ public class MarketDAO {
         }
         buffer.close();
         stringJSON = builder.toString();
-        return jsonToCommerces(stringJSON);
+        return jsonToBars(stringJSON);
     }
 
-    private ArrayList<Market> jsonToCommerces(String stringJSON) throws Exception{
-        ArrayList<Market> markets = new ArrayList<>();
-        Market market;
+    private ArrayList<Bar> jsonToBars(String stringJSON) throws Exception{
+        ArrayList<Bar> bars = new ArrayList<>();
+        Bar bar;
         JSONArray jsonArray = new JSONArray(stringJSON);
         for (int i=0; i<jsonArray.length(); i++){
-            JSONObject jsonMarket = jsonArray.getJSONObject(i);
+            JSONObject jsonBar = jsonArray.getJSONObject(i);
             Gson object = new GsonBuilder().create();
-            market = object.fromJson(jsonMarket.toString(), Market.class);
-            markets.add(market);
+            bar = object.fromJson(jsonBar.toString(), Bar.class);
+            bars.add(bar);
         }
-        return markets;
+        return bars;
     }
 }

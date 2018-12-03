@@ -5,12 +5,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.henallux.smartcity.ApplicationObject.Application;
@@ -23,6 +27,7 @@ import java.util.ArrayList;
 
 public class MarketFragment extends Fragment {
     private RecyclerView marketsToDisplay;
+    private ListView listViewMarketsToDisplay;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,9 +38,13 @@ public class MarketFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View v = getView();
+        //pour une recyclerView changer listView dans le layout
+        /*
         marketsToDisplay = v.findViewById(R.id.MarketsRecyclerView);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(v.getContext());
         marketsToDisplay.setLayoutManager(layoutManager);
+         */
+        listViewMarketsToDisplay = (ListView)v.findViewById(R.id.MarketsRecyclerView);
         new LoadMarkets().execute();
     }
 
@@ -58,9 +67,35 @@ public class MarketFragment extends Fragment {
 
         @Override
         protected void onPostExecute(ArrayList<Market> markets) {
+            /*
             RecyclerView.Adapter adapter = new MarketAdapter(markets);
             marketsToDisplay.setAdapter(adapter);
-            Log.i("Async","Fin de onPostExecute (market)");
+             */
+            final ArrayList<String> MarketsDescriptions = arrayListMarketToArrayListString(markets);
+            ArrayAdapter<String> listMarketAdapter= new ArrayAdapter<String>(
+                    getActivity(),
+                    android.R.layout.simple_list_item_1,
+                    MarketsDescriptions
+            );
+            listViewMarketsToDisplay.setAdapter(listMarketAdapter);
+            //gestion des clicks
+            listViewMarketsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    new ElementDetailFragment();
+                    ElementDetailFragment elementDetailFragment = new ElementDetailFragment();
+                    FragmentTransaction fragmentTransaction =getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, elementDetailFragment).commit();
+                }
+            });
         }
+    }
+    private ArrayList<String> arrayListMarketToArrayListString(ArrayList<Market> marketsArrayList) {
+        ArrayList<String> markets = new ArrayList<String>();
+        for(Market market: marketsArrayList)
+        {
+            markets.add(market.toString());
+        }
+        return markets;
     }
 }
