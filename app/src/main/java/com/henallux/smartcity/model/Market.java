@@ -7,11 +7,7 @@ public class Market {
 
     @Override
     public String toString() {
-        return "Market{" +
-                "commerceId=" + commerceId +
-                ", nomCommerce='" + nomCommerce + '\'' +
-                ", address=" + address +
-                '}';
+        return  nomCommerce ;
     }
 
     public Market(int commerceId, String nomCommerce, Address address)
