@@ -4,14 +4,17 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.listener.FragmentListener;
+import com.henallux.smartcity.model.Market;
 
-public class BottomMenu extends AppCompatActivity {
+public class BottomMenu extends AppCompatActivity implements FragmentListener {
     private BottomNavigationView bottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,4 +53,12 @@ public class BottomMenu extends AppCompatActivity {
                     return true;
                 }
             };
+
+    @Override
+    public void getMarket(Market market) {
+        Fragment elementDetailFragment = new ElementDetailFragment();
+        ((ElementDetailFragment) elementDetailFragment).setData(market);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, elementDetailFragment).commit();
+    }
 }

@@ -30,6 +30,7 @@ public class MarketDAO {
         Log.i("Async","Début getAllCommerces");
         URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Commerces");
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
+        connection.setRequestProperty("Authorization", "Bearer " + application.getToken());
         Log.i("Commerce","Bearer " + application.getToken());
         connection.setRequestMethod("GET");
         Log.i("Commerce","Status de connexion CommerceController : " + connection.getResponseCode());

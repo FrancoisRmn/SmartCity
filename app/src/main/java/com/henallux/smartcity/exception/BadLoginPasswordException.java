@@ -1,4 +1,4 @@
-package com.henallux.smartcity.Exception;
+package com.henallux.smartcity.exception;
 
 public class BadLoginPasswordException extends Exception {
     private String message;

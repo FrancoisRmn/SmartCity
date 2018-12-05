@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,12 +13,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.MarketDAO;
-import com.henallux.smartcity.model.Address;
+import com.henallux.smartcity.listener.FragmentListener;
 import com.henallux.smartcity.model.Market;
 
 import java.util.ArrayList;
@@ -82,10 +78,15 @@ public class MarketFragment extends Fragment {
             listViewMarketsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    /*
                     new ElementDetailFragment();
                     ElementDetailFragment elementDetailFragment = new ElementDetailFragment();
                     FragmentTransaction fragmentTransaction =getFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, elementDetailFragment).commit();
+                    */
+                    FragmentListener fragmentListener = (FragmentListener)getActivity();
+                    //fragmentListener.getMarket((Market)listViewMarketsToDisplay.getItemAtPosition(position));
+                    fragmentListener.getMarket(new Market(4, "TEST"));
                 }
             });
         }

@@ -1,14 +1,11 @@
 package com.henallux.smartcity.view;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,9 +17,7 @@ import android.widget.ListView;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.RestaurantDAO;
-import com.henallux.smartcity.model.Address;
 import com.henallux.smartcity.model.Restaurant;
-import com.henallux.smartcity.model.RestaurantViewModel;
 
 import java.util.ArrayList;
 
@@ -98,19 +93,19 @@ public class RestaurantFragment extends Fragment {
             try{
                 restaurants = restaurantDAO.getAllRestaurants();
                 /*
-                Address address = new Address("Rue de l'ange", "5550", 10);
+
                 ArrayList<String> moyensPayements = new ArrayList<String>();
                 Restaurant restaurant = new Restaurant();
                 restaurant.setNomCommerce("Burger King");
-                restaurant.setAddress(address);
+
                 restaurant.setDescription("Restauration rapide");
                 restaurant.setMail("burgerking@yahoo.com");
                 restaurants.add(restaurant );
 
-                Address address2 = new Address("Rue de fer", "5550", 13);
+
                 Restaurant restaurant2 = new Restaurant();
                 restaurant2.setNomCommerce("Pizza hut");
-                restaurant2.setAddress(address2);
+
                 restaurant2.setDescription("");
                 restaurant2.setMail("pizza_hut@yahoo.com");
                 restaurants.add(restaurant2);

@@ -16,7 +16,6 @@ import android.widget.ListView;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.BarDAO;
-import com.henallux.smartcity.model.Address;
 import com.henallux.smartcity.model.Bar;
 
 import java.util.ArrayList;
@@ -48,19 +47,19 @@ public class DrinkFragment extends Fragment {
             try{
                 //bars = barDAO.getAllBars();
 
-                Address address = new Address("Rue de l'ange", "5550", 10);
                 ArrayList<String> moyensPayements = new ArrayList<String>();
                 Bar bar = new Bar();
                 bar.setNomCommerce("Green fairy");
-                bar.setAddress(address);
+                bar.setRue("Place de l'ange");
+                bar.setNumero(5);
                 bar.setDescription("Restauration rapide");
                 bar.setMail("burgerking@yahoo.com");
                 bars.add(bar);
 
-                Address address2 = new Address("Rue de fer", "5550", 13);
                 Bar bar2= new Bar();
                 bar2.setNomCommerce("Le verre royale");
-                bar2.setAddress(address2);
+                bar2.setRue("Rue de la rue");
+                bar2.setNumero(10);
                 bar2.setDescription("");
                 bar2.setMail("pizza_hut@yahoo.com");
                 bars.add(bar2);

@@ -5,7 +5,8 @@ import java.util.List;
 public class Restaurant {
 
     private String nomCommerce;
-    private Address address;
+    private String rue;
+    private int numero;
     private List<String> moyensPayements;
     private String description;
     private String produitPhare;
@@ -19,6 +20,22 @@ public class Restaurant {
     private List<Promotion> promotions;
 
     public Restaurant(){}
+
+    public String getRue() {
+        return rue;
+    }
+
+    public void setRue(String rue) {
+        this.rue = rue;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
     public Restaurant(String nomCommerce) {
         this.nomCommerce = nomCommerce;
@@ -35,14 +52,6 @@ public class Restaurant {
 
     public void setNomCommerce(String nomCommerce) {
         this.nomCommerce = nomCommerce;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
     }
 
     public List<String> getMoyensPayements() {

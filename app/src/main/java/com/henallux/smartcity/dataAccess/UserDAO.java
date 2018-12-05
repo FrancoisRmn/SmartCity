@@ -8,11 +8,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.henallux.smartcity.ApplicationObject.Application;
-import com.henallux.smartcity.Exception.BadLoginPasswordException;
 import com.henallux.smartcity.view.BottomMenu;
-import com.henallux.smartcity.view.MainActivity;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -22,8 +19,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
-import javax.net.ssl.HttpsURLConnection;
 
 public class UserDAO {
     private AsyncTask getUserAsyncTask;

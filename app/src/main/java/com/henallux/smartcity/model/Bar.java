@@ -4,7 +4,8 @@ import java.util.List;
 
 public class Bar {
     private String nomCommerce;
-    private Address address;
+    private String rue;
+    private int numero;
     private List<String> moyensPayements;
     private String description;
     private String produitPhare;
@@ -33,12 +34,20 @@ public class Bar {
         this.nomCommerce = nomCommerce;
     }
 
-    public Address getAddress() {
-        return address;
+    public String getRue() {
+        return rue;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setRue(String rue) {
+        this.rue = rue;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public List<String> getMoyensPayements() {

@@ -8,9 +8,6 @@ import android.os.AsyncTask;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
-import android.widget.ListView;
-
-import com.henallux.smartcity.model.Address;
 import com.henallux.smartcity.model.Restaurant;
 import com.henallux.smartcity.model.RestaurantViewModel;
 
@@ -50,19 +47,19 @@ public class LoadRestaurantsTask extends AsyncTask<String, Void, ArrayList<Resta
 
         try {
             Log.d("LoadRestaurantTask", "On ajoute les restaurants");
-            Address address = new Address("Rue de l'ange", "5550", 10);
+
             ArrayList<String> moyensPayements = new ArrayList<String>();
             Restaurant restaurant = new Restaurant();
             restaurant.setNomCommerce("Burger King");
-            restaurant.setAddress(address);
+
             restaurant.setDescription("Restauration rapide");
             restaurant.setMail("burgerking@yahoo.com");
             restaurants.add(restaurant );
 
-            Address address2 = new Address("Rue de fer", "5550", 13);
+
             Restaurant restaurant2 = new Restaurant();
             restaurant2.setNomCommerce("Pizza hut");
-            restaurant2.setAddress(address2);
+
             restaurant2.setDescription("");
             restaurant2.setMail("pizza_hut@yahoo.com");
             restaurants.add(restaurant2);
