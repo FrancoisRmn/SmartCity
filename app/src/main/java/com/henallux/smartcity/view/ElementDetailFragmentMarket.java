@@ -15,12 +15,17 @@ import com.henallux.smartcity.model.Market;
 public class ElementDetailFragmentMarket extends Fragment {
     private Market market;
     private TextView titleFragmentDetail;
+    private TextView descriptionElementDetailMarket;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_element_detail_market, container, false);
         titleFragmentDetail = v.findViewById(R.id.titleFragmentElementDetailMarket);
         titleFragmentDetail.setText(market.getNomCommerce());
+        descriptionElementDetailMarket = v.findViewById(R.id.descriptionElementDetailMarket);
+        if(this.market.getDescription() != null){
+            descriptionElementDetailMarket.setText(this.market.getDescription());
+        }
         return v;
     }
 

@@ -15,12 +15,18 @@ import com.henallux.smartcity.model.Bar;
 public class ElementDetailFragmentBar extends Fragment {
     private Bar bar;
     private TextView titleFragmentDetail;
+    private TextView descriptionElementDetailBar;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_element_detail_bar, container, false);
         titleFragmentDetail = v.findViewById(R.id.titleFragmentElementDetailBar);
         titleFragmentDetail.setText(bar.getNomCommerce());
+        descriptionElementDetailBar = v.findViewById(R.id.descriptionElementDetailBar);
+        if(this.bar.getDescription() != null)
+        {
+            descriptionElementDetailBar.setText(this.bar.getDescription());
+        }
         return v;
     }
 
