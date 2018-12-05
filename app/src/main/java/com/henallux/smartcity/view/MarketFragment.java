@@ -46,11 +46,11 @@ public class MarketFragment extends Fragment {
 
     private class LoadMarkets extends AsyncTask<String, Void, ArrayList<Market>> {
         private MarketDAO marketDAO;
+        ArrayList<Market> markets = new ArrayList<>();
 
         protected ArrayList<Market> doInBackground(String... urls){
             marketDAO = new MarketDAO(getActivity().getApplicationContext());
 
-            ArrayList<Market> markets = new ArrayList<>();
             try{
                 markets = marketDAO.getAllMarkets();
             }catch (Exception e){
@@ -62,7 +62,7 @@ public class MarketFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Market> markets) {
+        protected void onPostExecute(final ArrayList<Market> markets) {
             /*
             RecyclerView.Adapter adapter = new MarketAdapter(markets);
             marketsToDisplay.setAdapter(adapter);
@@ -85,8 +85,8 @@ public class MarketFragment extends Fragment {
                     fragmentTransaction.replace(R.id.fragment_container, elementDetailFragment).commit();
                     */
                     FragmentListener fragmentListener = (FragmentListener)getActivity();
-                    //fragmentListener.getMarket((Market)listViewMarketsToDisplay.getItemAtPosition(position));
-                    fragmentListener.getMarket(new Market(4, "TEST"));
+                    fragmentListener.getMarket(markets.get(position));
+                    //fragmentListener.getMarket(new Market(4, "TEST"));
                 }
             });
         }

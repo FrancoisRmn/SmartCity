@@ -29,7 +29,7 @@ public class BarDAO {
     public ArrayList<Bar> getAllBars() throws Exception{
         application =(Application)this.context;
         Log.i("Async","Début getAllCommerces");
-        URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Bars");
+        URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Commerces?categorie=3");
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
         Log.i("Bar","Bearer " + application.getToken());
         connection.setRequestMethod("GET");

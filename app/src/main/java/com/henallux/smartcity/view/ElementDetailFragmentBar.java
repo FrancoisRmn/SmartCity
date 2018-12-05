@@ -8,25 +8,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.henallux.smartcity.R;
-import com.henallux.smartcity.model.Market;
+import com.henallux.smartcity.model.Bar;
 
-public class ElementDetailFragment extends Fragment {
-    private Market market;
+public class ElementDetailFragmentBar extends Fragment {
+    private Bar bar;
     private TextView titleFragmentDetail;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_element_detail, container, false);
-        titleFragmentDetail = v.findViewById(R.id.titleFragmentElementDetail);
-        titleFragmentDetail.setText(market.getNomCommerce());
+        View v = inflater.inflate(R.layout.fragment_element_detail_bar, container, false);
+        titleFragmentDetail = v.findViewById(R.id.titleFragmentElementDetailBar);
+        titleFragmentDetail.setText(bar.getNomCommerce());
         return v;
     }
 
-    public void setData(Market market)
+    public void setData(Bar bar)
     {
-        this.market = market;
+        this.bar= bar;
     }
 }

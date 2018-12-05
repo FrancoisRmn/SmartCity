@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView2Bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleFragmentElementDetailBar"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/titleFragmentElementDetail"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/descriptionElementDetailTitleBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/descriptionElementDetailTitle"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/descriptionElementDetailBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/descriptionElementDetail" />
+
+            <TextView
+                android:id="@+id/scheduleTitleBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/scheduleTitle"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/scheduleBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/schedule" />
+
+            <TextView
+                android:id="@+id/imageTitleBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/imageTitle"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageBurgerKing1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:srcCompat="@mipmap/ic_launcher_foreground"
+                android:contentDescription="TODO" />
+            <TextView
+                android:id="@+id/contactTitleBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/contactTitle"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/contactBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/contact" />
+            <Button
+                android:id="@+id/callButtonBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/callButton" />
+            <Button
+                android:id="@+id/sendMailButtonBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/sendMailButton" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

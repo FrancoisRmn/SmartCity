@@ -17,6 +17,7 @@ import android.widget.ListView;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.RestaurantDAO;
+import com.henallux.smartcity.listener.FragmentListener;
 import com.henallux.smartcity.model.Restaurant;
 
 import java.util.ArrayList;
@@ -119,7 +120,7 @@ public class RestaurantFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Restaurant> restaurants) {
+        protected void onPostExecute(final ArrayList<Restaurant> restaurants) {
             /*
             RecyclerView.Adapter adapter = new RestaurantAdapter(restaurants);
             restaurantsToDisplay.setAdapter(adapter);
@@ -135,10 +136,14 @@ public class RestaurantFragment extends Fragment {
             listViewRestaurantsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    /*
                     new ElementDetailFragment();
                     ElementDetailFragment elementDetailFragment = new ElementDetailFragment();
                     FragmentTransaction fragmentTransaction =getFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, elementDetailFragment).commit();
+                    */
+                    FragmentListener fragmentListener = (FragmentListener)getActivity();
+                    fragmentListener.getRestaurant(restaurants.get(position));
                 }
             });
         }

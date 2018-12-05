@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView2Market"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
@@ -21,7 +21,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/titleFragmentElementDetail"
+                android:id="@+id/titleFragmentElementDetailMarket"
                 android:layout_width="wrap_content"
                 android:layout_height="70dp"
                 android:layout_marginTop="20dp"
@@ -29,35 +29,35 @@
                 android:textSize="36sp" />
 
             <TextView
-                android:id="@+id/descriptionElementDetailTitle"
+                android:id="@+id/descriptionElementDetailTitleMarket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/descriptionElementDetailTitle"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/descriptionElementDetail"
+                android:id="@+id/descriptionElementDetailMarket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/descriptionElementDetail" />
 
             <TextView
-                android:id="@+id/scheduleTitle"
+                android:id="@+id/scheduleTitleMarket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/scheduleTitle"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/schedule"
+                android:id="@+id/scheduleMarket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/schedule" />
 
             <TextView
-                android:id="@+id/imageTitle"
+                android:id="@+id/imageTitleMarket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -65,32 +65,32 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:id="@+id/imageBurgerKing1"
+                android:id="@+id/imageBurgerKing1Market"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 app:srcCompat="@mipmap/ic_launcher_foreground"
                 android:contentDescription="TODO" />
             <TextView
-                android:id="@+id/contactTitle"
+                android:id="@+id/contactTitleMarket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/contactTitle"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/contact"
+                android:id="@+id/contactMarket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/contact" />
             <Button
-                android:id="@+id/callButton"
+                android:id="@+id/callButtonMarket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/callButton" />
             <Button
-                android:id="@+id/sendMailButton"
+                android:id="@+id/sendMailButtonMarket"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

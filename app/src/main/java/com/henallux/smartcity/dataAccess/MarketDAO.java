@@ -28,7 +28,7 @@ public class MarketDAO {
     public ArrayList<Market> getAllMarkets() throws Exception{
         application =(Application)this.context;
         Log.i("Async","Début getAllCommerces");
-        URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Commerces");
+        URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Commerces?categorie=2");
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
         connection.setRequestProperty("Authorization", "Bearer " + application.getToken());
         Log.i("Commerce","Bearer " + application.getToken());

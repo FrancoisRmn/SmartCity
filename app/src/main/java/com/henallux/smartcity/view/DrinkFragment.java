@@ -16,6 +16,7 @@ import android.widget.ListView;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.BarDAO;
+import com.henallux.smartcity.listener.FragmentListener;
 import com.henallux.smartcity.model.Bar;
 
 import java.util.ArrayList;
@@ -39,11 +40,10 @@ public class DrinkFragment extends Fragment {
     }
     private class LoadBars extends AsyncTask<String, Void, ArrayList<Bar>> {
         private BarDAO barDAO;
-
+        ArrayList<Bar> bars = new ArrayList<>();
         protected ArrayList<Bar> doInBackground(String... urls){
             barDAO = new BarDAO(getActivity().getApplicationContext());
 
-            ArrayList<Bar> bars = new ArrayList<>();
             try{
                 //bars = barDAO.getAllBars();
 
@@ -73,7 +73,7 @@ public class DrinkFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(ArrayList<Bar> bars) {
+        protected void onPostExecute(final ArrayList<Bar> bars) {
             final ArrayList<String> barsDescriptions = arrayListBarToArrayListString(bars);
             ArrayAdapter<String> listBarAdapter= new ArrayAdapter<String>(
                     getActivity(),
@@ -85,10 +85,13 @@ public class DrinkFragment extends Fragment {
             listViewBarsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    new ElementDetailFragment();
-                    ElementDetailFragment elementDetailFragment = new ElementDetailFragment();
+                    /*
+                    ElementDetailFragmentMarket elementDetailFragmentMarket = new ElementDetailFragmentMarket();
                     FragmentTransaction fragmentTransaction =getFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, elementDetailFragment).commit();
+                    fragmentTransaction.replace(R.id.fragment_container, elementDetailFragmentMarket).commit();
+                     */
+                    FragmentListener fragmentListener = (FragmentListener)getActivity();
+                    fragmentListener.getBar(bars.get(position));
                 }
             });
         }

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView2Restaurant"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/titleFragmentElementDetailRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/titleFragmentElementDetail"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/descriptionElementDetailTitleRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/descriptionElementDetailTitle"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/descriptionElementDetailRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/descriptionElementDetail" />
+
+            <TextView
+                android:id="@+id/scheduleTitleRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/scheduleTitle"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/scheduleRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/schedule" />
+
+            <TextView
+                android:id="@+id/imageTitleRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/imageTitle"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageBurgerKing1"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:srcCompat="@mipmap/ic_launcher_foreground"
+                android:contentDescription="TODO" />
+            <TextView
+                android:id="@+id/contactTitleRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/contactTitle"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/contactRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/contact" />
+            <Button
+                android:id="@+id/callButtonRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/callButton" />
+            <Button
+                android:id="@+id/sendMailButtonRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/sendMailButton" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

@@ -27,7 +27,7 @@ public class RestaurantDAO {
 
     public ArrayList<Restaurant> getAllRestaurants() throws Exception{
         application =(Application)this.context;
-        URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Restaurants");
+        URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Commerces?categorie=1");
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
         connection.setRequestProperty("Authorization", "Bearer " + application.getToken());
         Log.i("restaurants","Bearer " + application.getToken());

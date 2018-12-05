@@ -12,7 +12,9 @@ import android.arch.lifecycle.ViewModelProviders;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.listener.FragmentListener;
+import com.henallux.smartcity.model.Bar;
 import com.henallux.smartcity.model.Market;
+import com.henallux.smartcity.model.Restaurant;
 
 public class BottomMenu extends AppCompatActivity implements FragmentListener {
     private BottomNavigationView bottomNav;
@@ -56,9 +58,25 @@ public class BottomMenu extends AppCompatActivity implements FragmentListener {
 
     @Override
     public void getMarket(Market market) {
-        Fragment elementDetailFragment = new ElementDetailFragment();
-        ((ElementDetailFragment) elementDetailFragment).setData(market);
+        Fragment elementDetailFragmentMarket = new ElementDetailFragmentMarket();
+        ((ElementDetailFragmentMarket) elementDetailFragmentMarket).setData(market);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, elementDetailFragment).commit();
+        fragmentTransaction.replace(R.id.fragment_container, elementDetailFragmentMarket).commit();
+    }
+
+    @Override
+    public void getBar(Bar bar) {
+        Fragment elementDetailFragmentBar = new ElementDetailFragmentBar();
+        ((ElementDetailFragmentBar) elementDetailFragmentBar).setData(bar);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, elementDetailFragmentBar).commit();
+    }
+
+    @Override
+    public void getRestaurant(Restaurant restaurant) {
+        Fragment elementDetailFragmentRestaurant= new ElementDetailFragmentRestaurant();
+        ((ElementDetailFragmentRestaurant) elementDetailFragmentRestaurant).setData(restaurant);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, elementDetailFragmentRestaurant).commit();
     }
 }
