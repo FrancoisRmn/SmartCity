@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -27,7 +28,10 @@ public class BottomMenu extends AppCompatActivity implements FragmentListener {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         if(savedInstanceState == null)
         {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RestaurantFragment()).commit();
+            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new RestaurantFragment()).commit();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, new RestaurantFragment());
+            transaction.commit();
         }
     }
 
@@ -35,23 +39,31 @@ public class BottomMenu extends AppCompatActivity implements FragmentListener {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    String tag="";
                     Fragment selectedFragment = null;
                     switch (menuItem.getItemId()){
                         case R.id.nav_eat:
                             selectedFragment = new RestaurantFragment();
+                            tag="AddFragRestaurant";
                             break;
                         case R.id.nav_drink:
                             selectedFragment = new DrinkFragment();
+                            tag="AddFragBar";
                             break;
                         case R.id.nav_market:
                             selectedFragment = new MarketFragment();
+                            tag="AddFragMarket";
                             break;
                         case R.id.nav_settings:
                             selectedFragment = new SettingsFragment();
+                            tag="AddFragSettings";
                             break;
                     }
-
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, selectedFragment);
+                    transaction.addToBackStack(tag);
+                    transaction.commit();
+                    //getSupportFragmentManager().beginTransaction().replace().commit();
                     return true;
                 }
             };
@@ -61,7 +73,9 @@ public class BottomMenu extends AppCompatActivity implements FragmentListener {
         Fragment elementDetailFragmentMarket = new ElementDetailFragmentMarket();
         ((ElementDetailFragmentMarket) elementDetailFragmentMarket).setData(market);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, elementDetailFragmentMarket).commit();
+        fragmentTransaction.replace(R.id.fragment_container, elementDetailFragmentMarket);
+        fragmentTransaction.addToBackStack("elementDetailFragmentMarket");
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -69,7 +83,9 @@ public class BottomMenu extends AppCompatActivity implements FragmentListener {
         Fragment elementDetailFragmentBar = new ElementDetailFragmentBar();
         ((ElementDetailFragmentBar) elementDetailFragmentBar).setData(bar);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, elementDetailFragmentBar).commit();
+        fragmentTransaction.replace(R.id.fragment_container, elementDetailFragmentBar);
+        fragmentTransaction.addToBackStack("elementDetailFragmentBar");
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -77,6 +93,19 @@ public class BottomMenu extends AppCompatActivity implements FragmentListener {
         Fragment elementDetailFragmentRestaurant= new ElementDetailFragmentRestaurant();
         ((ElementDetailFragmentRestaurant) elementDetailFragmentRestaurant).setData(restaurant);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, elementDetailFragmentRestaurant).commit();
+        fragmentTransaction.replace(R.id.fragment_container, elementDetailFragmentRestaurant);
+        fragmentTransaction.addToBackStack("elementDetailFragmentRestaurant");
+        fragmentTransaction.commit();
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if(getSupportFragmentManager().getBackStackEntryCount() > 0){
+            getSupportFragmentManager().popBackStack();
+        }
+        else{
+            super.onBackPressed();
+        }
     }
 }

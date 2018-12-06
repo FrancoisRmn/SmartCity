@@ -86,7 +86,6 @@ public class MarketFragment extends Fragment {
                     */
                     FragmentListener fragmentListener = (FragmentListener)getActivity();
                     fragmentListener.getMarket(markets.get(position));
-                    //fragmentListener.getMarket(new Market(4, "TEST"));
                 }
             });
         }
