@@ -5,118 +5,188 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.InfoPersos"
-    tools:layout_editor_absoluteY="73dp">
+    tools:layout_editor_absoluteY="81dp">
 
     <ScrollView
         android:id="@+id/scrollView2Bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="32dp">
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.051">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/InfosTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:text="@string/personalInformations"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/NameTextView"
-                android:layout_width="82dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/name" />
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="43dp"
+                android:text="@string/name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/FirstNameTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/firstName" />
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/firstName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/NameInput" />
 
             <TextView
                 android:id="@+id/MailTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/mail" />
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/mail"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/FirstNameInput" />
 
             <TextView
                 android:id="@+id/PasswordTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/password" />
+                android:text="@string/password"
+                app:layout_constraintStart_toStartOf="@+id/MailInput"
+                app:layout_constraintTop_toBottomOf="@+id/MailInput" />
 
             <TextView
                 android:id="@+id/ConfirmPasswordTextView"
-                android:layout_width="98dp"
-                android:layout_height="49dp"
-                android:text="@string/confirmPassword" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/confirmPassword"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PasswordInput" />
 
             <TextView
                 android:id="@+id/TelTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/number" />
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="7dp"
+                android:text="@string/number"
+                app:layout_constraintBottom_toTopOf="@+id/PhoneInput"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
                 android:id="@+id/PasswordInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="7dp"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:selectAllOnFocus="false" />
+                android:selectAllOnFocus="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/PasswordTextView" />
 
             <EditText
                 android:id="@+id/ConfirmPasswordInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="7dp"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:selectAllOnFocus="false" />
+                android:selectAllOnFocus="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordTextView" />
 
             <EditText
                 android:id="@+id/PhoneInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="12dp"
                 android:ems="10"
                 android:inputType="phone"
-                android:selectAllOnFocus="false" />
+                android:selectAllOnFocus="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <EditText
                 android:id="@+id/MailInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="7dp"
                 android:ems="10"
                 android:inputType="textEmailAddress"
-                android:selectAllOnFocus="false" />
+                android:selectAllOnFocus="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/MailTextView" />
 
             <EditText
                 android:id="@+id/NameInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:selectAllOnFocus="false" />
+                android:selectAllOnFocus="false"
+                app:layout_constraintStart_toStartOf="@+id/NameTextView"
+                app:layout_constraintTop_toTopOf="@+id/NameTextView" />
 
             <EditText
                 android:id="@+id/FirstNameInput"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="7dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:selectAllOnFocus="false" />
+                android:selectAllOnFocus="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/FirstNameTextView" />
 
             <Button
                 android:id="@+id/ValidationInscriptionButton"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="25dp"
                 android:text="@string/nextTitle"
-                tools:layout_editor_absoluteY="285dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordInput" />
         </LinearLayout>
     </ScrollView>
-
 </android.support.constraint.ConstraintLayout>

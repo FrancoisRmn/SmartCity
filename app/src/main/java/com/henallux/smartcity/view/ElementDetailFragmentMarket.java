@@ -16,6 +16,9 @@ public class ElementDetailFragmentMarket extends Fragment {
     private Market market;
     private TextView titleFragmentDetail;
     private TextView descriptionElementDetailMarket;
+    private TextView email;
+    private TextView cellPhone;
+    private TextView phone;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -25,6 +28,18 @@ public class ElementDetailFragmentMarket extends Fragment {
         descriptionElementDetailMarket = v.findViewById(R.id.descriptionElementDetailMarket);
         if(this.market.getDescription() != null){
             descriptionElementDetailMarket.setText(this.market.getDescription());
+        }
+        email = v.findViewById(R.id.emailMarket);
+        if(this.market.getAdresseMail() != null){
+            email.setText("EMail : " + this.market.getAdresseMail());
+        }
+        cellPhone = v.findViewById(R.id.cellphoneBar);
+        if(this.market.getNumeroGSM() != 0){
+            cellPhone.setText("GSM : " + this.market.getNumeroGSM());
+        }
+        phone = v.findViewById(R.id.phoneBar);
+        if(this.market.getNumeroFixe() != 0){
+            phone.setText("Fixe : " + this.market.getNumeroFixe());
         }
         return v;
     }

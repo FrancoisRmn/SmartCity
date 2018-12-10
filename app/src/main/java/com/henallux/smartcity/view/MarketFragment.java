@@ -34,13 +34,7 @@ public class MarketFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View v = getView();
-        //pour une recyclerView changer listView dans le layout
-        /*
-        marketsToDisplay = v.findViewById(R.id.MarketsRecyclerView);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(v.getContext());
-        marketsToDisplay.setLayoutManager(layoutManager);
-         */
-        listViewMarketsToDisplay = (ListView)v.findViewById(R.id.MarketsRecyclerView);
+        listViewMarketsToDisplay = v.findViewById(R.id.MarketsRecyclerView);
         new LoadMarkets().execute();
     }
 
@@ -63,10 +57,6 @@ public class MarketFragment extends Fragment {
 
         @Override
         protected void onPostExecute(final ArrayList<Market> markets) {
-            /*
-            RecyclerView.Adapter adapter = new MarketAdapter(markets);
-            marketsToDisplay.setAdapter(adapter);
-             */
             final ArrayList<String> MarketsDescriptions = arrayListMarketToArrayListString(markets);
             ArrayAdapter<String> listMarketAdapter= new ArrayAdapter<String>(
                     getActivity(),
@@ -78,12 +68,6 @@ public class MarketFragment extends Fragment {
             listViewMarketsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    /*
-                    new ElementDetailFragment();
-                    ElementDetailFragment elementDetailFragment = new ElementDetailFragment();
-                    FragmentTransaction fragmentTransaction =getFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, elementDetailFragment).commit();
-                    */
                     FragmentListener fragmentListener = (FragmentListener)getActivity();
                     fragmentListener.getMarket(markets.get(position));
                 }

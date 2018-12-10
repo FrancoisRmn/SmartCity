@@ -16,6 +16,9 @@ public class ElementDetailFragmentBar extends Fragment {
     private Bar bar;
     private TextView titleFragmentDetail;
     private TextView descriptionElementDetailBar;
+    private TextView email;
+    private TextView cellPhone;
+    private TextView phone;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -26,6 +29,18 @@ public class ElementDetailFragmentBar extends Fragment {
         if(this.bar.getDescription() != null)
         {
             descriptionElementDetailBar.setText(this.bar.getDescription());
+        }
+        email = v.findViewById(R.id.emailBar);
+        if(this.bar.getAdresseMail() != null){
+            email.setText("EMail : " + this.bar.getAdresseMail());
+        }
+        cellPhone = v.findViewById(R.id.cellphoneBar);
+        if(this.bar.getNumeroGSM() != 0){
+            cellPhone.setText("GSM : " + this.bar.getNumeroGSM());
+        }
+        phone = v.findViewById(R.id.phoneBar);
+        if(this.bar.getNumeroFixe() != 0){
+            phone.setText("Fixe : " + this.bar.getNumeroFixe());
         }
         return v;
     }

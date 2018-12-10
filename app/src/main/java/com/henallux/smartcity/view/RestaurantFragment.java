@@ -24,34 +24,12 @@ import java.util.ArrayList;
 
 public class RestaurantFragment extends Fragment {
 
-    private RecyclerView restaurantsToDisplay;
     private ListView listViewRestaurantsToDisplay;
-    private ArrayList<Restaurant> restaurants;
     private LoadRestaurants loadRestaurants;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //Essai de faire une listView plus stylée en utilisant une tache synchrone venant d'une classe externe
-        /*
-        View view =  inflater.inflate(R.layout.fragment_restaurant, container, false);
-
-        restaurantViewModel = ViewModelProviders.of(getActivity()).get(RestaurantViewModel.class);
-
-        fragmentManager = getFragmentManager();
-        loadRestaurantsTask = new LoadRestaurantsTask(fragmentManager, getActivity());
-        loadRestaurantsTask.execute();
-        restaurants = ((RestaurantViewModel)restaurantViewModel).getRestaurants();
-        listViewRestaurantsToDisplay = (ListView) view.findViewById(R.id.RestaurantListView);
-        final ArrayList<String> restaurantsDescriptions = arrayListRestaurantToArrayListString(restaurants);
-        ArrayAdapter<String> listRestaurantAdapter= new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                restaurantsDescriptions
-        );
-        listViewRestaurantsToDisplay.setAdapter(listRestaurantAdapter);
-        return view;
-        */
         return inflater.inflate(R.layout.fragment_restaurant, container, false);
 
     }
@@ -69,15 +47,7 @@ public class RestaurantFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View view = getView();
-        //version avec recycler view
-        /*
-        restaurantsToDisplay = view.findViewById(R.id.RestaurantRecyclerView);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-        restaurantsToDisplay.setLayoutManager(layoutManager);
-        new LoadRestaurants().execute();
-         */
-        //version avec listView (juste remplacer dans le layout recyclerView par ListView)
-        listViewRestaurantsToDisplay = (ListView) view.findViewById(R.id.RestaurantRecyclerView);
+        listViewRestaurantsToDisplay = view.findViewById(R.id.RestaurantRecyclerView);
         loadRestaurants = new LoadRestaurants();
         loadRestaurants.execute();
     }
@@ -121,10 +91,7 @@ public class RestaurantFragment extends Fragment {
 
         @Override
         protected void onPostExecute(final ArrayList<Restaurant> restaurants) {
-            /*
-            RecyclerView.Adapter adapter = new RestaurantAdapter(restaurants);
-            restaurantsToDisplay.setAdapter(adapter);
-            */
+
             final ArrayList<String> restaurantsDescriptions = arrayListRestaurantToArrayListString(restaurants);
             ArrayAdapter<String> listRestaurantAdapter= new ArrayAdapter<String>(
                     getActivity(),
@@ -132,16 +99,9 @@ public class RestaurantFragment extends Fragment {
                     restaurantsDescriptions
             );
             listViewRestaurantsToDisplay.setAdapter(listRestaurantAdapter);
-            //gestion des clicks
             listViewRestaurantsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    /*
-                    new ElementDetailFragment();
-                    ElementDetailFragment elementDetailFragment = new ElementDetailFragment();
-                    FragmentTransaction fragmentTransaction =getFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, elementDetailFragment).commit();
-                    */
                     FragmentListener fragmentListener = (FragmentListener)getActivity();
                     fragmentListener.getRestaurant(restaurants.get(position));
                 }

@@ -35,9 +35,10 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/descriptionElementDetailTitle"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/descriptionElementDetailRestaurant"
-                android:layout_width="wrap_content"
+                android:layout_width="333dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/descriptionElementDetail" />
@@ -78,11 +79,24 @@
                 android:text="@string/contactTitle"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/contactRestaurant"
+                android:id="@+id/emailRestaurant"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/contact" />
+                android:text="Email : /" />
+            <TextView
+                android:id="@+id/cellphoneRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Tél mobile : /" />
+            <TextView
+                android:id="@+id/phoneRestaurant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Tél fixe : /" />
+
             <Button
                 android:id="@+id/callButtonRestaurant"
                 android:layout_width="wrap_content"

@@ -35,9 +35,10 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/descriptionElementDetailTitle"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/descriptionElementDetailBar"
-                android:layout_width="wrap_content"
+                android:layout_width="342dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/descriptionElementDetail" />
@@ -78,11 +79,24 @@
                 android:text="@string/contactTitle"
                 android:textStyle="bold" />
             <TextView
-                android:id="@+id/contactBar"
+                android:id="@+id/emailBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/contact" />
+                android:text="Email : /" />
+            <TextView
+                android:id="@+id/cellphoneBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Tél mobile : /" />
+            <TextView
+                android:id="@+id/phoneBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Tél fixe : /" />
+
             <Button
                 android:id="@+id/callButtonBar"
                 android:layout_width="wrap_content"

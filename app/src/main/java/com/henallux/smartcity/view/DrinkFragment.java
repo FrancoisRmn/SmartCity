@@ -45,8 +45,9 @@ public class DrinkFragment extends Fragment {
             barDAO = new BarDAO(getActivity().getApplicationContext());
 
             try{
-                //bars = barDAO.getAllBars();
+                bars = barDAO.getAllBars();
 
+                /*
                 ArrayList<String> moyensPayements = new ArrayList<String>();
                 Bar bar = new Bar();
                 bar.setNomCommerce("Green fairy");
@@ -63,6 +64,8 @@ public class DrinkFragment extends Fragment {
                 bar2.setDescription("");
                 bar2.setMail("pizza_hut@yahoo.com");
                 bars.add(bar2);
+                 */
+
 
             }catch (Exception e){
                 Log.i("Async",e.getMessage());
