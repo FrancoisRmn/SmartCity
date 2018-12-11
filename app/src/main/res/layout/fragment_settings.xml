@@ -80,4 +80,16 @@
         android:layout_marginStart="197dp"
         android:layout_marginTop="159dp"
         android:text="@string/tourismeCheckBox" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginBottom="54dp"
+        android:text="@string/deconnexion" />
 </RelativeLayout>

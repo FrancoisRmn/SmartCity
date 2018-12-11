@@ -7,13 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProviders;
-
-import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.Utils.Utils;
-import com.henallux.smartcity.dataAccess.MarketDAO;
 import com.henallux.smartcity.dataAccess.UserDAO;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordInput;
     private UserDAO userDAO;
     private Button withoutConnectionButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
 
     public boolean checkForms() {
         boolean isValid = true;
