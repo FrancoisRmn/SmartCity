@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText loginInput;
     private EditText passwordInput;
     private UserDAO userDAO;
+    private Button withoutConnectionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,20 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Combinaison login / mot de passe incorrecte !", Toast.LENGTH_SHORT).show();
                     }
                 }
+            }
+        });
+
+        withoutConnectionButton = findViewById(R.id.withoutConnectionButton);
+        withoutConnectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userDAO = new UserDAO(getApplicationContext(), MainActivity.this);
+                        try{
+                            userDAO.loginWithoutConnection();
+                        }
+                        catch (Exception e){
+                            System.out.println("Exception" + e);
+                        }
             }
         });
     }

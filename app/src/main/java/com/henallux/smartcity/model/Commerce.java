@@ -1,5 +1,6 @@
 package com.henallux.smartcity.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Commerce {
@@ -20,7 +21,7 @@ public class Commerce {
     private int idCategorie;
     private int idPersonne;
     //private int rowVersion;
-
+    private ArrayList<OpeningPeriod> openingPeriod;
 
     @Override
     public String toString() {

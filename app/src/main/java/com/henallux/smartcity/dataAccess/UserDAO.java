@@ -64,6 +64,12 @@ public class UserDAO {
         return JsonToStringToken(jsonString.toString());
     }
 
+    public void loginWithoutConnection() {
+        String userLambda ="janedoe";
+        String passwordLambda="123";
+        getUserAsyncTask = new GetUserAsyncTask(this.applicationContext, userLambda, passwordLambda).execute();
+    }
+
     public static String JsonToStringToken(String stringJson) throws Exception
     {
         String token="";
@@ -71,6 +77,8 @@ public class UserDAO {
         token = jsonToken.getString("access_token");
         return token;
     }
+
+
 
     private class GetUserAsyncTask extends AsyncTask<String, Void, String> {
         private Context context;

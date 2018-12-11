@@ -14,7 +14,7 @@
 
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
+        app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.051">
@@ -31,10 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/personalInformations"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/NameTextView"
@@ -43,9 +40,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="43dp"
-                android:text="@string/name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="@string/name" />
 
             <TextView
                 android:id="@+id/FirstNameTextView"
@@ -54,9 +49,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/firstName"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/NameInput" />
+                android:text="@string/firstName" />
 
             <TextView
                 android:id="@+id/MailTextView"
@@ -65,17 +58,13 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/mail"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/FirstNameInput" />
+                android:text="@string/mail" />
 
             <TextView
                 android:id="@+id/PasswordTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/password"
-                app:layout_constraintStart_toStartOf="@+id/MailInput"
-                app:layout_constraintTop_toBottomOf="@+id/MailInput" />
+                android:text="@string/password" />
 
             <TextView
                 android:id="@+id/ConfirmPasswordTextView"
@@ -84,9 +73,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="8dp"
-                android:text="@string/confirmPassword"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PasswordInput" />
+                android:text="@string/confirmPassword" />
 
             <TextView
                 android:id="@+id/TelTextView"
@@ -95,9 +82,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginBottom="7dp"
-                android:text="@string/number"
-                app:layout_constraintBottom_toTopOf="@+id/PhoneInput"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:text="@string/number" />
 
             <EditText
                 android:id="@+id/PasswordInput"
@@ -108,9 +93,7 @@
                 android:layout_marginTop="7dp"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:selectAllOnFocus="false"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/PasswordTextView" />
+                android:selectAllOnFocus="false" />
 
             <EditText
                 android:id="@+id/ConfirmPasswordInput"
@@ -121,9 +104,7 @@
                 android:layout_marginTop="7dp"
                 android:ems="10"
                 android:inputType="textPassword"
-                android:selectAllOnFocus="false"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordTextView" />
+                android:selectAllOnFocus="false" />
 
             <EditText
                 android:id="@+id/PhoneInput"
@@ -134,9 +115,7 @@
                 android:layout_marginBottom="12dp"
                 android:ems="10"
                 android:inputType="phone"
-                android:selectAllOnFocus="false"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                android:selectAllOnFocus="false" />
 
             <EditText
                 android:id="@+id/MailInput"
@@ -147,9 +126,7 @@
                 android:layout_marginTop="7dp"
                 android:ems="10"
                 android:inputType="textEmailAddress"
-                android:selectAllOnFocus="false"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/MailTextView" />
+                android:selectAllOnFocus="false" />
 
             <EditText
                 android:id="@+id/NameInput"
@@ -158,9 +135,7 @@
                 android:layout_marginTop="18dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:selectAllOnFocus="false"
-                app:layout_constraintStart_toStartOf="@+id/NameTextView"
-                app:layout_constraintTop_toTopOf="@+id/NameTextView" />
+                android:selectAllOnFocus="false" />
 
             <EditText
                 android:id="@+id/FirstNameInput"
@@ -171,9 +146,7 @@
                 android:layout_marginTop="7dp"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:selectAllOnFocus="false"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/FirstNameTextView" />
+                android:selectAllOnFocus="false" />
 
             <Button
                 android:id="@+id/ValidationInscriptionButton"
@@ -183,10 +156,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="25dp"
-                android:text="@string/nextTitle"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordInput" />
+                android:text="@string/nextTitle" />
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

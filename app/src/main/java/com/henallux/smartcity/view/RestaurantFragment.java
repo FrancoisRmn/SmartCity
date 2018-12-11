@@ -63,24 +63,6 @@ public class RestaurantFragment extends Fragment {
             ArrayList<Restaurant> restaurants = new ArrayList<>();
             try{
                 restaurants = restaurantDAO.getAllRestaurants();
-                /*
-
-                ArrayList<String> moyensPayements = new ArrayList<String>();
-                Restaurant restaurant = new Restaurant();
-                restaurant.setNomCommerce("Burger King");
-
-                restaurant.setDescription("Restauration rapide");
-                restaurant.setMail("burgerking@yahoo.com");
-                restaurants.add(restaurant );
-
-
-                Restaurant restaurant2 = new Restaurant();
-                restaurant2.setNomCommerce("Pizza hut");
-
-                restaurant2.setDescription("");
-                restaurant2.setMail("pizza_hut@yahoo.com");
-                restaurants.add(restaurant2);
-                */
             }catch (Exception e){
                 Log.i("Async",e.getMessage());
 
