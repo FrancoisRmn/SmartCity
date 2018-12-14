@@ -26,7 +26,7 @@ public class ElementDetailFragmentBar extends Fragment {
     private TextView email;
     private TextView cellPhone;
     private TextView phone;
-    private Toolbar toolbar;
+    private TextView flagshipProduct;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -105,6 +105,10 @@ public class ElementDetailFragmentBar extends Fragment {
         phone = v.findViewById(R.id.phoneBar);
         if(this.bar.getNumeroFixe() != null){
             phone.setText("Fixe : " + this.bar.getNumeroFixe());
+        }
+        flagshipProduct = v.findViewById(R.id.flagshipProduct);
+        if(this.bar.getProduitPhare() != null){
+            flagshipProduct.setText(this.bar.getProduitPhare());
         }
         return v;
     }

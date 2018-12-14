@@ -28,6 +28,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
     private TextView email;
     private TextView cellPhone;
     private TextView phone;
+    private TextView flagshipProduct;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -106,6 +107,10 @@ public class ElementDetailFragmentRestaurant extends Fragment {
         phone = v.findViewById(R.id.phoneRestaurant);
         if(this.restaurant.getNumeroFixe() != null){
             phone.setText("Fixe : " + this.restaurant.getNumeroFixe());
+        }
+        flagshipProduct = v.findViewById(R.id.flagshipProduct);
+        if(this.restaurant.getProduitPhare() != null){
+            flagshipProduct.setText(this.restaurant.getProduitPhare());
         }
         return v;
     }

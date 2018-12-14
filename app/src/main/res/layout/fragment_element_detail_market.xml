@@ -64,6 +64,21 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/imageTitle"
                 android:textStyle="bold" />
+            <TextView
+                android:id="@+id/flagshipProductTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Produit phare :"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/flagshipProduct"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Pas de produit phare pour se commerce" />
+
 
             <ImageView
                 android:id="@+id/imageBurgerKing1Market"

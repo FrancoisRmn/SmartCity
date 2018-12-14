@@ -25,6 +25,8 @@ public class ElementDetailFragmentMarket extends Fragment {
     private TextView email;
     private TextView cellPhone;
     private TextView phone;
+    private TextView flagshipProduct;
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -103,6 +105,10 @@ public class ElementDetailFragmentMarket extends Fragment {
         phone = v.findViewById(R.id.phoneBar);
         if(this.market.getNumeroFixe() != null){
             phone.setText("Fixe : " + this.market.getNumeroFixe());
+        }
+        flagshipProduct = v.findViewById(R.id.flagshipProduct);
+        if(this.market.getProduitPhare() != null){
+            flagshipProduct.setText(this.market.getProduitPhare());
         }
         return v;
     }
