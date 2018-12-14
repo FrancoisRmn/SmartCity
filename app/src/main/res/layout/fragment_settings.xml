@@ -66,20 +66,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="202dp"
-        android:layout_marginTop="216dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="162dp"
         android:layout_marginBottom="323dp"
         android:text="@string/shoppingCheckBox" />
-
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="197dp"
-        android:layout_marginTop="159dp"
-        android:text="@string/tourismeCheckBox" />
 
     <Button
         android:id="@+id/button"

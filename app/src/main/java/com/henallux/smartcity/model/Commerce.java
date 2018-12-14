@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Commerce {
-    private int idCommerce;
+    private Integer idCommerce;
     private String nomCommerce;
     private String rue;
-    private int numero;
+    private Integer numero;
     private List<String> moyensPayements;
     private String description;
     private String produitPhare;
     private String parcoursProduitPhare;
-    private int numeroGSM;
-    private int numeroFixe ;
+    private Integer numeroGSM;
+    private Integer numeroFixe ;
     private String adresseMail;
     private String urlPageFacebook;
-    private int longitude;
-    private int latitude;
-    private int idCategorie;
-    private int idPersonne;
+    private Integer longitude;
+    private Integer latitude;
+    private Integer idCategorie;
+    private Integer idPersonne;
     //private int rowVersion;
     private ArrayList<OpeningPeriod> openingPeriod;
 
@@ -28,11 +28,11 @@ public class Commerce {
         return nomCommerce;
     }
 
-    public int getIdCommerce() {
+    public Integer getIdCommerce() {
         return idCommerce;
     }
 
-    public void setIdCommerce(int idCommerce) {
+    public void setIdCommerce(Integer idCommerce) {
         this.idCommerce = idCommerce;
     }
 
@@ -52,11 +52,11 @@ public class Commerce {
         this.rue = rue;
     }
 
-    public int getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 
@@ -92,15 +92,15 @@ public class Commerce {
         this.parcoursProduitPhare = parcoursProduitPhare;
     }
 
-    public int getNumeroGSM() {
+    public Integer getNumeroGSM() {
         return numeroGSM;
     }
 
-    public void setNumeroGSM(int numeroGSM) {
+    public void setNumeroGSM(Integer numeroGSM) {
         this.numeroGSM = numeroGSM;
     }
 
-    public int getNumeroFixe() {
+    public Integer getNumeroFixe() {
         return numeroFixe;
     }
 
@@ -124,7 +124,7 @@ public class Commerce {
         this.urlPageFacebook = urlPageFacebook;
     }
 
-    public int getLongitude() {
+    public Integer getLongitude() {
         return longitude;
     }
 
@@ -132,7 +132,7 @@ public class Commerce {
         this.longitude = longitude;
     }
 
-    public int getLatitude() {
+    public Integer getLatitude() {
         return latitude;
     }
 
@@ -140,7 +140,7 @@ public class Commerce {
         this.latitude = latitude;
     }
 
-    public int getIdCategorie() {
+    public Integer getIdCategorie() {
         return idCategorie;
     }
 
@@ -148,7 +148,7 @@ public class Commerce {
         this.idCategorie = idCategorie;
     }
 
-    public int getIdPersonne() {
+    public Integer getIdPersonne() {
         return idPersonne;
     }
 

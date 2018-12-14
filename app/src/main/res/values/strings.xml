@@ -23,8 +23,8 @@
     <string name="shopping">Shopping</string>
     <string name="createAccountButton">Créer le compte</string>
     <string name="nconnect">NConnect</string>
-    <string name="drinkTitle">Liste des bars</string>
-    <string name="storesTitle">Liste des commerces</string>
+    <string name="drinkTitle">Bars</string>
+    <string name="storesTitle">Commerces</string>
     <string name="settingsTitle">Paramètres</string>
     <string name="centerOfInterestH1">Mes centres d\'intérêts</string>
     <string name="restaurantCheckBox">Restauration</string>
