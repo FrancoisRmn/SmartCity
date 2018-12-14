@@ -26,6 +26,7 @@ public class ElementDetailFragmentMarket extends Fragment {
     private TextView cellPhone;
     private TextView phone;
     private TextView flagshipProduct;
+    private TextView localisation;
 
 
     @Override
@@ -43,11 +44,23 @@ public class ElementDetailFragmentMarket extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch(item.getItemId()){
-            case R.id.itemCallButton :
+            case R.id.itemCallGSMButton :
                 if(this.market.getNumeroGSM() != null)
                 {
                     intent= new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:" + this.market.getNumeroGSM()));
+                    startActivity(intent);
+
+                }
+                else{
+                    Toast.makeText(getActivity(), "Numéro de téléphone non disponible !", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            case R.id.itemCallButton :
+                if(this.market.getNumeroGSM() != null)
+                {
+                    intent= new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" + this.market.getNumeroFixe()));
                     startActivity(intent);
 
                 }
@@ -109,6 +122,11 @@ public class ElementDetailFragmentMarket extends Fragment {
         flagshipProduct = v.findViewById(R.id.flagshipProduct);
         if(this.market.getProduitPhare() != null){
             flagshipProduct.setText(this.market.getProduitPhare());
+        }
+        localisation = v.findViewById(R.id.localisation);
+        if(this.market.getRue() != null){
+            String numero= (this.market.getNumero() != null) ? this.market.getNumero().toString() : "";
+            this.localisation.setText(this.market.getRue() + " " + numero);
         }
         return v;
     }

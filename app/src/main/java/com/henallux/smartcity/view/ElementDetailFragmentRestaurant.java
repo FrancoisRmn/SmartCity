@@ -29,7 +29,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
     private TextView cellPhone;
     private TextView phone;
     private TextView flagshipProduct;
-
+    private TextView localisation;
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.tool_bar, menu);
@@ -45,7 +45,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch(item.getItemId()){
-            case R.id.itemCallButton :
+            case R.id.itemCallGSMButton :
                 if(this.restaurant.getNumeroGSM() != null)
                 {
                     intent= new Intent(Intent.ACTION_DIAL);
@@ -53,7 +53,19 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                     startActivity(intent);
 
                 }
-               else{
+                else{
+                    Toast.makeText(getActivity(), "Numéro de téléphone non disponible !", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            case R.id.itemCallButton :
+                if(this.restaurant.getNumeroGSM() != null)
+                {
+                    intent= new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" + this.restaurant.getNumeroFixe()));
+                    startActivity(intent);
+
+                }
+                else{
                     Toast.makeText(getActivity(), "Numéro de téléphone non disponible !", Toast.LENGTH_SHORT).show();
                 }
                 return true;
@@ -111,6 +123,11 @@ public class ElementDetailFragmentRestaurant extends Fragment {
         flagshipProduct = v.findViewById(R.id.flagshipProduct);
         if(this.restaurant.getProduitPhare() != null){
             flagshipProduct.setText(this.restaurant.getProduitPhare());
+        }
+        localisation = v.findViewById(R.id.localisation);
+        if(this.restaurant.getRue() != null){
+            String numero= (this.restaurant.getNumero() != null) ? this.restaurant.getNumero().toString() : "";
+            this.localisation.setText(this.restaurant.getRue() + " " + numero);
         }
         return v;
     }

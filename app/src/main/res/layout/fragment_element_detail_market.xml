@@ -64,6 +64,25 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/imageTitle"
                 android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/imageBurgerKing1Market"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                app:srcCompat="@mipmap/ic_launcher_foreground"
+                android:contentDescription="TODO" />
+            <TextView
+                android:id="@+id/localisationTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Situé à :"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/localisation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Situé à :" />
             <TextView
                 android:id="@+id/flagshipProductTitle"
                 android:layout_width="wrap_content"
@@ -78,14 +97,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Pas de produit phare pour se commerce" />
-
-
-            <ImageView
-                android:id="@+id/imageBurgerKing1Market"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                app:srcCompat="@mipmap/ic_launcher_foreground"
-                android:contentDescription="TODO" />
             <TextView
                 android:id="@+id/contactTitleMarket"
                 android:layout_width="wrap_content"

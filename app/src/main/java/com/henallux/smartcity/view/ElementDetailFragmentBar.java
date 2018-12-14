@@ -27,6 +27,7 @@ public class ElementDetailFragmentBar extends Fragment {
     private TextView cellPhone;
     private TextView phone;
     private TextView flagshipProduct;
+    private TextView localisation;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -43,11 +44,23 @@ public class ElementDetailFragmentBar extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent;
         switch(item.getItemId()){
-            case R.id.itemCallButton :
+            case R.id.itemCallGSMButton :
                 if(this.bar.getNumeroGSM() != null)
                 {
                     intent= new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:" + this.bar.getNumeroGSM()));
+                    startActivity(intent);
+
+                }
+                else{
+                    Toast.makeText(getActivity(), "Numéro de téléphone non disponible !", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            case R.id.itemCallButton :
+                if(this.bar.getNumeroGSM() != null)
+                {
+                    intent= new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" + this.bar.getNumeroFixe()));
                     startActivity(intent);
 
                 }
@@ -109,6 +122,11 @@ public class ElementDetailFragmentBar extends Fragment {
         flagshipProduct = v.findViewById(R.id.flagshipProduct);
         if(this.bar.getProduitPhare() != null){
             flagshipProduct.setText(this.bar.getProduitPhare());
+        }
+        localisation = v.findViewById(R.id.localisation);
+        if(this.bar.getRue() != null){
+            String numero= (this.bar.getNumero() != null) ? this.bar.getNumero().toString() : "";
+            this.localisation.setText(this.bar.getRue() + " " + numero);
         }
         return v;
     }

@@ -2,10 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
+        android:id="@+id/itemCallGSMButton"
+        android:icon="@drawable/ic_call_button"
+        android:title="Appelez (GSM)"
+        app:showAsAction="never"
+        />
+    <item
         android:id="@+id/itemCallButton"
         android:icon="@drawable/ic_call_button"
-        android:title=""
-        app:showAsAction="always"
+        android:title="Appelez (Fixe)"
+        app:showAsAction="never"
         />
     <item
         android:id="@+id/itemSendMail"
@@ -17,7 +23,7 @@
         android:id="@+id/itemRouteButton"
         android:icon="@drawable/ic_route_naviguation"
         android:title="Itinéraire"
-        app:showAsAction="never"
+        app:showAsAction="always"
         />
     <item
         android:id="@+id/itemFavorite"
