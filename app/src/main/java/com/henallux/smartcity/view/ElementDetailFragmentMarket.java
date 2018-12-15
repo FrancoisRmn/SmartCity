@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.model.Market;
 
@@ -27,6 +28,7 @@ public class ElementDetailFragmentMarket extends Fragment {
     private TextView phone;
     private TextView flagshipProduct;
     private TextView localisation;
+    private Application applicationContext;
 
 
     @Override
@@ -91,6 +93,16 @@ public class ElementDetailFragmentMarket extends Fragment {
                 }
             case R.id.itemRouteButton:
                 //TODO
+            case R.id.itemFavorite:
+                applicationContext = (Application)getActivity().getApplicationContext();
+                if(applicationContext.isConnected()){
+                    Toast.makeText(getActivity(), "Commerce ajouté aux favoris", Toast.LENGTH_SHORT).show();
+                    //TODO
+                    //changer la couleur de l'icone et ajouté aux favoris de l'utilisateur
+                }
+                else{
+                    Toast.makeText(getActivity(), "Vous devez être connecté pour ajouter un commerce aux favoris", Toast.LENGTH_SHORT).show();
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -6,13 +6,11 @@ public class User implements Serializable {
     private String userName;
     private String password;
     private String email;
-    private Integer numeroTelephone;
 
-    public User(String userName, String password, String email, Integer numeroTelephone) {
+    public User(String userName, String password, String email) {
         this.userName = userName;
         this.password = password;
         this.email = email;
-        this.numeroTelephone =  numeroTelephone;
     }
 
     @Override

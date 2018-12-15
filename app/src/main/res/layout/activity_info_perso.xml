@@ -70,17 +70,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/PasswordInput" />
 
-    <TextView
-        android:id="@+id/TelTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="7dp"
-        android:text="@string/number"
-        app:layout_constraintBottom_toTopOf="@+id/PhoneInput"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
         android:id="@+id/PasswordInput"
         android:layout_width="wrap_content"
@@ -108,19 +97,6 @@
         app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordTextView" />
 
     <EditText
-        android:id="@+id/PhoneInput"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="12dp"
-        android:ems="10"
-        android:inputType="phone"
-        android:selectAllOnFocus="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
         android:id="@+id/MailInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -137,12 +113,14 @@
         android:id="@+id/NameInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginBottom="335dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:selectAllOnFocus="false"
+        app:layout_constraintBottom_toTopOf="@+id/ValidationInscriptionButton"
         app:layout_constraintStart_toStartOf="@+id/NameTextView"
-        app:layout_constraintTop_toTopOf="@+id/NameTextView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/FirstNameInput"
@@ -161,13 +139,12 @@
         android:id="@+id/ValidationInscriptionButton"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="135dp"
+        android:layout_marginRight="135dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/nextTitle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordInput" />
+        app:layout_constraintTop_toBottomOf="@+id/NameInput" />
 
 </android.support.constraint.ConstraintLayout>

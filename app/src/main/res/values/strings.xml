@@ -44,4 +44,5 @@
     <string name="sendMailButton">Envoyer un email</string>
     <string name="nextTitle">Suivant</string>
     <string name="deconnexion">Déconnexion</string>
+    <string name="without_connection">Sans se connecter</string>
 </resources>

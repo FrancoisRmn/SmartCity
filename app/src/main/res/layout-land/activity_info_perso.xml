@@ -22,7 +22,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="398dp"
+            android:layout_marginBottom="293dp"
             android:text="@string/personalInformations"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/ValidationInscriptionButton"
@@ -94,17 +94,6 @@
             app:layout_constraintStart_toStartOf="@+id/MailInput"
             app:layout_constraintTop_toBottomOf="@+id/MailInput" />
 
-        <TextView
-            android:id="@+id/TelTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="47dp"
-            android:layout_marginLeft="47dp"
-            android:layout_marginTop="46dp"
-            android:text="@string/number"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordInput" />
-
         <EditText
             android:id="@+id/ConfirmPasswordInput"
             android:layout_width="wrap_content"
@@ -114,19 +103,6 @@
             android:selectAllOnFocus="false"
             app:layout_constraintBaseline_toBaselineOf="@+id/ConfirmPasswordTextView"
             app:layout_constraintStart_toStartOf="@+id/PasswordInput" />
-
-        <EditText
-            android:id="@+id/PhoneInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:ems="10"
-            android:inputType="phone"
-            android:selectAllOnFocus="false"
-            app:layout_constraintBottom_toTopOf="@+id/TelTextView"
-            app:layout_constraintStart_toEndOf="@+id/TelTextView"
-            app:layout_constraintTop_toTopOf="@+id/TelTextView" />
 
         <EditText
             android:id="@+id/MailInput"
@@ -164,16 +140,11 @@
         <Button
             android:id="@+id/ValidationInscriptionButton"
             android:layout_width="121dp"
-            android:layout_height="47dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_height="0dp"
             android:text="@string/nextTitle"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/PhoneInput" />
+            app:layout_constraintTop_toBottomOf="@+id/InfosTextView" />
     </android.support.constraint.ConstraintLayout>
     </ScrollView>

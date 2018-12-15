@@ -11,42 +11,41 @@
         android:id="@+id/InscriptionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="27dp"
-        android:layout_marginRight="27dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/registration"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/pasEncoreDeCompteTextView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/ConnectionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="34dp"
-        android:layout_marginLeft="34dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="119dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/connection"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/motDePasseInput" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/loginTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
         android:layout_marginEnd="23dp"
         android:layout_marginRight="23dp"
-        android:layout_marginBottom="55dp"
+        android:layout_marginBottom="28dp"
         android:text="@string/login"
-        app:layout_constraintBottom_toBottomOf="@+id/motDePasseTexteView"
-        app:layout_constraintEnd_toEndOf="@+id/motDePasseTexteView"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+        app:layout_constraintBottom_toTopOf="@+id/motDePasseTexteView"
+        app:layout_constraintEnd_toEndOf="@+id/motDePasseTexteView" />
 
     <TextView
         android:id="@+id/motDePasseTexteView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
         android:text="@string/password"
         app:layout_constraintBottom_toBottomOf="@+id/motDePasseInput"
         app:layout_constraintEnd_toStartOf="@+id/motDePasseInput" />
@@ -55,34 +54,34 @@
         android:id="@+id/loginInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/motDePasseInput"
-        app:layout_constraintStart_toStartOf="@+id/motDePasseInput" />
+        app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
 
     <EditText
         android:id="@+id/motDePasseInput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="83dp"
-        android:layout_marginBottom="81dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toBottomOf="@+id/ConnectionButton"
-        app:layout_constraintEnd_toStartOf="@+id/pasEncoreDeCompteTextView"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+        app:layout_constraintStart_toStartOf="@+id/loginInput"
+        app:layout_constraintTop_toBottomOf="@+id/loginInput" />
 
     <TextView
         android:id="@+id/pasEncoreDeCompteTextView"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="38dp"
-        android:layout_marginRight="38dp"
-        android:layout_marginBottom="67dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginBottom="76dp"
         android:text="@string/noAccountYet"
-        app:layout_constraintBottom_toBottomOf="@+id/InscriptionButton"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/motDePasseInput" />
 
     <TextView
@@ -92,6 +91,18 @@
         android:layout_marginTop="8dp"
         android:text="@string/nconnect"
         android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="@+id/loginInput"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/withoutConnectionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="23dp"
+        android:layout_marginRight="23dp"
+        android:layout_marginBottom="28dp"
+        android:text="@string/without_connection"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/motDePasseInput" />
 </android.support.constraint.ConstraintLayout>

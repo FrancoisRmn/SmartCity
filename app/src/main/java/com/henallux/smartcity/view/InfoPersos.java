@@ -19,7 +19,6 @@ private EditText firstNameInput;
 private EditText passWordInput;
 private EditText confirmPassWordInput;
 private EditText mailInput;
-private EditText phoneInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,6 @@ private EditText phoneInput;
         mailInput = (EditText) findViewById(R.id.MailInput);
         passWordInput = (EditText) findViewById(R.id.PasswordInput);
         confirmPassWordInput = (EditText) findViewById(R.id.ConfirmPasswordInput);
-        phoneInput = (EditText) findViewById(R.id.PhoneInput);
         validateButton = (Button)findViewById(R.id.ValidationInscriptionButton);
         validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +37,8 @@ private EditText phoneInput;
                 {
                     //on cree un user
                     String userName= nameInput.getText().toString() + firstNameInput.getText().toString();
-                    User user = new User(userName, passWordInput.getText().toString(), mailInput.getText().toString(), Integer.parseInt(phoneInput.getText().toString()));
+
+                    User user = new User(userName, passWordInput.getText().toString(), mailInput.getText().toString());
                     Intent intent = new Intent(InfoPersos.this, Preference.class);
                     intent.putExtra("user", user);
                     startActivity(intent);
@@ -79,25 +78,6 @@ private EditText phoneInput;
             Toast.makeText(this, "Vous devez insérer deux fois le même mot de passe !", Toast.LENGTH_SHORT).show();
             return false;
         }
-
-
-        if(!Utils.isEmpty(phoneInput)){
-            try{
-                Integer.parseInt(phoneInput.getText().toString().replace("\\s", ""));
-                if(phoneInput.getText().length()>10){
-                    Toast.makeText(this, "Vous n'avez pas insérer de numéro de téléphone valide", Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-            }
-            catch (NumberFormatException e){
-                Toast.makeText(this, "Le numéro de téléphone ne peut contenir que des chiffres", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        }
-        /*else{
-            Toast.makeText(this, "Vous n'avez pas entré de numéro de téléphone", Toast.LENGTH_SHORT).show();
-            return false;
-        }*/
         return isValid;
     }
 }
