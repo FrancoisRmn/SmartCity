@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.Utils.Utils;
+import com.henallux.smartcity.model.User;
 
 public class InfoPersos extends AppCompatActivity {
 private Button validateButton;
@@ -36,7 +37,12 @@ private EditText phoneInput;
             public void onClick(View v) {
                 if(checkForms())
                 {
-                    startActivity(new Intent(InfoPersos.this, Preference.class));
+                    //on cree un user
+                    String userName= nameInput.getText().toString() + firstNameInput.getText().toString();
+                    User user = new User(userName, passWordInput.getText().toString(), mailInput.getText().toString(), Integer.parseInt(phoneInput.getText().toString()));
+                    Intent intent = new Intent(InfoPersos.this, Preference.class);
+                    intent.putExtra("user", user);
+                    startActivity(intent);
                 }
             }
         });
@@ -88,10 +94,10 @@ private EditText phoneInput;
                 return false;
             }
         }
-        else{
+        /*else{
             Toast.makeText(this, "Vous n'avez pas entré de numéro de téléphone", Toast.LENGTH_SHORT).show();
             return false;
-        }
+        }*/
         return isValid;
     }
 }
