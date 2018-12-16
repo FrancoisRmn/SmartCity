@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="@+id/ConfirmPasswordTextView"
-        app:layout_constraintTop_toBottomOf="@+id/ConfirmPasswordTextView">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.InfoPersos"
+    tools:layout_editor_absoluteY="81dp">
 
         <TextView
             android:id="@+id/InfosTextView"
@@ -87,11 +81,16 @@
             android:id="@+id/PasswordInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="189dp"
+            android:layout_marginLeft="189dp"
             android:layout_marginTop="3dp"
+            android:layout_marginEnd="43dp"
+            android:layout_marginRight="43dp"
             android:ems="10"
             android:inputType="textPassword"
             android:selectAllOnFocus="false"
-            app:layout_constraintStart_toStartOf="@+id/MailInput"
+            app:layout_constraintEnd_toStartOf="@+id/ValidationInscriptionButton"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/MailInput" />
 
         <EditText
@@ -139,12 +138,15 @@
 
         <Button
             android:id="@+id/ValidationInscriptionButton"
-            android:layout_width="121dp"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="33dp"
+            android:layout_marginRight="33dp"
+            android:layout_marginBottom="45dp"
             android:text="@string/nextTitle"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/ConfirmPasswordTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/InfosTextView" />
+            app:layout_constraintStart_toEndOf="@+id/PasswordInput"
+            app:layout_constraintTop_toBottomOf="@+id/FirstNameTextView" />
     </android.support.constraint.ConstraintLayout>
-    </ScrollView>

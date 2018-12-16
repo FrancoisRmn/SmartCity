@@ -1,145 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/scrollView2Restaurant"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="25dp">
 
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/titleFragmentElementDetailRestaurant"
+            android:layout_width="0dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="54dp"
+            android:layout_marginLeft="54dp"
+            android:layout_marginTop="23dp"
+            android:layout_marginEnd="55dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginBottom="36dp"
+            android:text="@string/titleFragmentElementDetail"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@+id/descriptionElementDetailTitleRestaurant"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/scheduleTitle"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/descriptionElementDetailTitleRestaurant"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/descriptionElementDetailTitle"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/descriptionElementDetailRestaurant"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/titleFragmentElementDetailRestaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/titleFragmentElementDetail"
-                android:textSize="36sp" />
+        <TextView
+            android:id="@+id/descriptionElementDetailRestaurant"
+            android:layout_width="234dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/descriptionElementDetail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.597"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/descriptionElementDetailTitleRestaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/descriptionElementDetailTitle"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/scheduleTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="18dp"
+            android:text="@string/scheduleTitle"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/localisationTitle"
+            app:layout_constraintTop_toBottomOf="@+id/localisation" />
 
-            <TextView
-                android:id="@+id/descriptionElementDetailRestaurant"
-                android:layout_width="333dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/descriptionElementDetail" />
+        <TextView
+            android:id="@+id/imageTitleRestaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="31dp"
+            android:layout_marginLeft="31dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginBottom="362dp"
+            android:text="@string/imageTitle"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageBurgerKing1"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/scheduleTitleRestaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/scheduleTitle"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/scheduleRestaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/schedule" />
+        <ImageView
+            android:id="@+id/imageBurgerKing1"
+            android:layout_width="0dp"
+            android:layout_height="153dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="117dp"
+            android:layout_marginRight="117dp"
+            android:layout_marginBottom="46dp"
+            android:contentDescription="TODO"
+            app:layout_constraintBottom_toBottomOf="@+id/flagshipProductTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageTitleRestaurant"
+            app:layout_constraintTop_toBottomOf="@+id/scheduleRestaurant"
+            app:srcCompat="@mipmap/ic_launcher_foreground" />
 
-            <TextView
-                android:id="@+id/imageTitleRestaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/imageTitle"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/localisationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="33dp"
+            android:text="Situé à :"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionElementDetailRestaurant" />
 
-            <ImageView
-                android:id="@+id/imageBurgerKing1"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                app:srcCompat="@mipmap/ic_launcher_foreground"
-                android:contentDescription="TODO" />
-            <TextView
-                android:id="@+id/localisationTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Situé à :"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/localisation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Situé à :" />
-            <TextView
-                android:id="@+id/flagshipProductTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Produit phare :"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/localisation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="12dp"
+            android:text="Situé à :"
+            app:layout_constraintStart_toStartOf="@+id/localisationTitle"
+            app:layout_constraintTop_toBottomOf="@+id/localisationTitle" />
 
-            <TextView
-                android:id="@+id/flagshipProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Pas de produit phare pour se commerce" />
-            <TextView
-                android:id="@+id/contactTitleRestaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/contactTitle"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/emailRestaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Email : /" />
-            <TextView
-                android:id="@+id/cellphoneRestaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Tél mobile : /" />
-            <TextView
-                android:id="@+id/phoneRestaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Tél fixe : /" />
+        <TextView
+            android:id="@+id/flagshipProductTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="37dp"
+            android:layout_marginLeft="37dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginBottom="173dp"
+            android:text="Produit phare :"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageTitleRestaurant" />
 
-            <Button
-                android:id="@+id/callButtonRestaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/callButton" />
-            <Button
-                android:id="@+id/sendMailButtonRestaurant"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/sendMailButton" />
+        <TextView
+            android:id="@+id/flagshipProduct"
+            android:layout_width="115dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="45dp"
+            android:text="Pas de produit phare pour se commerce"
+            app:layout_constraintBottom_toBottomOf="@+id/phoneRestaurant"
+            app:layout_constraintStart_toEndOf="@+id/contactTitleRestaurant"
+            app:layout_constraintTop_toTopOf="@+id/flagshipProductTitle" />
+
+        <TextView
+            android:id="@+id/contactTitleRestaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="33dp"
+            android:text="@string/contactTitle"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flagshipProduct" />
+
+        <TextView
+            android:id="@+id/emailRestaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginLeft="28dp"
+            android:text="Email : /"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/contactTitleRestaurant" />
+
+        <TextView
+            android:id="@+id/cellphoneRestaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="34dp"
+            android:layout_marginRight="34dp"
+            android:layout_marginBottom="18dp"
+            android:text="Tél mobile : /"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/phoneRestaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="Tél fixe : /"
+            app:layout_constraintBottom_toTopOf="@+id/emailRestaurant"
+            app:layout_constraintStart_toEndOf="@+id/emailRestaurant" />
+
+        <TextView
+            android:id="@+id/scheduleRestaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginRight="1dp"
+            android:text="@string/schedule"
+            app:layout_constraintEnd_toEndOf="@+id/titleFragmentElementDetailRestaurant"
+            app:layout_constraintStart_toStartOf="@+id/descriptionElementDetailRestaurant"
+            app:layout_constraintTop_toBottomOf="@+id/scheduleTitle" />
 
 
-        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
-    </ScrollView>
-
-</android.support.constraint.ConstraintLayout>
+</ScrollView>

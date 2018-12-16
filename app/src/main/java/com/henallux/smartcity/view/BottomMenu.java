@@ -80,7 +80,7 @@ public class BottomMenu extends AppCompatActivity implements FragmentListener {
                     }
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.fragment_container, selectedFragment);
-                    transaction.addToBackStack(tag);
+                    //transaction.addToBackStack(tag);
                     transaction.commit();
                     //getSupportFragmentManager().beginTransaction().replace().commit();
                     return true;

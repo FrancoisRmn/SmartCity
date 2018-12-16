@@ -1,143 +1,198 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:id="@+id/scrollView2Market"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="25dp">
 
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/localisation"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_marginStart="28dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginBottom="32dp"
+            android:text="Situé à :"
+            app:layout_constraintBottom_toBottomOf="@+id/scheduleTitle"
+            app:layout_constraintStart_toStartOf="@+id/localisationTitle" />
 
-            <TextView
-                android:id="@+id/titleFragmentElementDetailMarket"
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/titleFragmentElementDetail"
-                android:textSize="36sp" />
+        <TextView
+            android:id="@+id/titleFragmentElementDetailMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/descriptionElementDetailTitle"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/descriptionElementDetailMarket"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/descriptionElementDetailTitleMarket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/descriptionElementDetailTitle"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/descriptionElementDetailMarket"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="151dp"
+            android:layout_marginBottom="154dp"
+            android:text="@string/descriptionElementDetail"
+            app:layout_constraintBottom_toTopOf="@+id/scheduleMarket"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/phoneMarket"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/descriptionElementDetailMarket"
-                android:layout_width="342dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/descriptionElementDetail" />
+        <TextView
+            android:id="@+id/scheduleTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/scheduleTitle"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/scheduleMarket"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/scheduleTitleMarket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/scheduleTitle"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/scheduleMarket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/schedule" />
+        <TextView
+            android:id="@+id/imageTitleMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="31dp"
+            android:layout_marginLeft="31dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginBottom="362dp"
+            android:text="@string/imageTitle"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageBurgerKing1"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/imageTitleMarket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/imageTitle"
-                android:textStyle="bold" />
-            <ImageView
-                android:id="@+id/imageBurgerKing1Market"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                app:srcCompat="@mipmap/ic_launcher_foreground"
-                android:contentDescription="TODO" />
-            <TextView
-                android:id="@+id/localisationTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Situé à :"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/localisation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Situé à :" />
-            <TextView
-                android:id="@+id/flagshipProductTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Produit phare :"
-                android:textStyle="bold" />
+        <ImageView
+            android:id="@+id/imageBurgerKing1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="117dp"
+            android:layout_marginRight="117dp"
+            android:layout_marginBottom="46dp"
+            android:contentDescription="TODO"
+            app:layout_constraintBottom_toBottomOf="@+id/flagshipProductTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageTitleMarket"
+            app:layout_constraintTop_toBottomOf="@+id/scheduleMarket"
+            app:srcCompat="@mipmap/ic_launcher_foreground" />
 
-            <TextView
-                android:id="@+id/flagshipProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Pas de produit phare pour se commerce" />
-            <TextView
-                android:id="@+id/contactTitleMarket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/contactTitle"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/emailMarket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Email : /" />
-            <TextView
-                android:id="@+id/cellphoneMarket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Tél mobile : /" />
-            <TextView
-                android:id="@+id/phoneMarket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="Tél fixe : /" />
-            <Button
-                android:id="@+id/callButtonMarket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/callButton" />
-            <Button
-                android:id="@+id/sendMailButtonMarket"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/sendMailButton" />
+        <TextView
+            android:id="@+id/localisationTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginLeft="27dp"
+            android:layout_marginTop="33dp"
+            android:text="Situé à :"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionElementDetailMarket" />
+
+        <TextView
+            android:id="@+id/flagshipProductTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="37dp"
+            android:layout_marginLeft="37dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginBottom="173dp"
+            android:text="Produit phare :"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageTitleMarket" />
+
+        <TextView
+            android:id="@+id/flagshipProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="47dp"
+            android:layout_marginLeft="47dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginRight="45dp"
+            android:text="Pas de produit phare pour se commerce"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/phoneMarket"
+            app:layout_constraintTop_toBottomOf="@+id/flagshipProductTitle" />
+
+        <TextView
+            android:id="@+id/contactTitleMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="38dp"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="33dp"
+            android:text="@string/contactTitle"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/flagshipProduct" />
+
+        <TextView
+            android:id="@+id/emailMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="37dp"
+            android:layout_marginLeft="37dp"
+            android:text="Email : /"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/cellphoneMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="89dp"
+            android:layout_marginRight="89dp"
+            android:layout_marginBottom="51dp"
+            android:text="Tél mobile : /"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/phoneMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="26dp"
+            android:text="Tél fixe : /"
+            app:layout_constraintStart_toStartOf="@+id/contactTitleMarket"
+            app:layout_constraintTop_toBottomOf="@+id/contactTitleMarket" />
+
+        <TextView
+            android:id="@+id/titleFragmentElementDetailBar"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/titleFragmentElementDetail"
+            android:textSize="36sp"
+            app:layout_constraintStart_toEndOf="@+id/descriptionElementDetailTitleMarket"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/scheduleMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            android:text="@string/schedule"
+            app:layout_constraintBottom_toTopOf="@+id/imageTitleMarket"
+            app:layout_constraintStart_toEndOf="@+id/imageTitleMarket" />
 
 
-        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
-    </ScrollView>
-
-</android.support.constraint.ConstraintLayout>
+</ScrollView>

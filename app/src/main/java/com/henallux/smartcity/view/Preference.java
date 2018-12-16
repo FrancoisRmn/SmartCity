@@ -35,8 +35,6 @@ public class Preference extends AppCompatActivity {
                     System.out.println("Exception" + e);
                     Toast.makeText(Preference.this, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
                 }
-                Intent intent = new Intent(Preference.this,BottomMenu.class);
-                startActivity(intent);
             }
         });
     }

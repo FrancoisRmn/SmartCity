@@ -57,15 +57,15 @@ public class UserDAO {
         OutputStreamWriter writer = new OutputStreamWriter(uc.getOutputStream(), "UTF-8");
         writer.write(payload);
         writer.close();
-        try {
+       // try {
             BufferedReader br = new BufferedReader(new InputStreamReader(uc.getInputStream()));
             while((line = br.readLine()) != null){
                 jsonString.append(line);
             }
             br.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        //} catch (Exception ex) {
+          //  ex.printStackTrace();
+        //}
         uc.disconnect();
         Log.i("Login",jsonString.toString());
         //return jsonString.toString();
@@ -123,7 +123,15 @@ public class UserDAO {
                 return response;
             }
             catch (FileNotFoundException e){
-                Toast.makeText(UserDAO.this.mainActivity, "Combinaison login/ mdp incorrecte", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(UserDAO.this.mainActivity, "Combinaison login/ mdp incorrecte", Toast.LENGTH_SHORT).show();
+                //impossible d'utiliser içi car pas le thread UI
+                UserDAO.this.mainActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(UserDAO.this.mainActivity, "Combinaison login/ mdp incorrecte", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                Log.i("loginUser", "Catch FileNotFoundException  dans doInBackGound");
                 return "";
             }
             catch (IOException ex) {
@@ -165,7 +173,12 @@ public class UserDAO {
                     new LoginUserAsyncTask(UserDAO.this.applicationContext, user.getUserName(), user.getPassword()).execute();
                 }
                 else{
-                    Toast.makeText(UserDAO.this.mainActivity, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
+                    UserDAO.this.mainActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(UserDAO.this.mainActivity, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();                        }
+                    });
+
 
                 }
             } catch (JSONException e) {
@@ -185,7 +198,12 @@ public class UserDAO {
                 return response;
             }
             catch (FileNotFoundException e){
-                Toast.makeText(UserDAO.this.mainActivity, "Combinaison login/ mdp incorrecte", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(UserDAO.this.mainActivity, "Combinaison login/ mdp incorrecte", Toast.LENGTH_SHORT).show();
+                UserDAO.this.mainActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(UserDAO.this.mainActivity, "Combinaison login/ mdp incorrecte", Toast.LENGTH_SHORT).show();                       }
+                });
                 return "";
             }
             catch (IOException ex) {
