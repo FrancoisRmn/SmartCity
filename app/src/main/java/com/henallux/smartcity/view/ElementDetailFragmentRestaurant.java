@@ -55,7 +55,6 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                     intent= new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:" + this.restaurant.getNumeroGSM()));
                     startActivity(intent);
-
                 }
                 else{
                     Toast.makeText(getActivity(), "Numéro de téléphone non disponible !", Toast.LENGTH_SHORT).show();
@@ -67,7 +66,6 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                     intent= new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:" + this.restaurant.getNumeroFixe()));
                     startActivity(intent);
-
                 }
                 else{
                     Toast.makeText(getActivity(), "Numéro de téléphone non disponible !", Toast.LENGTH_SHORT).show();
@@ -76,14 +74,12 @@ public class ElementDetailFragmentRestaurant extends Fragment {
             case R.id.itemSendMail :
                 if(this.restaurant.getAdresseMail() != null){
                     intent = new Intent(Intent.ACTION_SEND);
-                    //TODO
                     //fixme
                     //ne remplit pas l'adresse du destinataire
-                    intent.setData(Uri.parse("mailto:" + this.restaurant.getAdresseMail()));
                     intent.setType("text/plain");
                     intent.putExtra(Intent.EXTRA_EMAIL, this.restaurant.getAdresseMail());
                     intent.putExtra(Intent.EXTRA_SUBJECT, "Question :");
-                    intent.putExtra(Intent.EXTRA_TEXT, "(Exemple) Bonjour, vous reste t'il des chaussures nikes + 46 en stocks ?");
+                    intent.putExtra(Intent.EXTRA_TEXT, "Bonjour, \n");
                     try {
                         startActivity(Intent.createChooser(intent, "Send mail..."));
                     } catch (android.content.ActivityNotFoundException ex) {
