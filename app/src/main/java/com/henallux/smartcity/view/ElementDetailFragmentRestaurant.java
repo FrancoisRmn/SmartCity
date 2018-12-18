@@ -77,7 +77,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                     //fixme
                     //ne remplit pas l'adresse du destinataire
                     intent.setType("text/plain");
-                    intent.putExtra(Intent.EXTRA_EMAIL, this.restaurant.getAdresseMail());
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{this.restaurant.getAdresseMail()});
                     intent.putExtra(Intent.EXTRA_SUBJECT, "Question :");
                     intent.putExtra(Intent.EXTRA_TEXT, "Bonjour, \n");
                     try {

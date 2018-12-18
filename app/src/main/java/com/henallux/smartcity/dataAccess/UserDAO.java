@@ -197,7 +197,6 @@ public class UserDAO {
                 return response;
             }
             catch (FileNotFoundException e){
-                //Toast.makeText(UserDAO.this.mainActivity, "Combinaison login/ mdp incorrecte", Toast.LENGTH_SHORT).show();
                 UserDAO.this.mainActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
