@@ -148,6 +148,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
             String numero= (this.restaurant.getNumero() != null) ? this.restaurant.getNumero().toString() : "";
             this.localisation.setText(this.restaurant.getRue() + " " + numero);
         }
+
         scheduleRestaurant = v.findViewById(R.id.scheduleRestaurant);
         if(this.restaurant.getOpeningPeriod() != null){
             String scheduleText = "";
@@ -160,7 +161,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
 
         imagesRestaurant= v.findViewById(R.id.imageRestaurant);
         if(this.restaurant.getImageCommerce() != null){
-            //imageRestaurant.setImageURI();
+            imagesRestaurant.setImageURI(Uri.parse(this.restaurant.getImageCommerce().get(0).getUrl()));
         }
         return v;
     }

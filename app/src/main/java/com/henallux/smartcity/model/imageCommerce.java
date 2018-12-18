@@ -4,4 +4,6 @@ public class imageCommerce {
     private int idImageCommerce;
     private String url;
     private int idCommerce;
+
+    public String getUrl() {return this.url;}
 }
