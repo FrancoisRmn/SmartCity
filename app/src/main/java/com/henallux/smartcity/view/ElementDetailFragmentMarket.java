@@ -12,12 +12,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.Utils.Utils;
 import com.henallux.smartcity.model.Market;
+import com.henallux.smartcity.model.OpeningPeriod;
 
 public class ElementDetailFragmentMarket extends Fragment {
     private Market market;
@@ -29,6 +32,8 @@ public class ElementDetailFragmentMarket extends Fragment {
     private TextView flagshipProduct;
     private TextView localisation;
     private Application applicationContext;
+    private TextView scheduleMarket;
+    private ImageView imagesMarket;
 
 
     @Override
@@ -145,6 +150,20 @@ public class ElementDetailFragmentMarket extends Fragment {
         if(this.market.getRue() != null){
             String numero= (this.market.getNumero() != null) ? this.market.getNumero().toString() : "";
             this.localisation.setText(this.market.getRue() + " " + numero);
+        }
+        scheduleMarket = v.findViewById(R.id.scheduleMarket);
+        if(this.market.getOpeningPeriod() != null){
+            String scheduleText = "";
+            for(OpeningPeriod horaire: this.market.getOpeningPeriod())
+            {
+                scheduleText += Utils.getDay(horaire.getJour()) + ": " + horaire.getHoraireDebut() + " à " + horaire.getHoraireFin() + "\n";
+            }
+            scheduleMarket.setText(scheduleText);
+        }
+
+        imagesMarket= v.findViewById(R.id.imageMarket);
+        if(this.market.getImageCommerce() != null){
+            //imageRestaurant.setImageURI();
         }
         return v;
     }

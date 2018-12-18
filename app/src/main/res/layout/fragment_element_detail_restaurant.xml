@@ -80,7 +80,7 @@
             android:text="@string/imageTitle"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageBurgerKing1"
+            app:layout_constraintEnd_toStartOf="@+id/imageMarket"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView

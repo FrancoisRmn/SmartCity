@@ -12,13 +12,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.Utils.Utils;
 import com.henallux.smartcity.model.Bar;
+import com.henallux.smartcity.model.OpeningPeriod;
 
 public class ElementDetailFragmentBar extends Fragment {
     private Bar bar;
@@ -30,6 +33,8 @@ public class ElementDetailFragmentBar extends Fragment {
     private TextView flagshipProduct;
     private TextView localisation;
     private Application applicationContext;
+    private TextView scheduleBar;
+    private ImageView imagesBar;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -145,6 +150,20 @@ public class ElementDetailFragmentBar extends Fragment {
         if(this.bar.getRue() != null){
             String numero= (this.bar.getNumero() != null) ? this.bar.getNumero().toString() : "";
             this.localisation.setText(this.bar.getRue() + " " + numero);
+        }
+        scheduleBar = v.findViewById(R.id.scheduleMarket);
+        if(this.bar.getOpeningPeriod() != null){
+            String scheduleText = "";
+            for(OpeningPeriod horaire: this.bar.getOpeningPeriod())
+            {
+                scheduleText += Utils.getDay(horaire.getJour()) + ": " + horaire.getHoraireDebut() + " à " + horaire.getHoraireFin() + "\n";
+            }
+            scheduleBar.setText(scheduleText);
+        }
+
+        imagesBar= v.findViewById(R.id.imageMarket);
+        if(this.bar.getImageCommerce() != null){
+            //imageRestaurant.setImageURI();
         }
         return v;
     }

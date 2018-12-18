@@ -60,11 +60,11 @@
             android:text="@string/imageTitle"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageBurgerKing1"
+            app:layout_constraintEnd_toStartOf="@+id/imageBar"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/imageBurgerKing1"
+            android:id="@+id/imageBar"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="37dp"

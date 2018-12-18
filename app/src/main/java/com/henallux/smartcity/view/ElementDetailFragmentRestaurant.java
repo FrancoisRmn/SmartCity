@@ -33,7 +33,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
     private TextView localisation;
     private Application applicationContext;
     private TextView scheduleRestaurant;
-    private ImageView imageRestaurant;
+    private ImageView imagesRestaurant;
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.tool_bar, menu);
@@ -151,14 +151,14 @@ public class ElementDetailFragmentRestaurant extends Fragment {
         scheduleRestaurant = v.findViewById(R.id.scheduleRestaurant);
         if(this.restaurant.getOpeningPeriod() != null){
             String scheduleText = "";
-            for(OpeningPeriod  horaire: this.restaurant.getOpeningPeriod())
+            for(OpeningPeriod horaire: this.restaurant.getOpeningPeriod())
             {
                 scheduleText += Utils.getDay(horaire.getJour()) + ": " + horaire.getHoraireDebut() + " à " + horaire.getHoraireFin() + "\n";
             }
             scheduleRestaurant.setText(scheduleText);
         }
 
-        imageRestaurant= v.findViewById(R.id.imageRestaurant);
+        imagesRestaurant= v.findViewById(R.id.imageRestaurant);
         if(this.restaurant.getImageCommerce() != null){
             //imageRestaurant.setImageURI();
         }
