@@ -151,7 +151,7 @@ public class ElementDetailFragmentBar extends Fragment {
             String numero= (this.bar.getNumero() != null) ? this.bar.getNumero().toString() : "";
             this.localisation.setText(this.bar.getRue() + " " + numero);
         }
-        scheduleBar = v.findViewById(R.id.scheduleMarket);
+        scheduleBar = v.findViewById(R.id.scheduleBar);
         if(this.bar.getOpeningPeriod() != null){
             String scheduleText = "";
             for(OpeningPeriod horaire: this.bar.getOpeningPeriod())
@@ -161,7 +161,7 @@ public class ElementDetailFragmentBar extends Fragment {
             scheduleBar.setText(scheduleText);
         }
 
-        imagesBar= v.findViewById(R.id.imageMarket);
+        imagesBar= v.findViewById(R.id.imageBar);
         if(this.bar.getImageCommerce() != null){
             //imageRestaurant.setImageURI();
         }
