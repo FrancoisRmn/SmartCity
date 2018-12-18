@@ -52,7 +52,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
             case R.id.itemCallGSMButton :
                 if(this.restaurant.getNumeroGSM() != null)
                 {
-                    intent= new Intent(Intent.ACTION_DIAL);
+                    intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:+32" + this.restaurant.getNumeroGSM()));
                     startActivity(intent);
                 }
@@ -63,8 +63,8 @@ public class ElementDetailFragmentRestaurant extends Fragment {
             case R.id.itemCallButton :
                 if(this.restaurant.getNumeroGSM() != null)
                 {
-                    intent= new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" + this.restaurant.getNumeroFixe()));
+                    intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:+32" + this.restaurant.getNumeroFixe()));
                     startActivity(intent);
                 }
                 else{
@@ -74,8 +74,6 @@ public class ElementDetailFragmentRestaurant extends Fragment {
             case R.id.itemSendMail :
                 if(this.restaurant.getAdresseMail() != null){
                     intent = new Intent(Intent.ACTION_SEND);
-                    //fixme
-                    //ne remplit pas l'adresse du destinataire
                     intent.setType("text/plain");
                     intent.putExtra(Intent.EXTRA_EMAIL, new String[]{this.restaurant.getAdresseMail()});
                     intent.putExtra(Intent.EXTRA_SUBJECT, "Question :");

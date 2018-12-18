@@ -50,7 +50,7 @@ public class ElementDetailFragmentMarket extends Fragment {
                 if(this.market.getNumeroGSM() != null)
                 {
                     intent= new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" + this.market.getNumeroGSM()));
+                    intent.setData(Uri.parse("tel:+32" + this.market.getNumeroGSM()));
                     startActivity(intent);
                 }
                 else{
@@ -61,7 +61,7 @@ public class ElementDetailFragmentMarket extends Fragment {
                 if(this.market.getNumeroGSM() != null)
                 {
                     intent= new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" + this.market.getNumeroFixe()));
+                    intent.setData(Uri.parse("tel:+32" + this.market.getNumeroFixe()));
                     startActivity(intent);
 
                 }
@@ -72,14 +72,10 @@ public class ElementDetailFragmentMarket extends Fragment {
             case R.id.itemSendMail :
                 if(this.market.getAdresseMail() != null){
                     intent = new Intent(Intent.ACTION_SEND);
-                    //TODO
-                    //fixme
-                    //ne remplit pas l'adresse du destinataire
-                    intent.setData(Uri.parse("mailto:" + this.market.getAdresseMail()));
                     intent.setType("text/plain");
-                    intent.putExtra(Intent.EXTRA_EMAIL, this.market.getAdresseMail());
+                    intent.putExtra(Intent.EXTRA_EMAIL, new String[]{this.market.getAdresseMail()});
                     intent.putExtra(Intent.EXTRA_SUBJECT, "Question :");
-                    intent.putExtra(Intent.EXTRA_TEXT, "(Exemple) Bonjour, vous reste t'il des chaussures nikes + 46 en stocks ?");
+                    intent.putExtra(Intent.EXTRA_TEXT, "Bonjour, \n");
                     try {
                         startActivity(Intent.createChooser(intent, "Send mail..."));
                     } catch (android.content.ActivityNotFoundException ex) {
@@ -90,8 +86,18 @@ public class ElementDetailFragmentMarket extends Fragment {
                 else{
                     Toast.makeText(getActivity(), "Adresse email non disponible !", Toast.LENGTH_SHORT).show();
                 }
+                return true;
             case R.id.itemRouteButton:
-                //TODO
+                // Create a Uri from an intent string. Use the result to create an Intent.
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(this.market.getRue() + " " + this.market.getNumero() + ", Namur"));
+                // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                // Make the Intent explicit by setting the Google Maps package
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+                return true;
             case R.id.itemFavorite:
                 applicationContext = (Application)getActivity().getApplicationContext();
                 if(applicationContext.isConnected()){
@@ -102,6 +108,7 @@ public class ElementDetailFragmentMarket extends Fragment {
                 else{
                     Toast.makeText(getActivity(), "Vous devez être connecté pour ajouter un commerce aux favoris", Toast.LENGTH_SHORT).show();
                 }
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
