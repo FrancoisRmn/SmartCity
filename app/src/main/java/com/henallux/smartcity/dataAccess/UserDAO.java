@@ -24,7 +24,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static com.henallux.smartcity.Utils.Constantes.URL_CREATE_USER;
 import static com.henallux.smartcity.Utils.Constantes.URL_TOKEN;
 
 public class UserDAO {
@@ -187,7 +186,7 @@ public class UserDAO {
         @Override
         protected String doInBackground(String... params) {
             try {
-                String response = makePostCreateUserRequest(URL_CREATE_USER,
+                String response = makePostCreateUserRequest(URL_TOKEN,
                         "{\n" +
                                 "\t\"Username\":\""+this.user.getUserName()+"\",\n" +
                                 "\t\"Password\":\""+this.user.getPassword()+"\"\n" +

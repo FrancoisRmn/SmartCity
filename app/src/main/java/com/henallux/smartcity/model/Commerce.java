@@ -12,7 +12,7 @@ public class Commerce {
     private String description;
     private String produitPhare;
     private String parcoursProduitPhare;
-    private Integer numeroGSM;
+    private Integer numeroGsm;
     private Integer numeroFixe ;
     private String adresseMail;
     private String urlPageFacebook;
@@ -102,11 +102,11 @@ public class Commerce {
     }
 
     public Integer getNumeroGSM() {
-        return numeroGSM;
+        return numeroGsm;
     }
 
     public void setNumeroGSM(Integer numeroGSM) {
-        this.numeroGSM = numeroGSM;
+        this.numeroGsm = numeroGSM;
     }
 
     public Integer getNumeroFixe() {

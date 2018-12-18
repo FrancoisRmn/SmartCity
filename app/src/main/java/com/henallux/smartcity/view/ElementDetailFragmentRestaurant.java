@@ -53,7 +53,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                 if(this.restaurant.getNumeroGSM() != null)
                 {
                     intent= new Intent(Intent.ACTION_DIAL);
-                    intent.setData(Uri.parse("tel:" + this.restaurant.getNumeroGSM()));
+                    intent.setData(Uri.parse("tel:+32" + this.restaurant.getNumeroGSM()));
                     startActivity(intent);
                 }
                 else{
@@ -135,7 +135,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
         }
         cellPhone = v.findViewById(R.id.cellphoneRestaurant);
         if(this.restaurant.getNumeroGSM() != null){
-            cellPhone.setText("GSM : " + this.restaurant.getNumeroGSM());
+            cellPhone.setText("GSM : +32" + this.restaurant.getNumeroGSM());
         }
         phone = v.findViewById(R.id.phoneRestaurant);
         if(this.restaurant.getNumeroFixe() != null){
