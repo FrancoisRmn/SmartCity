@@ -1,6 +1,5 @@
 package com.henallux.smartcity.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -29,7 +28,7 @@ public class Preference extends AppCompatActivity {
             public void onClick(View v) {
                 UserDAO userDAO = new UserDAO(getApplicationContext(), Preference.this);
                 try{
-                    userDAO.createUser(user.getUserName(), user.getPassword());
+                    userDAO.createUser(user);
                 }
                 catch (Exception e){
                     System.out.println("Exception" + e);

@@ -146,20 +146,18 @@ public class UserDAO {
 
     }
 
-    public void createUser(String username, String password)
+    public void createUser(User user)
     {
-        createUserAsyncTask = new CreateUserAsyncTask(this.applicationContext, username, password).execute();
+        createUserAsyncTask = new CreateUserAsyncTask(this.applicationContext, user).execute();
     }
 
     private class CreateUserAsyncTask extends AsyncTask<String, Void, String>{
-        private String username;
-        private String password;
+        private User user;
         private Context context;
 
-        public CreateUserAsyncTask(Context context, String username, String password) {
+        public CreateUserAsyncTask(Context context, User user) {
             this.context = context;
-            this.username = username;
-            this.password = password;
+            this.user = user;
         }
 
         @Override
@@ -191,8 +189,9 @@ public class UserDAO {
             try {
                 String response = makePostCreateUserRequest(URL_CREATE_USER,
                         "{\n" +
-                                "\t\"Username\":\""+this.username+"\",\n" +
-                                "\t\"Password\":\""+this.password+"\"\n" +
+                                "\t\"Username\":\""+this.user.getUserName()+"\",\n" +
+                                "\t\"Password\":\""+this.user.getPassword()+"\"\n" +
+                                "\t\"email\":\""+this.user.getEmail()+"\",\n" +
                                 "}");
 
                 return response;

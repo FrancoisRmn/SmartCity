@@ -1,8 +1,7 @@
 package com.henallux.smartcity.view;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,6 +9,7 @@ import android.widget.Toast;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.Utils.Utils;
+import com.henallux.smartcity.dataAccess.UserDAO;
 import com.henallux.smartcity.model.User;
 
 public class InfoPersos extends AppCompatActivity {
@@ -19,7 +19,7 @@ private EditText firstNameInput;
 private EditText passWordInput;
 private EditText confirmPassWordInput;
 private EditText mailInput;
-
+private Button validationInscriptionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +29,8 @@ private EditText mailInput;
         mailInput = (EditText) findViewById(R.id.MailInput);
         passWordInput = (EditText) findViewById(R.id.PasswordInput);
         confirmPassWordInput = (EditText) findViewById(R.id.ConfirmPasswordInput);
+
+        /*
         validateButton = (Button)findViewById(R.id.ValidationInscriptionButton);
         validateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +44,28 @@ private EditText mailInput;
                     Intent intent = new Intent(InfoPersos.this, Preference.class);
                     intent.putExtra("user", user);
                     startActivity(intent);
+                }
+            }
+        });
+         */
+        validationInscriptionButton = (Button) findViewById(R.id.validationInscriptionButton);
+        validationInscriptionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(checkForms())
+                {
+                    //on cree un user
+                    String userName= nameInput.getText().toString() + firstNameInput.getText().toString();
+
+                    User user = new User(userName, passWordInput.getText().toString(), mailInput.getText().toString());
+                    UserDAO userDAO = new UserDAO(getApplicationContext(), InfoPersos.this);
+                    try{
+                        userDAO.createUser(user);
+                    }
+                    catch (Exception e){
+                        System.out.println("Exception" + e);
+                        Toast.makeText(InfoPersos.this, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });

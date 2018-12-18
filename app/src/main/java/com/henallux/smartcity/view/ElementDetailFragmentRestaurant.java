@@ -94,8 +94,18 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                 else{
                     Toast.makeText(getActivity(), "Adresse email non disponible !", Toast.LENGTH_SHORT).show();
                 }
+                return true;
             case R.id.itemRouteButton:
-                //TODO
+                    // Create a Uri from an intent string. Use the result to create an Intent.
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode("Place de la Station 8/9, Namur"));
+                // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                // Make the Intent explicit by setting the Google Maps package
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+                return true;
             case R.id.itemFavorite:
                 applicationContext = (Application)getActivity().getApplicationContext();
                 if(applicationContext.isConnected()){
@@ -106,6 +116,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                 else{
                     Toast.makeText(getActivity(), "Vous devez être connecté pour ajouter un commerce aux favoris", Toast.LENGTH_SHORT).show();
                 }
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
