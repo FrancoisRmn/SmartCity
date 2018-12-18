@@ -12,15 +12,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.Utils.Utils;
+import com.henallux.smartcity.model.OpeningPeriod;
 import com.henallux.smartcity.model.Restaurant;
-
-import org.w3c.dom.Text;
 
 public class ElementDetailFragmentRestaurant extends Fragment {
     private Restaurant restaurant;
@@ -32,7 +32,8 @@ public class ElementDetailFragmentRestaurant extends Fragment {
     private TextView flagshipProduct;
     private TextView localisation;
     private Application applicationContext;
-
+    private TextView scheduleRestaurant;
+    private ImageView imageRestaurant;
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.tool_bar, menu);
@@ -141,6 +142,20 @@ public class ElementDetailFragmentRestaurant extends Fragment {
         if(this.restaurant.getRue() != null){
             String numero= (this.restaurant.getNumero() != null) ? this.restaurant.getNumero().toString() : "";
             this.localisation.setText(this.restaurant.getRue() + " " + numero);
+        }
+        scheduleRestaurant = v.findViewById(R.id.scheduleRestaurant);
+        if(this.restaurant.getOpeningPeriod() != null){
+            String scheduleText = "";
+            for(OpeningPeriod  horaire: this.restaurant.getOpeningPeriod())
+            {
+                scheduleText += Utils.getDay(horaire.getJour()) + ": " + horaire.getHoraireDebut() + " à " + horaire.getHoraireFin() + "\n";
+            }
+            scheduleRestaurant.setText(scheduleText);
+        }
+
+        imageRestaurant= v.findViewById(R.id.imageRestaurant);
+        if(this.restaurant.getImageCommerce() != null){
+            //imageRestaurant.setImageURI();
         }
         return v;
     }

@@ -14,8 +14,8 @@
     <string name="noAccountYet">Pas encore de compte ?</string>
     <string name="login">Login</string>
     <string name="restaurantTitle">Restaurants</string>
-    <string name="drink">Drinks</string>
-    <string name="market">Markets</string>
+    <string name="drink">Bars</string>
+    <string name="market">Magasins</string>
     <string name="direction">Direction</string>
     <string name="settings">Settings</string>
     <string name="preferences">Vos préférenes</string>

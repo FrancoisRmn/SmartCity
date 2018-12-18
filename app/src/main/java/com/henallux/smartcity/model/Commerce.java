@@ -20,8 +20,17 @@ public class Commerce {
     private Integer latitude;
     private Integer idCategorie;
     private Integer idPersonne;
-    //private int rowVersion;
     private ArrayList<OpeningPeriod> openingPeriod;
+    private ArrayList<imageCommerce> imageCommerce;
+
+    public ArrayList<com.henallux.smartcity.model.imageCommerce> getImageCommerce() {
+        return imageCommerce;
+    }
+
+    public ArrayList<OpeningPeriod> getOpeningPeriod() {
+        return openingPeriod;
+    }
+
 
     @Override
     public String toString() {

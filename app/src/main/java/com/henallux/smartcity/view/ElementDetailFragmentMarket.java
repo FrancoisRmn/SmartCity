@@ -113,7 +113,7 @@ public class ElementDetailFragmentMarket extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_element_detail_market, container, false);
-        titleFragmentDetail = v.findViewById(R.id.titleFragmentElementDetailMarket);
+        titleFragmentDetail = v.findViewById(R.id.titleFragmentElementDetailBar);
         titleFragmentDetail.setText(market.getNomCommerce());
         descriptionElementDetailMarket = v.findViewById(R.id.descriptionElementDetailMarket);
         if(this.market.getDescription() != null){
