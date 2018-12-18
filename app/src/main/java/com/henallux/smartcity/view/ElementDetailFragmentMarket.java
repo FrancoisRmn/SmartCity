@@ -52,7 +52,6 @@ public class ElementDetailFragmentMarket extends Fragment {
                     intent= new Intent(Intent.ACTION_DIAL);
                     intent.setData(Uri.parse("tel:" + this.market.getNumeroGSM()));
                     startActivity(intent);
-
                 }
                 else{
                     Toast.makeText(getActivity(), "Numéro de téléphone non disponible !", Toast.LENGTH_SHORT).show();

@@ -96,8 +96,8 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                 }
                 return true;
             case R.id.itemRouteButton:
-                    // Create a Uri from an intent string. Use the result to create an Intent.
-                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode("Place de la Station 8/9, Namur"));
+                // Create a Uri from an intent string. Use the result to create an Intent.
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(this.restaurant.getRue() + " " + this.restaurant.getNumero() + ", Namur"));
                 // Create an Intent from gmmIntentUri. Set the action to ACTION_VIEW
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 // Make the Intent explicit by setting the Google Maps package
