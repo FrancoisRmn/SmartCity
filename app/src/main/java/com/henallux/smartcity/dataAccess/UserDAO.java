@@ -24,6 +24,9 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import retrofit2.Call;
+import retrofit2.Retrofit;
+
 import static com.henallux.smartcity.Utils.Constantes.URL_TOKEN;
 
 public class UserDAO {
@@ -185,7 +188,13 @@ public class UserDAO {
 
         @Override
         protected String doInBackground(String... params) {
-            try {
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("https://sc-nconnect.azurewebsites.net/api/")
+                        .build();
+                APINConnectService apinConnectService = retrofit.create(APINConnectService.class);
+                Call<User> newUser = apinConnectService.createUser(this.user);
+                /*
                 String response = makePostCreateUserRequest(URL_TOKEN,
                         "{\n" +
                                 "\t\"Username\":\""+this.user.getUserName()+"\",\n" +
@@ -194,23 +203,9 @@ public class UserDAO {
                                 "}");
 
                 return response;
-            }
-            catch (FileNotFoundException e){
-                UserDAO.this.mainActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(UserDAO.this.mainActivity, "Combinaison login/ mdp incorrecte", Toast.LENGTH_SHORT).show();                       }
-                });
-                return "";
-            }
-            catch (IOException ex) {
-                ex.printStackTrace();
-                return "";
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-                return "";
-            }
+                 */
+
+            return newUser.toString();
         }
 
     }

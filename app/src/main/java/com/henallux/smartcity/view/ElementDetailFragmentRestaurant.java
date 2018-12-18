@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.Utils.Utils;
@@ -161,7 +162,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
 
         imagesRestaurant= v.findViewById(R.id.imageRestaurant);
         if(this.restaurant.getImageCommerce() != null){
-            imagesRestaurant.setImageURI(Uri.parse(this.restaurant.getImageCommerce().get(0).getUrl()));
+            Glide.with(this).load(this.restaurant.getImageCommerce().get(0).getUrl()).into(imagesRestaurant);
         }
         return v;
     }
