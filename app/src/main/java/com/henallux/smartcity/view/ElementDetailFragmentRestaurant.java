@@ -161,7 +161,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
         }
 
         imagesRestaurant= v.findViewById(R.id.imageRestaurant);
-        if(this.restaurant.getImageCommerce() != null){
+        if(!this.restaurant.getImageCommerce().isEmpty()){
             Glide.with(this).load(this.restaurant.getImageCommerce().get(0).getUrl()).into(imagesRestaurant);
         }
         return v;

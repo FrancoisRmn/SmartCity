@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.Utils.Utils;
@@ -162,8 +163,8 @@ public class ElementDetailFragmentMarket extends Fragment {
         }
 
         imagesMarket= v.findViewById(R.id.imageMarket);
-        if(this.market.getImageCommerce() != null){
-            //imageRestaurant.setImageURI();
+        if(!this.market.getImageCommerce().isEmpty()){
+                    Glide.with(this).load(this.market.getImageCommerce().get(0).getUrl()).into(imagesMarket);
         }
         return v;
     }

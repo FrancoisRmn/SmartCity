@@ -15,8 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.henallux.smartcity.ApplicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.Utils.Utils;
@@ -162,8 +162,8 @@ public class ElementDetailFragmentBar extends Fragment {
         }
 
         imagesBar= v.findViewById(R.id.imageBar);
-        if(this.bar.getImageCommerce() != null){
-            //imageRestaurant.setImageURI();
+        if(!this.bar.getImageCommerce().isEmpty()){
+            Glide.with(this).load(this.bar.getImageCommerce().get(0).getUrl()).into(imagesBar);
         }
         return v;
     }
