@@ -24,9 +24,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import retrofit2.Call;
-import retrofit2.Retrofit;
-
 import static com.henallux.smartcity.Utils.Constantes.URL_TOKEN;
 
 public class UserDAO {
@@ -153,7 +150,7 @@ public class UserDAO {
         createUserAsyncTask = new CreateUserAsyncTask(this.applicationContext, user).execute();
     }
 
-    private class CreateUserAsyncTask extends AsyncTask<String, Void, String>{
+    private class CreateUserAsyncTask extends AsyncTask<String, Void, String> {
         private User user;
         private Context context;
 
@@ -163,20 +160,20 @@ public class UserDAO {
         }
 
         @Override
-        protected void onPostExecute(String response){
+        protected void onPostExecute(String response) {
             try {
                 User user;
                 JSONObject jsonUser = new JSONObject(response);
                 Gson object = new GsonBuilder().create();
                 user = object.fromJson(jsonUser.toString(), User.class);
-                if(user != null){
+                if (user != null) {
                     new LoginUserAsyncTask(UserDAO.this.applicationContext, user.getUserName(), user.getPassword()).execute();
-                }
-                else{
+                } else {
                     UserDAO.this.mainActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(UserDAO.this.mainActivity, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();                        }
+                            Toast.makeText(UserDAO.this.mainActivity, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
+                        }
                     });
 
 
@@ -188,27 +185,22 @@ public class UserDAO {
 
         @Override
         protected String doInBackground(String... params) {
-
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("https://sc-nconnect.azurewebsites.net/api/")
-                        .build();
-                APINConnectService apinConnectService = retrofit.create(APINConnectService.class);
-                Call<User> newUser = apinConnectService.createUser(this.user);
-                /*
-                String response = makePostCreateUserRequest(URL_TOKEN,
+            String response = "";
+            try {
+                response = makePostCreateUserRequest(URL_TOKEN,
                         "{\n" +
-                                "\t\"Username\":\""+this.user.getUserName()+"\",\n" +
-                                "\t\"Password\":\""+this.user.getPassword()+"\"\n" +
-                                "\t\"email\":\""+this.user.getEmail()+"\",\n" +
+                                "\t\"Username\":\"" + this.user.getUserName() + "\",\n" +
+                                "\t\"Password\":\"" + this.user.getPassword() + "\"\n" +
+                                "\t\"email\":\"" + this.user.getEmail() + "\",\n" +
                                 "}");
-
                 return response;
-                 */
-
-            return newUser.toString();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return response;
         }
-
     }
+
 
     public static String makePostCreateUserRequest(String stringUrl, String payload) throws Exception {
         URL url = new URL(stringUrl);

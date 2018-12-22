@@ -1,4 +1,4 @@
-package com.henallux.smartcity.dataAccess;
+package com.henallux.smartcity.Service;
 
 import com.henallux.smartcity.model.User;
 

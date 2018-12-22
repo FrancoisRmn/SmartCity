@@ -8,9 +8,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.Service.APINConnectService;
+import com.henallux.smartcity.Service.ServiceBuilder;
 import com.henallux.smartcity.Utils.Utils;
-import com.henallux.smartcity.dataAccess.UserDAO;
 import com.henallux.smartcity.model.User;
+
+import retrofit2.Call;
+import retrofit2.Response;
 
 public class InfoPersos extends AppCompatActivity {
 private Button validateButton;
@@ -30,24 +34,7 @@ private Button validationInscriptionButton;
         passWordInput = (EditText) findViewById(R.id.PasswordInput);
         confirmPassWordInput = (EditText) findViewById(R.id.ConfirmPasswordInput);
 
-        /*
-        validateButton = (Button)findViewById(R.id.ValidationInscriptionButton);
-        validateButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(checkForms())
-                {
-                    //on cree un user
-                    String userName= nameInput.getText().toString() + firstNameInput.getText().toString();
 
-                    User user = new User(userName, passWordInput.getText().toString(), mailInput.getText().toString());
-                    Intent intent = new Intent(InfoPersos.this, Preference.class);
-                    intent.putExtra("user", user);
-                    startActivity(intent);
-                }
-            }
-        });
-         */
         validationInscriptionButton = (Button) findViewById(R.id.validationInscriptionButton);
         validationInscriptionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +45,31 @@ private Button validationInscriptionButton;
                     String userName= nameInput.getText().toString() + firstNameInput.getText().toString();
 
                     User user = new User(userName, passWordInput.getText().toString(), mailInput.getText().toString());
+
+                    //avec Retrofit
+                    APINConnectService apinConnectService = ServiceBuilder.buildService(APINConnectService.class);
+                    Call<User> createRequest = apinConnectService.createUser(user);
+                    createRequest.enqueue(new retrofit2.Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            // Inscription faite, dirige vers le profil
+                            if (response.isSuccessful())
+                            {
+                                User user = response.body();
+                                //ajouter l'utilisateur dans les préférences
+                            }
+                            else {
+                                Toast.makeText(InfoPersos.this,"Combinaison Login/MDP invalide !",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
+
+                        }
+                    });
+                }
+                    /*
                     UserDAO userDAO = new UserDAO(getApplicationContext(), InfoPersos.this);
                     try{
                         userDAO.createUser(user);
@@ -66,7 +78,7 @@ private Button validationInscriptionButton;
                         System.out.println("Exception" + e);
                         Toast.makeText(InfoPersos.this, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
                     }
-                }
+                    */
             }
         });
     }
