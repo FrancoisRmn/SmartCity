@@ -1,11 +1,10 @@
 package com.henallux.smartcity.dataAccess;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.henallux.smartcity.ApplicationObject.Application;
+import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.model.Bar;
 
 import org.json.JSONArray;

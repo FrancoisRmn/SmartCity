@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
     <application
-        android:name=".ApplicationObject.Application"
+        android:name=".applicationObject.Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_nconnect"
         android:label="@string/app_name"

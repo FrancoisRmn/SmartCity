@@ -8,23 +8,24 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.henallux.smartcity.ApplicationObject.Application;
+import com.henallux.smartcity.applicationObject.Application;
+import com.henallux.smartcity.exception.ImpossibleToCreateUser;
 import com.henallux.smartcity.model.User;
 import com.henallux.smartcity.view.BottomMenu;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import static com.henallux.smartcity.Utils.Constantes.URL_TOKEN;
+import static com.henallux.smartcity.utils.Constantes.URL_TOKEN;
 
 public class UserDAO {
     private AsyncTask loginUserAsyncTask;
@@ -150,7 +151,7 @@ public class UserDAO {
         createUserAsyncTask = new CreateUserAsyncTask(this.applicationContext, user).execute();
     }
 
-    private class CreateUserAsyncTask extends AsyncTask<String, Void, String> {
+    private class CreateUserAsyncTask extends AsyncTask<String, Void, User> {
         private User user;
         private Context context;
 
@@ -160,13 +161,8 @@ public class UserDAO {
         }
 
         @Override
-        protected void onPostExecute(String response) {
-            try {
-                User user;
-                JSONObject jsonUser = new JSONObject(response);
-                Gson object = new GsonBuilder().create();
-                user = object.fromJson(jsonUser.toString(), User.class);
-                if (user != null) {
+        protected void onPostExecute(User newUser) {
+                if (newUser != null) {
                     new LoginUserAsyncTask(UserDAO.this.applicationContext, user.getUserName(), user.getPassword()).execute();
                 } else {
                     UserDAO.this.mainActivity.runOnUiThread(new Runnable() {
@@ -178,55 +174,72 @@ public class UserDAO {
 
 
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
         }
 
         @Override
-        protected String doInBackground(String... params) {
-            String response = "";
+        protected User doInBackground(String... params) {
             try {
-                response = makePostCreateUserRequest(URL_TOKEN,
-                        "{\n" +
-                                "\t\"Username\":\"" + this.user.getUserName() + "\",\n" +
-                                "\t\"Password\":\"" + this.user.getPassword() + "\"\n" +
-                                "\t\"email\":\"" + this.user.getEmail() + "\",\n" +
-                                "}");
-                return response;
+                User newUser = makePostCreateUserRequest(URL_TOKEN,
+                        user);
+                return newUser;
             } catch (Exception e) {
                 System.out.println(e);
+                return null;
             }
-            return response;
         }
     }
 
 
-    public static String makePostCreateUserRequest(String stringUrl, String payload) throws Exception {
+    public User makePostCreateUserRequest(String stringUrl, User user) throws Exception {
         URL url = new URL(stringUrl);
-        HttpURLConnection uc = (HttpURLConnection) url.openConnection();
-        String line;
-        StringBuffer jsonString = new StringBuffer();
 
-        uc.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-        uc.setRequestMethod("POST");
-        uc.setDoInput(true);
-        uc.setInstanceFollowRedirects(false);
-        uc.connect();
-        OutputStreamWriter writer = new OutputStreamWriter(uc.getOutputStream(), "UTF-8");
-        writer.write(payload);
+        JSONObject postData = new JSONObject();
+        postData.put("Username",user.getUserName());
+        postData.put("Password",user.getPassword());
+        postData.put("email",user.getEmail());
+
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+        connection.setDoInput(true);
+        connection.setDoOutput(true);
+
+        OutputStream os = connection.getOutputStream();
+        BufferedWriter writer = new BufferedWriter(
+                new OutputStreamWriter(os,"UTF-8")
+        );
+
+        writer.write(postData.toString());
+
+        writer.flush();
         writer.close();
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(uc.getInputStream()));
-            while((line = br.readLine()) != null){
-                jsonString.append(line);
+        os.close();
+
+        int responseCode = connection.getResponseCode();
+        Log.i("tag","Status code : "+responseCode);
+        if(responseCode == HttpURLConnection.HTTP_CREATED)
+        {
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder builder = new StringBuilder("");
+            String line = "";
+            while((line = buffer.readLine())!=null)
+            {
+                builder.append(line);
+                break;
             }
-            br.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+            buffer.close();
+            //return builder.toString();
+            return jsonToUser(builder.toString());
+        }else{
+            throw new ImpossibleToCreateUser("Erreur lors de la tentative de création d'un utilisateur ! Status code : "  + responseCode);
         }
-        uc.disconnect();
-        return jsonString.toString();
+    }
+
+    public User jsonToUser(String jsonUser)
+    {
+        Gson g = new Gson();
+        User user = g.fromJson(jsonUser,User.class);
+        return user;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.henallux.smartcity.Service;
+package com.henallux.smartcity.service;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;

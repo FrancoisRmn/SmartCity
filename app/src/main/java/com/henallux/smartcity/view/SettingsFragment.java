@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.henallux.smartcity.ApplicationObject.Application;
+import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
 
 public class SettingsFragment extends Fragment {

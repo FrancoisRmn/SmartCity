@@ -1,4 +1,4 @@
-package com.henallux.smartcity.ApplicationObject;
+package com.henallux.smartcity.applicationObject;
 
 public class Application extends android.app.Application {
     private String token;

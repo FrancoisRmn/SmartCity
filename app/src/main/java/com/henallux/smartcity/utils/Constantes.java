@@ -1,4 +1,4 @@
-package com.henallux.smartcity.Utils;
+package com.henallux.smartcity.utils;
 
 public class Constantes {
     public static final String URL_TOKEN =  "https://sc-nconnect.azurewebsites.net/api/jwt";

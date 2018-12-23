@@ -17,9 +17,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.henallux.smartcity.ApplicationObject.Application;
+import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
-import com.henallux.smartcity.Utils.Utils;
+import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.model.Bar;
 import com.henallux.smartcity.model.OpeningPeriod;
 

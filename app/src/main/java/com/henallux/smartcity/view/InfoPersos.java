@@ -8,9 +8,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.henallux.smartcity.R;
-import com.henallux.smartcity.Service.APINConnectService;
-import com.henallux.smartcity.Service.ServiceBuilder;
-import com.henallux.smartcity.Utils.Utils;
+import com.henallux.smartcity.service.APINConnectService;
+import com.henallux.smartcity.service.ServiceBuilder;
+import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.model.User;
 
 import retrofit2.Call;

@@ -1,4 +1,4 @@
-package com.henallux.smartcity.Utils;
+package com.henallux.smartcity.utils;
 
 import android.widget.EditText;
 

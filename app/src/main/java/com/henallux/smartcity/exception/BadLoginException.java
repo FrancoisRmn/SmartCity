@@ -1,4 +1,4 @@
 package com.henallux.smartcity.exception;
 
-public class BadLoginException {
+public class BadLoginException extends Exception{
 }

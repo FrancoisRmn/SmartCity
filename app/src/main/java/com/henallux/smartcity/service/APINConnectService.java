@@ -1,4 +1,4 @@
-package com.henallux.smartcity.Service;
+package com.henallux.smartcity.service;
 
 import com.henallux.smartcity.model.User;
 

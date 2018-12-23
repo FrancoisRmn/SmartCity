@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.henallux.smartcity.R;
-import com.henallux.smartcity.Utils.Utils;
+import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.dataAccess.UserDAO;
 
 public class MainActivity extends AppCompatActivity {
