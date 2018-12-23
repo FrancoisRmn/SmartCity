@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.dataAccess.UserDAO;
 import com.henallux.smartcity.model.User;
 import com.henallux.smartcity.service.APINConnectService;
 import com.henallux.smartcity.service.ServiceBuilder;
@@ -46,7 +47,7 @@ private Button validationInscriptionButton;
 
                     User user = new User(userName, passWordInput.getText().toString(), mailInput.getText().toString());
                     //avec Retrofit (marche)
-                    try{
+                   /* try{
                         APINConnectService apinConnectService = ServiceBuilder.buildService(APINConnectService.class);
                         Call<User> createRequest = apinConnectService.createUser(user);
                         createRequest.enqueue(new retrofit2.Callback<User>() {
@@ -73,16 +74,16 @@ private Button validationInscriptionButton;
                     catch(Exception e){
                         System.out.println(e);
                         Toast.makeText(InfoPersos.this,"Erreur lors de la tentaive de création de l'utilisateur !",Toast.LENGTH_SHORT).show();
-                    }
+                    }*/
                     //Sans retroFit (marche)
-                    /*UserDAO userDAO = new UserDAO(getApplicationContext(), InfoPersos.this);
+                    UserDAO userDAO = new UserDAO(getApplicationContext(), InfoPersos.this);
                     try{
                         userDAO.createUser(user);
                     }
                     catch (Exception e){
                         System.out.println("Exception" + e);
                         Toast.makeText(InfoPersos.this, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
-                    }*/
+                    }
 
                 }
 
