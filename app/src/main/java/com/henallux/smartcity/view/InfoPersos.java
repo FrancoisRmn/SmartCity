@@ -8,10 +8,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.model.User;
 import com.henallux.smartcity.service.APINConnectService;
 import com.henallux.smartcity.service.ServiceBuilder;
 import com.henallux.smartcity.utils.Utils;
-import com.henallux.smartcity.model.User;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -45,40 +45,47 @@ private Button validationInscriptionButton;
                     String userName= nameInput.getText().toString() + firstNameInput.getText().toString();
 
                     User user = new User(userName, passWordInput.getText().toString(), mailInput.getText().toString());
-
-                    //avec Retrofit
-                    APINConnectService apinConnectService = ServiceBuilder.buildService(APINConnectService.class);
-                    Call<User> createRequest = apinConnectService.createUser(user);
-                    createRequest.enqueue(new retrofit2.Callback<User>() {
-                        @Override
-                        public void onResponse(Call<User> call, Response<User> response) {
-                            // Inscription faite, dirige vers le profil
-                            if (response.isSuccessful())
-                            {
-                                User user = response.body();
-                                //ajouter l'utilisateur dans les préférences
+                    //avec Retrofit (marche)
+                    try{
+                        APINConnectService apinConnectService = ServiceBuilder.buildService(APINConnectService.class);
+                        Call<User> createRequest = apinConnectService.createUser(user);
+                        createRequest.enqueue(new retrofit2.Callback<User>() {
+                            @Override
+                            public void onResponse(Call<User> call, Response<User> response) {
+                                // Inscription faite, dirige vers le profil
+                                if (response.isSuccessful())
+                                {
+                                    User user = response.body();
+                                    //ajouter l'utilisateur dans les préférences
+                                    Toast.makeText(InfoPersos.this,"Utilisateur ajouté !",Toast.LENGTH_SHORT).show();
+                                }
+                                else {
+                                    Toast.makeText(InfoPersos.this,"Impossible d'ajouter cet utilisateur !",Toast.LENGTH_SHORT).show();
+                                }
                             }
-                            else {
-                                Toast.makeText(InfoPersos.this,"Combinaison Login/MDP invalide !",Toast.LENGTH_SHORT).show();
+
+                            @Override
+                            public void onFailure(Call<User> call, Throwable t) {
+
                             }
-                        }
-
-                        @Override
-                        public void onFailure(Call<User> call, Throwable t) {
-
-                        }
-                    });
-                }
-                    /*
-                    UserDAO userDAO = new UserDAO(getApplicationContext(), InfoPersos.this);
+                        });
+                    }
+                    catch(Exception e){
+                        System.out.println(e);
+                        Toast.makeText(InfoPersos.this,"Erreur lors de la tentaive de création de l'utilisateur !",Toast.LENGTH_SHORT).show();
+                    }
+                    //Sans retroFit (marche)
+                    /*UserDAO userDAO = new UserDAO(getApplicationContext(), InfoPersos.this);
                     try{
                         userDAO.createUser(user);
                     }
                     catch (Exception e){
                         System.out.println("Exception" + e);
                         Toast.makeText(InfoPersos.this, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
-                    }
-                    */
+                    }*/
+
+                }
+
             }
         });
     }

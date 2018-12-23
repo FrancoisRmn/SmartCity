@@ -25,6 +25,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import static com.henallux.smartcity.utils.Constantes.URL_CREATE_USER;
 import static com.henallux.smartcity.utils.Constantes.URL_TOKEN;
 
 public class UserDAO {
@@ -73,6 +74,7 @@ public class UserDAO {
     }
 
     public void loginWithoutConnection() {
+        //TODO déplacer ça dans les constantes et pas utiliser janedoe vu que c'est un admin
         String userLambda ="janedoe";
         String passwordLambda="123";
         loginUserAsyncTask = new LoginUserAsyncTask(this.applicationContext, userLambda, passwordLambda).execute();
@@ -163,26 +165,33 @@ public class UserDAO {
         @Override
         protected void onPostExecute(User newUser) {
                 if (newUser != null) {
-                    new LoginUserAsyncTask(UserDAO.this.applicationContext, user.getUserName(), user.getPassword()).execute();
-                } else {
                     UserDAO.this.mainActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(UserDAO.this.mainActivity, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(UserDAO.this.mainActivity, "Utilisateur créé !", Toast.LENGTH_SHORT).show();
                         }
                     });
-
-
+                    new LoginUserAsyncTask(UserDAO.this.applicationContext, user.getUserName(), user.getPassword()).execute();
                 }
         }
 
         @Override
         protected User doInBackground(String... params) {
             try {
-                User newUser = makePostCreateUserRequest(URL_TOKEN,
+                User newUser = makePostCreateUserRequest(URL_CREATE_USER,
                         user);
                 return newUser;
-            } catch (Exception e) {
+            }
+            catch(final ImpossibleToCreateUser e){
+                UserDAO.this.mainActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(UserDAO.this.mainActivity, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                return null;
+            }
+            catch (Exception e) {
                 System.out.println(e);
                 return null;
             }
