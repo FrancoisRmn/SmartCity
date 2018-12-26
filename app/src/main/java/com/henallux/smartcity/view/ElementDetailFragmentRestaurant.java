@@ -199,7 +199,6 @@ public class ElementDetailFragmentRestaurant extends Fragment {
 
         }
         else{
-            //TODO cacher le bouton
             buttonNextImage.setVisibility(View.GONE);
         }
 
