@@ -46,4 +46,5 @@
     <string name="deconnexion">Déconnexion</string>
     <string name="without_connection">Sans se connecter</string>
     <string name="ValidationInscriptionButton">Créer le compte</string>
+    <string name="next_image">Image suivante</string>
 </resources>

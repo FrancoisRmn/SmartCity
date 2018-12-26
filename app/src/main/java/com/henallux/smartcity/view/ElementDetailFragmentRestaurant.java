@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -163,7 +164,23 @@ public class ElementDetailFragmentRestaurant extends Fragment {
         imagesRestaurant= v.findViewById(R.id.imageRestaurant);
         if(!this.restaurant.getImageCommerce().isEmpty()){
             Glide.with(this).load(this.restaurant.getImageCommerce().get(0).getUrl()).into(imagesRestaurant);
+
+            //quand on click sur l'image on lance un nouveau fragment avec l'image affiché en grand
+            imagesRestaurant.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment imageFullFragment = new ImageFullFragment();
+                    ((ImageFullFragment) imageFullFragment).setData(ElementDetailFragmentRestaurant.this.restaurant.getImageCommerce().get(0).getUrl());
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, imageFullFragment);
+                    fragmentTransaction.addToBackStack("imageFullFragment");
+                    fragmentTransaction.commit();
+                }
+            });
         }
+
+
+
         return v;
     }
 

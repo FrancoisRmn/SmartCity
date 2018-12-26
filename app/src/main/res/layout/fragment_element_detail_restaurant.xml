@@ -204,6 +204,22 @@
             app:layout_constraintStart_toStartOf="@+id/descriptionElementDetailRestaurant"
             app:layout_constraintTop_toBottomOf="@+id/scheduleTitle" />
 
+        <Button
+            android:id="@+id/buttonNextImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginTop="92dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginRight="6dp"
+            android:text="@string/next_image"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/imageRestaurant"
+            app:layout_constraintTop_toTopOf="@+id/imageRestaurant" />
+
 
     </android.support.constraint.ConstraintLayout>
 
