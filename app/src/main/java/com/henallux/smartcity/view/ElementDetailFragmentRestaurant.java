@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,10 @@ public class ElementDetailFragmentRestaurant extends Fragment {
     private Application applicationContext;
     private TextView scheduleRestaurant;
     private ImageView imagesRestaurant;
+    private Button buttonNextImage;
+    private int indexImage;
+
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.tool_bar, menu);
@@ -162,9 +167,10 @@ public class ElementDetailFragmentRestaurant extends Fragment {
         }
 
         imagesRestaurant= v.findViewById(R.id.imageRestaurant);
+        buttonNextImage = v.findViewById(R.id.buttonNextImage);
         if(!this.restaurant.getImageCommerce().isEmpty()){
             Glide.with(this).load(this.restaurant.getImageCommerce().get(0).getUrl()).into(imagesRestaurant);
-
+            this.indexImage = 1;
             //quand on click sur l'image on lance un nouveau fragment avec l'image affiché en grand
             imagesRestaurant.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -177,8 +183,25 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                     fragmentTransaction.commit();
                 }
             });
-        }
+            buttonNextImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(ElementDetailFragmentRestaurant.this.indexImage < ElementDetailFragmentRestaurant.this.restaurant.getImageCommerce().size()) {
+                        int i = ElementDetailFragmentRestaurant.this.indexImage;
+                        Glide.with(ElementDetailFragmentRestaurant.this).load(ElementDetailFragmentRestaurant.this.restaurant.getImageCommerce().get(i).getUrl()).into(imagesRestaurant);
+                        ElementDetailFragmentRestaurant.this.indexImage++;
+                    }
+                    else{
+                        Toast.makeText(getActivity(), "Plus d'images disponible !", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
 
+        }
+        else{
+            //TODO cacher le bouton
+            buttonNextImage.setVisibility(View.GONE);
+        }
 
 
         return v;
