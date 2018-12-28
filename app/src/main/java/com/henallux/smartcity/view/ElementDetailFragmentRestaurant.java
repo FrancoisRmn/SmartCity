@@ -1,5 +1,6 @@
 package com.henallux.smartcity.view;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.model.Actualite;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.model.OpeningPeriod;
 import com.henallux.smartcity.model.Restaurant;
@@ -39,7 +41,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
     private ImageView imagesRestaurant;
     private Button buttonNextImage;
     private int indexImage;
-
+    private TextView textViewActualites;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -196,13 +198,23 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                     }
                 }
             });
-
         }
         else{
             buttonNextImage.setVisibility(View.GONE);
         }
 
-
+        //actualites
+        this.textViewActualites = v.findViewById(R.id.textViewActualites);
+        if(this.restaurant.getActualite() != null){
+            String texteActu = "";
+            int i = 1;
+            for(Actualite actualite:this.restaurant.getActualite())
+            {
+                    texteActu += i + ". " + actualite.toString() + "\n";
+                    i++;
+            }
+            this.textViewActualites.setText(texteActu);
+        }
         return v;
     }
 

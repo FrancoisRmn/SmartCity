@@ -22,6 +22,17 @@ public class Commerce {
     private Integer idPersonne;
     private ArrayList<OpeningPeriod> openingPeriod;
     private ArrayList<imageCommerce> imageCommerce;
+    private ArrayList<Actualite> actualite;
+
+
+    public Integer getNumeroGsm() {
+        return numeroGsm;
+    }
+
+    public ArrayList<Actualite> getActualite() {
+        return actualite;
+    }
+
 
     public ArrayList<com.henallux.smartcity.model.imageCommerce> getImageCommerce() {
         return imageCommerce;
@@ -37,44 +48,24 @@ public class Commerce {
         return nomCommerce;
     }
 
-    public Integer getIdCommerce() {
-        return idCommerce;
-    }
 
-    public void setIdCommerce(Integer idCommerce) {
-        this.idCommerce = idCommerce;
-    }
 
     public String getNomCommerce() {
         return nomCommerce;
-    }
-
-    public void setNomCommerce(String nomCommerce) {
-        this.nomCommerce = nomCommerce;
     }
 
     public String getRue() {
         return rue;
     }
 
-    public void setRue(String rue) {
-        this.rue = rue;
-    }
 
     public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
-        this.numero = numero;
-    }
 
     public List<String> getMoyensPayements() {
         return moyensPayements;
-    }
-
-    public void setMoyensPayements(List<String> moyensPayements) {
-        this.moyensPayements = moyensPayements;
     }
 
     public String getDescription() {
@@ -89,79 +80,42 @@ public class Commerce {
         return produitPhare;
     }
 
-    public void setProduitPhare(String produitPhare) {
-        this.produitPhare = produitPhare;
-    }
-
-    public String getParcoursProduitPhare() {
-        return parcoursProduitPhare;
-    }
-
-    public void setParcoursProduitPhare(String parcoursProduitPhare) {
-        this.parcoursProduitPhare = parcoursProduitPhare;
-    }
-
     public Integer getNumeroGSM() {
         return numeroGsm;
     }
 
-    public void setNumeroGSM(Integer numeroGSM) {
-        this.numeroGsm = numeroGSM;
-    }
 
     public Integer getNumeroFixe() {
         return numeroFixe;
     }
 
-    public void setNumeroFixe(int numeroFixe) {
-        this.numeroFixe = numeroFixe;
-    }
 
     public String getAdresseMail() {
         return adresseMail;
     }
 
-    public void setAdresseMail(String mail) {
-        this.adresseMail = adresseMail;
-    }
 
     public String getUrlPageFacebook() {
         return urlPageFacebook;
     }
 
-    public void setUrlPageFacebook(String urlPageFacebook) {
-        this.urlPageFacebook = urlPageFacebook;
-    }
 
     public Integer getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(int longitude) {
-        this.longitude = longitude;
-    }
 
     public Integer getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(int latitude) {
-        this.latitude = latitude;
-    }
 
     public Integer getIdCategorie() {
         return idCategorie;
     }
 
-    public void setIdCategorie(int idCategorie) {
-        this.idCategorie = idCategorie;
-    }
 
     public Integer getIdPersonne() {
         return idPersonne;
-    }
-
-    public void setIdPersonne(int idPersonne) {
-        this.idPersonne = idPersonne;
     }
 }
