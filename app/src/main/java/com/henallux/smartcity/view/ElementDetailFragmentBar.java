@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +37,9 @@ public class ElementDetailFragmentBar extends Fragment {
     private Application applicationContext;
     private TextView scheduleBar;
     private ImageView imagesBar;
+    private Button buttonNextImage;
+    private int indexImage;
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -162,8 +167,39 @@ public class ElementDetailFragmentBar extends Fragment {
         }
 
         imagesBar= v.findViewById(R.id.imageBar);
+        buttonNextImage = v.findViewById(R.id.buttonNextImageBar);
         if(!this.bar.getImageCommerce().isEmpty()){
             Glide.with(this).load(this.bar.getImageCommerce().get(0).getUrl()).into(imagesBar);
+            this.indexImage = 1;
+            //quand on click sur l'image on lance un nouveau fragment avec l'image affiché en grand
+            imagesBar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment imageFullFragment = new ImageFullFragment();
+                    ((ImageFullFragment) imageFullFragment).setData(ElementDetailFragmentBar.this.bar.getImageCommerce().get(0).getUrl());
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, imageFullFragment);
+                    fragmentTransaction.addToBackStack("imageFullFragment");
+                    fragmentTransaction.commit();
+                }
+            });
+            buttonNextImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(ElementDetailFragmentBar.this.indexImage < ElementDetailFragmentBar.this.bar.getImageCommerce().size()) {
+                        int i = ElementDetailFragmentBar.this.indexImage;
+                        Glide.with(ElementDetailFragmentBar.this).load(ElementDetailFragmentBar.this.bar.getImageCommerce().get(i).getUrl()).into(imagesBar);
+                        ElementDetailFragmentBar.this.indexImage++;
+                    }
+                    else{
+                        Toast.makeText(getActivity(), "Plus d'images disponible !", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        }
+        else{
+            buttonNextImage.setVisibility(View.GONE);
         }
         return v;
     }

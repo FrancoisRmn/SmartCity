@@ -205,7 +205,7 @@
             app:layout_constraintTop_toBottomOf="@+id/scheduleTitle" />
 
         <Button
-            android:id="@+id/buttonNextImage"
+            android:id="@+id/buttonNextImageRestaurant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="23dp"

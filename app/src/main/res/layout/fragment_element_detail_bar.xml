@@ -76,7 +76,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageTitleBar"
             app:layout_constraintTop_toBottomOf="@+id/scheduleBar"
-            app:srcCompat="@mipmap/ic_launcher_foreground" />
+            app:srcCompat="@mipmap/ic_no_images_available" />
 
         <TextView
             android:id="@+id/localisationTitle"
@@ -92,14 +92,14 @@
 
         <TextView
             android:id="@+id/localisation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="592dp"
+            android:layout_width="78dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="108dp"
+            android:layout_marginRight="108dp"
             android:text="Situé à :"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/localisationTitle"
-            app:layout_constraintTop_toBottomOf="@+id/titleFragmentElementDetailBar"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintEnd_toEndOf="@+id/scheduleBar"
+            app:layout_constraintTop_toBottomOf="@+id/localisationTitle" />
 
         <TextView
             android:id="@+id/flagshipProductTitle"
@@ -194,7 +194,15 @@
             app:layout_constraintBottom_toTopOf="@+id/imageTitleBar"
             app:layout_constraintStart_toEndOf="@+id/imageTitleBar" />
 
-
+        <Button
+            android:id="@+id/buttonNextImageBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:text="@string/next_image"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/imageBar"
+            app:layout_constraintTop_toTopOf="@+id/imageBar" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +37,8 @@ public class ElementDetailFragmentMarket extends Fragment {
     private Application applicationContext;
     private TextView scheduleMarket;
     private ImageView imagesMarket;
-
+    private Button buttonNextImage;
+    private int indexImage;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -135,7 +138,7 @@ public class ElementDetailFragmentMarket extends Fragment {
         if(this.market.getAdresseMail() != null){
             email.setText("EMail : " + this.market.getAdresseMail());
         }
-        cellPhone = v.findViewById(R.id.cellphoneBar);
+        cellPhone = v.findViewById(R.id.cellphoneMarket);
         if(this.market.getNumeroGSM() != null){
             cellPhone.setText("GSM : " + this.market.getNumeroGSM());
         }
@@ -163,8 +166,39 @@ public class ElementDetailFragmentMarket extends Fragment {
         }
 
         imagesMarket= v.findViewById(R.id.imageMarket);
+        buttonNextImage = v.findViewById(R.id.buttonNextImageMarket);
         if(!this.market.getImageCommerce().isEmpty()){
-                    Glide.with(this).load(this.market.getImageCommerce().get(0).getUrl()).into(imagesMarket);
+            Glide.with(this).load(this.market.getImageCommerce().get(0).getUrl()).into(imagesMarket);
+            this.indexImage = 1;
+            //quand on click sur l'image on lance un nouveau fragment avec l'image affiché en grand
+            imagesMarket.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Fragment imageFullFragment = new ImageFullFragment();
+                    ((ImageFullFragment) imageFullFragment).setData(ElementDetailFragmentMarket.this.market.getImageCommerce().get(0).getUrl());
+                    FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_container, imageFullFragment);
+                    fragmentTransaction.addToBackStack("imageFullFragment");
+                    fragmentTransaction.commit();
+                }
+            });
+            buttonNextImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(ElementDetailFragmentMarket.this.indexImage < ElementDetailFragmentMarket.this.market.getImageCommerce().size()) {
+                        int i = ElementDetailFragmentMarket.this.indexImage;
+                        Glide.with(ElementDetailFragmentMarket.this).load(ElementDetailFragmentMarket.this.market.getImageCommerce().get(i).getUrl()).into(imagesMarket);
+                        ElementDetailFragmentMarket.this.indexImage++;
+                    }
+                    else{
+                        Toast.makeText(getActivity(), "Plus d'images disponible !", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        }
+        else{
+            buttonNextImage.setVisibility(View.GONE);
         }
         return v;
     }
