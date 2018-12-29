@@ -159,7 +159,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
         }
 
         scheduleRestaurant = v.findViewById(R.id.scheduleRestaurant);
-        if(this.restaurant.getOpeningPeriod() != null){
+        if(!this.restaurant.getOpeningPeriod().isEmpty()){
             String scheduleText = "";
             for(OpeningPeriod horaire: this.restaurant.getOpeningPeriod())
             {
@@ -205,7 +205,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
 
         //actualites
         this.textViewActualites = v.findViewById(R.id.textViewActualites);
-        if(this.restaurant.getActualite() != null){
+        if(!this.restaurant.getActualite().isEmpty()){
             String texteActu = "";
             int i = 1;
             for(Actualite actualite:this.restaurant.getActualite())

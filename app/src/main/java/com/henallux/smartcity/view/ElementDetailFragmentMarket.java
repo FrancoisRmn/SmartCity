@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.model.Actualite;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.model.Market;
 import com.henallux.smartcity.model.OpeningPeriod;
@@ -39,6 +40,7 @@ public class ElementDetailFragmentMarket extends Fragment {
     private ImageView imagesMarket;
     private Button buttonNextImage;
     private int indexImage;
+    private TextView textViewActualites;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -156,7 +158,7 @@ public class ElementDetailFragmentMarket extends Fragment {
             this.localisation.setText(this.market.getRue() + " " + numero);
         }
         scheduleMarket = v.findViewById(R.id.scheduleMarket);
-        if(this.market.getOpeningPeriod() != null){
+        if(!this.market.getOpeningPeriod().isEmpty()){
             String scheduleText = "";
             for(OpeningPeriod horaire: this.market.getOpeningPeriod())
             {
@@ -199,6 +201,18 @@ public class ElementDetailFragmentMarket extends Fragment {
         }
         else{
             buttonNextImage.setVisibility(View.GONE);
+        }
+        //actualites
+        this.textViewActualites = v.findViewById(R.id.textViewActualites);
+        if(!this.market.getActualite().isEmpty()){
+            String texteActu = "";
+            int i = 1;
+            for(Actualite actualite:this.market.getActualite())
+            {
+                texteActu += i + ". " + actualite.toString() + "\n";
+                i++;
+            }
+            this.textViewActualites.setText(texteActu);
         }
         return v;
     }

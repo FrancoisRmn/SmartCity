@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.model.Actualite;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.model.Bar;
 import com.henallux.smartcity.model.OpeningPeriod;
@@ -39,6 +40,7 @@ public class ElementDetailFragmentBar extends Fragment {
     private ImageView imagesBar;
     private Button buttonNextImage;
     private int indexImage;
+    private TextView textViewActualites;
 
 
     @Override
@@ -157,7 +159,7 @@ public class ElementDetailFragmentBar extends Fragment {
             this.localisation.setText(this.bar.getRue() + " " + numero);
         }
         scheduleBar = v.findViewById(R.id.scheduleBar);
-        if(this.bar.getOpeningPeriod() != null){
+        if(!this.bar.getOpeningPeriod().isEmpty()){
             String scheduleText = "";
             for(OpeningPeriod horaire: this.bar.getOpeningPeriod())
             {
@@ -200,6 +202,18 @@ public class ElementDetailFragmentBar extends Fragment {
         }
         else{
             buttonNextImage.setVisibility(View.GONE);
+        }
+        //actualites
+        this.textViewActualites = v.findViewById(R.id.textViewActualites);
+        if(!this.bar.getActualite().isEmpty()){
+            String texteActu = "";
+            int i = 1;
+            for(Actualite actualite:this.bar.getActualite())
+            {
+                texteActu += i + ". " + actualite.toString() + "\n";
+                i++;
+            }
+            this.textViewActualites.setText(texteActu);
         }
         return v;
     }

@@ -16,65 +16,56 @@
             android:id="@+id/descriptionElementDetailTitleBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginBottom="24dp"
             android:text="@string/descriptionElementDetailTitle"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/descriptionElementDetailBar"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintEnd_toStartOf="@+id/titleFragmentElementDetailBar" />
 
         <TextView
             android:id="@+id/descriptionElementDetailBar"
-            android:layout_width="0dp"
+            android:layout_width="342dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="151dp"
-            android:layout_marginBottom="154dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="76dp"
             android:text="@string/descriptionElementDetail"
-            app:layout_constraintBottom_toTopOf="@+id/scheduleBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/phoneBar"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/descriptionElementDetailTitleBar"
+            app:layout_constraintTop_toBottomOf="@+id/titleFragmentElementDetailBar" />
 
         <TextView
             android:id="@+id/scheduleTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="27dp"
-            android:layout_marginLeft="27dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="40dp"
             android:text="@string/scheduleTitle"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/scheduleBar"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/localisationTitle"
+            app:layout_constraintTop_toBottomOf="@+id/localisation" />
 
         <TextView
             android:id="@+id/imageTitleBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
-            android:layout_marginLeft="31dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginRight="28dp"
-            android:layout_marginBottom="362dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:text="@string/imageTitle"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageBar"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/scheduleTitle"
+            app:layout_constraintTop_toBottomOf="@+id/scheduleBar" />
 
         <ImageView
             android:id="@+id/imageBar"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="37dp"
-            android:layout_marginEnd="117dp"
-            android:layout_marginRight="117dp"
-            android:layout_marginBottom="46dp"
+            android:layout_width="151dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="60dp"
             android:contentDescription="TODO"
-            app:layout_constraintBottom_toBottomOf="@+id/flagshipProductTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageTitleBar"
+            app:layout_constraintStart_toStartOf="@+id/scheduleBar"
             app:layout_constraintTop_toBottomOf="@+id/scheduleBar"
             app:srcCompat="@mipmap/ic_no_images_available" />
 
@@ -82,127 +73,146 @@
             android:id="@+id/localisationTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="27dp"
-            android:layout_marginLeft="27dp"
-            android:layout_marginTop="33dp"
+            android:layout_marginTop="32dp"
             android:text="Situé à :"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/descriptionElementDetailTitleBar"
             app:layout_constraintTop_toBottomOf="@+id/descriptionElementDetailBar" />
 
         <TextView
             android:id="@+id/localisation"
             android:layout_width="78dp"
             android:layout_height="20dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="108dp"
-            android:layout_marginRight="108dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginTop="32dp"
             android:text="Situé à :"
-            app:layout_constraintEnd_toEndOf="@+id/scheduleBar"
+            app:layout_constraintStart_toStartOf="@+id/descriptionElementDetailBar"
             app:layout_constraintTop_toBottomOf="@+id/localisationTitle" />
 
         <TextView
             android:id="@+id/flagshipProductTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="37dp"
-            android:layout_marginLeft="37dp"
-            android:layout_marginTop="170dp"
-            android:layout_marginBottom="173dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:text="Produit phare :"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageTitleBar" />
+            app:layout_constraintStart_toStartOf="@+id/imageTitleBar"
+            app:layout_constraintTop_toBottomOf="@+id/imageBar" />
 
         <TextView
             android:id="@+id/flagshipProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="47dp"
-            android:layout_marginLeft="47dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="45dp"
-            android:layout_marginRight="45dp"
+            android:layout_marginTop="44dp"
             android:text="Pas de produit phare pour se commerce"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/phoneBar"
-            app:layout_constraintTop_toBottomOf="@+id/flagshipProductTitle" />
+            app:layout_constraintStart_toStartOf="@+id/imageBar"
+            app:layout_constraintTop_toBottomOf="@+id/imageBar" />
 
         <TextView
             android:id="@+id/contactTitleBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="38dp"
-            android:layout_marginLeft="38dp"
-            android:layout_marginTop="33dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="20dp"
             android:text="@string/contactTitle"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/flagshipProductTitle"
             app:layout_constraintTop_toBottomOf="@+id/flagshipProduct" />
 
         <TextView
             android:id="@+id/emailBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="37dp"
-            android:layout_marginLeft="37dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="24dp"
             android:text="Email : /"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/flagshipProduct"
+            app:layout_constraintTop_toBottomOf="@+id/phoneBar" />
 
         <TextView
             android:id="@+id/cellphoneBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="89dp"
-            android:layout_marginRight="89dp"
-            android:layout_marginBottom="51dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="44dp"
             android:text="Tél mobile : /"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/flagshipProduct"
+            app:layout_constraintTop_toBottomOf="@+id/flagshipProduct" />
 
         <TextView
             android:id="@+id/phoneBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="26dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:text="Tél fixe : /"
-            app:layout_constraintStart_toStartOf="@+id/contactTitleBar"
-            app:layout_constraintTop_toBottomOf="@+id/contactTitleBar" />
+            app:layout_constraintStart_toStartOf="@+id/flagshipProduct"
+            app:layout_constraintTop_toBottomOf="@+id/cellphoneBar" />
 
         <TextView
             android:id="@+id/titleFragmentElementDetailBar"
-            android:layout_width="wrap_content"
+            android:layout_width="226dp"
             android:layout_height="44dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:text="@string/titleFragmentElementDetail"
             android:textSize="36sp"
-            app:layout_constraintBottom_toTopOf="@+id/descriptionElementDetailBar"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="27dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.76"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/scheduleBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/schedule"
-            app:layout_constraintBottom_toTopOf="@+id/imageTitleBar"
-            app:layout_constraintStart_toEndOf="@+id/imageTitleBar" />
+            app:layout_constraintStart_toStartOf="@+id/localisation"
+            app:layout_constraintTop_toBottomOf="@+id/scheduleTitle" />
 
         <Button
             android:id="@+id/buttonNextImageBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="108dp"
             android:text="@string/next_image"
             android:textSize="10sp"
             app:layout_constraintStart_toEndOf="@+id/imageBar"
-            app:layout_constraintTop_toTopOf="@+id/imageBar" />
+            app:layout_constraintTop_toBottomOf="@+id/scheduleBar" />
+
+        <TextView
+            android:id="@+id/textViewActualiteTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/actualites"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/contactTitleBar"
+            app:layout_constraintTop_toTopOf="@+id/phoneBar" />
+
+        <TextView
+            android:id="@+id/textViewActualitesBar"
+            android:layout_width="160dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:text="@string/actualite_content"
+            app:layout_constraintStart_toEndOf="@+id/textViewActualiteTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textViewActualiteTitle" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

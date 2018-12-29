@@ -16,20 +16,20 @@
             android:id="@+id/localisation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginLeft="28dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="52dp"
             android:text="Situé à :"
-            app:layout_constraintBottom_toBottomOf="@+id/scheduleTitle"
-            app:layout_constraintStart_toStartOf="@+id/localisationTitle" />
+            app:layout_constraintStart_toEndOf="@+id/localisationTitle"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionElementDetailMarket" />
 
         <TextView
             android:id="@+id/titleFragmentElementDetailMarket"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="17dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/descriptionElementDetailTitle"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/descriptionElementDetailMarket"
@@ -37,172 +37,184 @@
 
         <TextView
             android:id="@+id/descriptionElementDetailMarket"
-            android:layout_width="0dp"
+            android:layout_width="342dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="151dp"
-            android:layout_marginBottom="154dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="56dp"
             android:text="@string/descriptionElementDetail"
-            app:layout_constraintBottom_toTopOf="@+id/scheduleMarket"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/phoneMarket"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/titleFragmentElementDetailMarket"
+            app:layout_constraintTop_toBottomOf="@+id/titleFragmentElementDetailBar" />
 
         <TextView
             android:id="@+id/scheduleTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="27dp"
-            android:layout_marginLeft="27dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="40dp"
             android:text="@string/scheduleTitle"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/scheduleMarket"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/localisationTitle"
+            app:layout_constraintTop_toBottomOf="@+id/localisation" />
 
         <TextView
             android:id="@+id/imageTitleMarket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="31dp"
-            android:layout_marginLeft="31dp"
-            android:layout_marginEnd="28dp"
-            android:layout_marginRight="28dp"
-            android:layout_marginBottom="362dp"
+            android:layout_marginTop="60dp"
             android:text="@string/imageTitle"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageMarket"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageMarket"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="37dp"
-            android:layout_marginEnd="117dp"
-            android:layout_marginRight="117dp"
-            android:layout_marginBottom="46dp"
-            android:contentDescription="TODO"
-            app:layout_constraintBottom_toBottomOf="@+id/flagshipProductTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageTitleMarket"
-            app:layout_constraintTop_toBottomOf="@+id/scheduleMarket"
-            app:srcCompat="@mipmap/ic_no_images_available" />
+            app:layout_constraintStart_toStartOf="@+id/scheduleTitle"
+            app:layout_constraintTop_toBottomOf="@+id/scheduleMarket" />
 
         <TextView
             android:id="@+id/localisationTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="27dp"
-            android:layout_marginLeft="27dp"
-            android:layout_marginTop="33dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:text="Situé à :"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/titleFragmentElementDetailMarket"
             app:layout_constraintTop_toBottomOf="@+id/descriptionElementDetailMarket" />
 
         <TextView
             android:id="@+id/flagshipProductTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="37dp"
-            android:layout_marginLeft="37dp"
-            android:layout_marginTop="170dp"
-            android:layout_marginBottom="173dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:text="Produit phare :"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageTitleMarket" />
+            app:layout_constraintStart_toStartOf="@+id/imageTitleMarket"
+            app:layout_constraintTop_toBottomOf="@+id/imageMarket" />
 
         <TextView
             android:id="@+id/flagshipProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="47dp"
-            android:layout_marginLeft="47dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="45dp"
-            android:layout_marginRight="45dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="52dp"
             android:text="Pas de produit phare pour se commerce"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/phoneMarket"
-            app:layout_constraintTop_toBottomOf="@+id/flagshipProductTitle" />
+            app:layout_constraintStart_toStartOf="@+id/imageMarket"
+            app:layout_constraintTop_toBottomOf="@+id/imageMarket" />
 
         <TextView
             android:id="@+id/contactTitleMarket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="38dp"
-            android:layout_marginLeft="38dp"
-            android:layout_marginTop="33dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="24dp"
             android:text="@string/contactTitle"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/flagshipProductTitle"
             app:layout_constraintTop_toBottomOf="@+id/flagshipProduct" />
-
-        <TextView
-            android:id="@+id/emailMarket"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="37dp"
-            android:layout_marginLeft="37dp"
-            android:text="Email : /"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
             android:id="@+id/cellphoneMarket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="89dp"
-            android:layout_marginRight="89dp"
-            android:layout_marginBottom="51dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="60dp"
             android:text="Tél mobile : /"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintStart_toStartOf="@+id/flagshipProduct"
+            app:layout_constraintTop_toBottomOf="@+id/flagshipProduct" />
 
         <TextView
             android:id="@+id/phoneMarket"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="26dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="32dp"
             android:text="Tél fixe : /"
-            app:layout_constraintStart_toStartOf="@+id/contactTitleMarket"
-            app:layout_constraintTop_toBottomOf="@+id/contactTitleMarket" />
+            app:layout_constraintStart_toStartOf="@+id/flagshipProduct"
+            app:layout_constraintTop_toBottomOf="@+id/cellphoneMarket" />
 
         <TextView
             android:id="@+id/titleFragmentElementDetailBar"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:text="@string/titleFragmentElementDetail"
             android:textSize="36sp"
             app:layout_constraintStart_toEndOf="@+id/titleFragmentElementDetailMarket"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/scheduleMarket"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="25dp"
-            android:text="@string/schedule"
-            app:layout_constraintBottom_toTopOf="@+id/imageTitleMarket"
-            app:layout_constraintStart_toEndOf="@+id/imageTitleMarket" />
-
         <Button
             android:id="@+id/buttonNextImageMarket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginStart="184dp"
+            android:layout_marginLeft="184dp"
+            android:layout_marginTop="56dp"
             android:text="@string/next_image"
             android:textSize="10sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageMarket"
-            app:layout_constraintStart_toEndOf="@+id/imageMarket" />
+            app:layout_constraintStart_toStartOf="@+id/imageMarket"
+            app:layout_constraintTop_toTopOf="@+id/imageMarket" />
+
+        <TextView
+            android:id="@+id/textViewActualiteTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="48dp"
+            android:text="@string/actualites"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/contactTitleMarket"
+            app:layout_constraintTop_toBottomOf="@+id/emailMarket" />
+
+        <TextView
+            android:id="@+id/textViewActualitesMarket"
+            android:layout_width="201dp"
+            android:layout_height="104dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/actualite_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/emailMarket"
+            app:layout_constraintTop_toBottomOf="@+id/textViewActualiteTitle"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/scheduleMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="164dp"
+            android:text="@string/schedule"
+            app:layout_constraintStart_toStartOf="@+id/localisation"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionElementDetailMarket" />
+
+        <TextView
+            android:id="@+id/emailMarket"
+            android:layout_width="wrap_content"
+            android:layout_height="53dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="36dp"
+            android:text="Email : /"
+            app:layout_constraintStart_toStartOf="@+id/flagshipProduct"
+            app:layout_constraintTop_toBottomOf="@+id/phoneMarket" />
+
+        <ImageView
+            android:id="@+id/imageMarket"
+            android:layout_width="179dp"
+            android:layout_height="149dp"
+            android:layout_marginTop="104dp"
+            android:contentDescription="TODO"
+            app:layout_constraintStart_toStartOf="@+id/scheduleMarket"
+            app:layout_constraintTop_toBottomOf="@+id/scheduleMarket"
+            app:srcCompat="@mipmap/ic_no_images_available" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>

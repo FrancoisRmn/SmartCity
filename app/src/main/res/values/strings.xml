@@ -34,9 +34,9 @@
     <string name="informationSettings">Information</string>
     <string name="titleFragmentElementDetail">Burger King</string>
     <string name="descriptionElementDetailTitle">Description</string>
-    <string name="descriptionElementDetail">Burger King est une entreprise familial à but non lucratif. En effet, l\'entrerprise ne recherche jamais le bénéfice mais plûtôt la satisfaction du client .... blablalbalblab</string>
+    <string name="descriptionElementDetail">Pas de description disponible pour ce commerce.</string>
     <string name="scheduleTitle">Heure d\'ouverture</string>
-    <string name="schedule"> Lundi : 8h00-12h00, 13h00-17h00 \n Mardi : 8h00-12h00, 13h00-17h00 \n Mercredi: 8h00-12h00, 13h00-17h00 \n Jeudi : 8h00-12h00, 13h00-17h00 \n Vendredi : 8h00-12h00, 13h00-17h00 \n Samedi : 8h00-12h00 \n Dimanche : /</string>
+    <string name="schedule">Pas d\'horaire disponible pour ce commerce/</string>
     <string name="imageTitle">Image(s)</string>
     <string name="contactTitle">Contact</string>
     <string name="contact">Tél: 0475 45 78 96 \nFixe: 081 74 52 20\nEmail : burgerKing@hotmail.com</string>
@@ -47,4 +47,6 @@
     <string name="without_connection">Sans se connecter</string>
     <string name="ValidationInscriptionButton">Créer le compte</string>
     <string name="next_image">Image suivante</string>
+    <string name="actualite_content">Pas d\'actualitées disponible pour le moment.</string>
+    <string name="actualites">Actualité(s)</string>
 </resources>
