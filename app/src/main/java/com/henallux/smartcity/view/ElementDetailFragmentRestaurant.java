@@ -23,6 +23,8 @@ import com.bumptech.glide.Glide;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.model.Actualite;
+import com.henallux.smartcity.model.Favoris;
+import com.henallux.smartcity.task.CreateFavorisAsyncTask;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.model.OpeningPeriod;
 import com.henallux.smartcity.model.Restaurant;
@@ -112,7 +114,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
             case R.id.itemFavorite:
                 applicationContext = (Application)getActivity().getApplicationContext();
                 if(applicationContext.isConnected()){
-                    Toast.makeText(getActivity(), "Commerce ajouté aux favoris", Toast.LENGTH_SHORT).show();
+                    addCommerceToFav();
                     //TODO
                     //changer la couleur de l'icone et ajouté aux favoris de l'utilisateur
                 }
@@ -122,6 +124,17 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void addCommerceToFav() {
+        try{
+            Application application = (Application)getContext();
+
+            new CreateFavorisAsyncTask(applicationContext, getActivity(), new Favoris(19, 1)).execute();
+        }
+        catch(Exception e){
+            System.out.print(e.getMessage());
         }
     }
 

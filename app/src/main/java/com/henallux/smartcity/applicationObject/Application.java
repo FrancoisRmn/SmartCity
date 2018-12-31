@@ -23,5 +23,6 @@ public class Application extends android.app.Application {
 
     public void setToken(String token) {
         this.token = token;
+        this.isConnected = true;
     }
 }

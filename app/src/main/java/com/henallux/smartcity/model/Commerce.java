@@ -16,14 +16,11 @@ public class Commerce {
     private Integer numeroFixe ;
     private String adresseMail;
     private String urlPageFacebook;
-    private Integer longitude;
-    private Integer latitude;
     private Integer idCategorie;
     private Integer idPersonne;
     private ArrayList<OpeningPeriod> openingPeriod;
     private ArrayList<imageCommerce> imageCommerce;
     private ArrayList<Actualite> actualite;
-
 
     public Integer getNumeroGsm() {
         return numeroGsm;
@@ -42,7 +39,10 @@ public class Commerce {
         return openingPeriod;
     }
 
-
+    public void setOpeningPeriod(ArrayList<OpeningPeriod> openingPeriod)
+    {
+        this.openingPeriod = openingPeriod;
+    }
     @Override
     public String toString() {
         return nomCommerce;
@@ -99,21 +99,9 @@ public class Commerce {
         return urlPageFacebook;
     }
 
-
-    public Integer getLongitude() {
-        return longitude;
-    }
-
-
-    public Integer getLatitude() {
-        return latitude;
-    }
-
-
     public Integer getIdCategorie() {
         return idCategorie;
     }
-
 
     public Integer getIdPersonne() {
         return idPersonne;

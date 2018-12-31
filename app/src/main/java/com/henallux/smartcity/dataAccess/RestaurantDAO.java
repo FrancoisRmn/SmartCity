@@ -5,6 +5,11 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.internal.bind.SqlDateTypeAdapter;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.model.Restaurant;
 
@@ -13,8 +18,13 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.TimeZone;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -51,11 +61,32 @@ public class RestaurantDAO {
             Restaurant restaurant;
             JSONArray jsonArray = new JSONArray(stringJSON);
             for (int i=0; i<jsonArray.length(); i++){
-                JSONObject jsonPerson = jsonArray.getJSONObject(i);
-                Gson object = new GsonBuilder().create();
-                restaurant = object.fromJson(jsonPerson.toString(), Restaurant.class);
+                JSONObject jsonRestaurant = jsonArray.getJSONObject(i);
+                //Gson object = new GsonBuilder().setDateFormat("HH:mm:ss").create();
+                //final Gson object = new GsonBuilder().registerTypeAdapter(Date.class, new JsonDateDeserializer()).create();
+                GsonBuilder gsonBuilder = new GsonBuilder().registerTypeAdapter(Date.class, new DateDeserializer());
+                restaurant = gsonBuilder.create().fromJson(jsonRestaurant.toString(), Restaurant.class);
+
                 restaurants.add(restaurant);
             }
             return restaurants;
         }
+
+    public class DateDeserializer implements JsonDeserializer<Date> {
+
+        @Override
+        public Date deserialize(JsonElement element, Type arg1, JsonDeserializationContext arg2) throws JsonParseException {
+            String date = element.getAsString();
+
+            SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss");
+            formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+            try {
+                return formatter.parse(date);
+            } catch (ParseException e) {
+
+                return null;
+            }
+        }
+    }
 }
