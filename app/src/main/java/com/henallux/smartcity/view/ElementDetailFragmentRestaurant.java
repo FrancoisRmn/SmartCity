@@ -3,6 +3,7 @@ package com.henallux.smartcity.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -20,14 +21,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.exception.CannotRetreiveUserIdException;
 import com.henallux.smartcity.model.Actualite;
 import com.henallux.smartcity.model.Favoris;
+import com.henallux.smartcity.model.Payload;
 import com.henallux.smartcity.task.CreateFavorisAsyncTask;
+import com.henallux.smartcity.utils.JWTUtils;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.model.OpeningPeriod;
 import com.henallux.smartcity.model.Restaurant;
+
+import org.json.JSONObject;
 
 public class ElementDetailFragmentRestaurant extends Fragment {
     private Restaurant restaurant;
@@ -129,9 +137,23 @@ public class ElementDetailFragmentRestaurant extends Fragment {
 
     private void addCommerceToFav() {
         try{
-            Application application = (Application)getContext();
-
-            new CreateFavorisAsyncTask(applicationContext, getActivity(), new Favoris(19, 1)).execute();
+            Application application = (Application)getActivity().getApplicationContext();
+            //int idUser = Utils.getUserId(application.getToken());
+            String payload = JWTUtils.decoded(application.getToken());
+            int idUser =0;
+            Payload payloadModel;
+            if(payload.contains("uid")){
+                JSONObject jsonPayload = new JSONObject(payload);
+                payloadModel = new Payload(Integer.parseInt(jsonPayload.getString("uid")));
+                idUser = payloadModel.getUid();
+            }
+            else{
+                throw new CannotRetreiveUserIdException("Impossible de récupérer l'identidiant de l'utilisateur !");
+            }
+            new CreateFavorisAsyncTask(applicationContext, getActivity(), new Favoris(this.restaurant.getIdCommerce(), idUser)).execute();
+        }
+        catch(CannotRetreiveUserIdException e){
+            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         catch(Exception e){
             System.out.print(e.getMessage());

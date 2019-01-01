@@ -36,4 +36,14 @@ public class Utils {
         return day;
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static int getUserId(String token)
+    {
+        String jwtToken[] = token.split(".");
+        byte[] jwtUser = Base64.getDecoder().decode(jwtToken[1]);
+        String jwtUserString = new String(jwtUser);
+        System.out.println(jwtUserString);
+        return 0;
+    }
 }

@@ -21,10 +21,17 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.exception.CannotRetreiveUserIdException;
 import com.henallux.smartcity.model.Actualite;
+import com.henallux.smartcity.model.Favoris;
+import com.henallux.smartcity.model.Payload;
+import com.henallux.smartcity.task.CreateFavorisAsyncTask;
+import com.henallux.smartcity.utils.JWTUtils;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.model.Market;
 import com.henallux.smartcity.model.OpeningPeriod;
+
+import org.json.JSONObject;
 
 public class ElementDetailFragmentMarket extends Fragment {
     private Market market;
@@ -112,7 +119,7 @@ public class ElementDetailFragmentMarket extends Fragment {
             case R.id.itemFavorite:
                 applicationContext = (Application)getActivity().getApplicationContext();
                 if(applicationContext.isConnected()){
-                    Toast.makeText(getActivity(), "Commerce ajouté aux favoris", Toast.LENGTH_SHORT).show();
+                    addCommerceToFav();
                     //TODO
                     //changer la couleur de l'icone et ajouté aux favoris de l'utilisateur
                 }
@@ -122,6 +129,31 @@ public class ElementDetailFragmentMarket extends Fragment {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void addCommerceToFav() {
+        try{
+            Application application = (Application)getActivity().getApplicationContext();
+            //int idUser = Utils.getUserId(application.getToken());
+            String payload = JWTUtils.decoded(application.getToken());
+            int idUser =0;
+            Payload payloadModel;
+            if(payload.contains("uid")){
+                JSONObject jsonPayload = new JSONObject(payload);
+                payloadModel = new Payload(Integer.parseInt(jsonPayload.getString("uid")));
+                idUser = payloadModel.getUid();
+            }
+            else{
+                throw new CannotRetreiveUserIdException("Impossible de récupérer l'identidiant de l'utilisateur !");
+            }
+            new CreateFavorisAsyncTask(applicationContext, getActivity(), new Favoris(this.market.getIdCommerce(), idUser)).execute();
+        }
+        catch(CannotRetreiveUserIdException e){
+            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        catch(Exception e){
+            System.out.print(e.getMessage());
         }
     }
 

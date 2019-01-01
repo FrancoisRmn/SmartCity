@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Commerce {
     private Integer idCommerce;
+
+
+
     private String nomCommerce;
     private String rue;
     private Integer numero;
@@ -25,7 +28,9 @@ public class Commerce {
     public Integer getNumeroGsm() {
         return numeroGsm;
     }
-
+    public Integer getIdCommerce() {
+        return idCommerce;
+    }
     public ArrayList<Actualite> getActualite() {
         return actualite;
     }
