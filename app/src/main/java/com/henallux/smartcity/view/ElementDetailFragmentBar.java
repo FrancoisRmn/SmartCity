@@ -59,6 +59,9 @@ public class ElementDetailFragmentBar extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        if ((savedInstanceState != null) && (savedInstanceState.getSerializable("bar") != null)) {
+            this.bar = (Bar)savedInstanceState.getSerializable("bar");
+        }
     }
 
     @Override
@@ -253,5 +256,10 @@ public class ElementDetailFragmentBar extends Fragment {
     public void setData(Bar bar)
     {
         this.bar= bar;
+    }
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("bar", this.bar);
     }
 }

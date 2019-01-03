@@ -1,9 +1,6 @@
 package com.henallux.smartcity.view;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,10 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.exception.CannotRetreiveUserIdException;
@@ -34,7 +28,6 @@ import com.henallux.smartcity.utils.JWTUtils;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.model.OpeningPeriod;
 import com.henallux.smartcity.model.Restaurant;
-
 import org.json.JSONObject;
 
 public class ElementDetailFragmentRestaurant extends Fragment {
@@ -62,6 +55,9 @@ public class ElementDetailFragmentRestaurant extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        if ((savedInstanceState != null) && (savedInstanceState.getSerializable("restaurant") != null)) {
+            this.restaurant = (Restaurant)savedInstanceState.getSerializable("restaurant");
+        }
     }
 
     @Override
@@ -256,5 +252,11 @@ public class ElementDetailFragmentRestaurant extends Fragment {
     public void setData(Restaurant restaurant)
     {
         this.restaurant= restaurant;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("restaurant", this.restaurant);
     }
 }

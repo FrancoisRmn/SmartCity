@@ -1,8 +1,9 @@
 package com.henallux.smartcity.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Actualite {
+public class Actualite implements Serializable {
     private Integer idActualite;
     private String libelle;
     private String texte;

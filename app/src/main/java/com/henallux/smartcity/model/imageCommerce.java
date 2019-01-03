@@ -1,6 +1,8 @@
 package com.henallux.smartcity.model;
 
-public class imageCommerce {
+import java.io.Serializable;
+
+public class imageCommerce implements Serializable {
     private int idImageCommerce;
     private String url;
     private int idCommerce;

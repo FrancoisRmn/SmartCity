@@ -1,9 +1,10 @@
 package com.henallux.smartcity.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Commerce {
+public class Commerce implements Serializable {
     private Integer idCommerce;
 
 

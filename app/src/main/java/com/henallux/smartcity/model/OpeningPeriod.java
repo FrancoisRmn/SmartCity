@@ -1,6 +1,8 @@
 package com.henallux.smartcity.model;
 
-public class OpeningPeriod {
+import java.io.Serializable;
+
+public class OpeningPeriod implements Serializable {
     private int idHoraire;
     private String horaireDebut;
     private String horaireFin;

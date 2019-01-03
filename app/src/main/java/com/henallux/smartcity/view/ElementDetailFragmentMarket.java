@@ -58,6 +58,9 @@ public class ElementDetailFragmentMarket extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+        if ((savedInstanceState != null) && (savedInstanceState.getSerializable("market") != null)) {
+            this.market = (Market)savedInstanceState.getSerializable("market");
+        }
     }
 
     @Override
@@ -253,5 +256,9 @@ public class ElementDetailFragmentMarket extends Fragment {
     {
         this.market = market;
     }
-
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("market", this.market);
+    }
 }
