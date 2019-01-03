@@ -2,6 +2,11 @@ package com.henallux.smartcity.dataAccess;
 
 import android.util.Log;
 
+import com.henallux.smartcity.exception.ImpossibleToFetchBarsException;
+import com.henallux.smartcity.exception.ImpossibleToFetchToken;
+import com.henallux.smartcity.utils.Constantes;
+import com.henallux.smartcity.utils.Utils;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -25,19 +30,22 @@ public class GetToken {
         OutputStreamWriter writer = new OutputStreamWriter(uc.getOutputStream(), "UTF-8");
         writer.write(payload);
         writer.close();
-        // try {
-        BufferedReader br = new BufferedReader(new InputStreamReader(uc.getInputStream()));
-        while((line = br.readLine()) != null){
-            jsonString.append(line);
+        int responseCode = uc.getResponseCode();
+        if(responseCode == HttpURLConnection.HTTP_OK)
+        {
+            BufferedReader br = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+            while((line = br.readLine()) != null){
+                jsonString.append(line);
+            }
+            br.close();
+            uc.disconnect();
+            return JsonToStringToken(jsonString.toString());
         }
-        br.close();
-        //} catch (Exception ex) {
-        //  ex.printStackTrace();
-        //}
-        uc.disconnect();
-        Log.i("Login",jsonString.toString());
-        //return jsonString.toString();
-        return JsonToStringToken(jsonString.toString());
+        else
+        {
+            throw new ImpossibleToFetchToken(Constantes.ERROR_MESSAGE_TOKEN + ", " + Utils.getErrorMessage(responseCode));
+        }
+
     }
 
     public static String JsonToStringToken(String stringJson) throws Exception

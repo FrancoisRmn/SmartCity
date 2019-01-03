@@ -35,15 +35,15 @@ public class Utils {
         }
         return day;
     }
-
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    public static int getUserId(String token)
+    public static String getErrorMessage(int statusCode)
     {
-        String jwtToken[] = token.split(".");
-        byte[] jwtUser = Base64.getDecoder().decode(jwtToken[1]);
-        String jwtUserString = new String(jwtUser);
-        System.out.println(jwtUserString);
-        return 0;
+        String message="";
+        switch (statusCode)
+        {
+            case 401: message = "Votre session est expiré";
+                break;
+             default: message = "Erreur inconnue";
+        }
+        return message+" (status code :"+statusCode+")";
     }
 }

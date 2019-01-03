@@ -13,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.BarDAO;
+import com.henallux.smartcity.exception.ImpossibleToFetchBarsException;
 import com.henallux.smartcity.listener.FragmentListener;
 import com.henallux.smartcity.model.Bar;
 
@@ -46,31 +48,17 @@ public class DrinkFragment extends Fragment {
 
             try{
                 bars = barDAO.getAllBars();
-
-                /*
-                ArrayList<String> moyensPayements = new ArrayList<String>();
-                Bar bar = new Bar();
-                bar.setNomCommerce("Green fairy");
-                bar.setRue("Place de l'ange");
-                bar.setNumero(5);
-                bar.setDescription("Restauration rapide");
-                bar.setMail("burgerking@yahoo.com");
-                bars.add(bar);
-
-                Bar bar2= new Bar();
-                bar2.setNomCommerce("Le verre royale");
-                bar2.setRue("Rue de la rue");
-                bar2.setNumero(10);
-                bar2.setDescription("");
-                bar2.setMail("pizza_hut@yahoo.com");
-                bars.add(bar2);
-                 */
-
-
-            }catch (Exception e){
-                Log.i("Async",e.getMessage());
-
-                e.printStackTrace();
+            }catch(final ImpossibleToFetchBarsException e){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                return null;
+            }
+            catch (final Exception e){
+                System.out.println(e.getMessage());
             }
             return bars;
         }
@@ -88,11 +76,6 @@ public class DrinkFragment extends Fragment {
             listViewBarsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    /*
-                    ElementDetailFragmentMarket elementDetailFragmentMarket = new ElementDetailFragmentMarket();
-                    FragmentTransaction fragmentTransaction =getFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container, elementDetailFragmentMarket).commit();
-                     */
                     FragmentListener fragmentListener = (FragmentListener)getActivity();
                     fragmentListener.getBar(bars.get(position));
                 }

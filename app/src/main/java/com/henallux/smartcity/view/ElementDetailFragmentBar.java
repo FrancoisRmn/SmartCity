@@ -207,7 +207,7 @@ public class ElementDetailFragmentBar extends Fragment {
         buttonNextImage = v.findViewById(R.id.buttonNextImageBar);
         if(!this.bar.getImageCommerce().isEmpty()){
             Glide.with(this).load(this.bar.getImageCommerce().get(0).getUrl()).into(imagesBar);
-            this.indexImage = 1;
+            this.indexImage = 0;
             //quand on click sur l'image on lance un nouveau fragment avec l'image affiché en grand
             imagesBar.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -223,17 +223,15 @@ public class ElementDetailFragmentBar extends Fragment {
             buttonNextImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(ElementDetailFragmentBar.this.indexImage < ElementDetailFragmentBar.this.bar.getImageCommerce().size()) {
-                        int i = ElementDetailFragmentBar.this.indexImage;
+                    if(ElementDetailFragmentBar.this.indexImage +1 < ElementDetailFragmentBar.this.bar.getImageCommerce().size()) {
+                        int i = ++ElementDetailFragmentBar.this.indexImage;
                         Glide.with(ElementDetailFragmentBar.this).load(ElementDetailFragmentBar.this.bar.getImageCommerce().get(i).getUrl()).into(imagesBar);
-                        ElementDetailFragmentBar.this.indexImage++;
                     }
                     else{
                         Toast.makeText(getActivity(), "Plus d'images disponible !", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
-
         }
         else{
             buttonNextImage.setVisibility(View.GONE);

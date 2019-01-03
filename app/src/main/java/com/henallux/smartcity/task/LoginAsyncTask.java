@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.dataAccess.GetToken;
 import com.henallux.smartcity.dataAccess.UserDAO;
+import com.henallux.smartcity.exception.ImpossibleToFetchToken;
 import com.henallux.smartcity.view.BottomMenu;
 
 import java.io.FileNotFoundException;
@@ -52,6 +53,15 @@ public class LoginAsyncTask extends AsyncTask<String, Void, String> {
                             "}");
 
             return response;
+        }
+        catch(final ImpossibleToFetchToken e){
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            return "";
         }
         catch (FileNotFoundException e){
             //Toast.makeText(UserDAO.this.mainActivity, "Combinaison login/ mdp incorrecte", Toast.LENGTH_SHORT).show();

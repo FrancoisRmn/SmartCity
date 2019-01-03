@@ -1,5 +1,6 @@
 package com.henallux.smartcity.view;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,9 +17,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.RestaurantDAO;
+import com.henallux.smartcity.exception.ImpossibleToFetchRestaurantsException;
 import com.henallux.smartcity.listener.FragmentListener;
 import com.henallux.smartcity.model.Restaurant;
 
@@ -65,17 +68,24 @@ public class RestaurantFragment extends Fragment {
             ArrayList<Restaurant> restaurants = new ArrayList<>();
             try{
                 restaurants = restaurantDAO.getAllRestaurants();
-            }catch (Exception e){
-                Log.i("Async",e.getMessage());
-
-                e.printStackTrace();
+            }
+            catch(final ImpossibleToFetchRestaurantsException e){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                return null;
+            }
+            catch (final Exception e){
+                System.out.println(e.getMessage());
             }
             return restaurants;
         }
 
         @Override
         protected void onPostExecute(final ArrayList<Restaurant> restaurants) {
-
             final ArrayList<String> restaurantsDescriptions = arrayListRestaurantToArrayListString(restaurants);
             ArrayAdapter<String> listRestaurantAdapter= new ArrayAdapter<String>(
                     getActivity(),

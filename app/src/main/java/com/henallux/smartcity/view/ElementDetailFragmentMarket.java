@@ -206,7 +206,7 @@ public class ElementDetailFragmentMarket extends Fragment {
         buttonNextImage = v.findViewById(R.id.buttonNextImageMarket);
         if(!this.market.getImageCommerce().isEmpty()){
             Glide.with(this).load(this.market.getImageCommerce().get(0).getUrl()).into(imagesMarket);
-            this.indexImage = 1;
+            this.indexImage = 0;
             //quand on click sur l'image on lance un nouveau fragment avec l'image affiché en grand
             imagesMarket.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -222,10 +222,9 @@ public class ElementDetailFragmentMarket extends Fragment {
             buttonNextImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(ElementDetailFragmentMarket.this.indexImage < ElementDetailFragmentMarket.this.market.getImageCommerce().size()) {
-                        int i = ElementDetailFragmentMarket.this.indexImage;
+                    if(ElementDetailFragmentMarket.this.indexImage +1 < ElementDetailFragmentMarket.this.market.getImageCommerce().size()) {
+                        int i = ++ElementDetailFragmentMarket.this.indexImage;
                         Glide.with(ElementDetailFragmentMarket.this).load(ElementDetailFragmentMarket.this.market.getImageCommerce().get(i).getUrl()).into(imagesMarket);
-                        ElementDetailFragmentMarket.this.indexImage++;
                     }
                     else{
                         Toast.makeText(getActivity(), "Plus d'images disponible !", Toast.LENGTH_SHORT).show();

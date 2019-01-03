@@ -55,7 +55,6 @@ public class CreateFavoris {
         os.close();
 
         int responseCode = connection.getResponseCode();
-        Log.i("tag","Status code : "+responseCode);
         if(responseCode == HttpURLConnection.HTTP_CREATED)
         {
             BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -70,8 +69,7 @@ public class CreateFavoris {
             //return builder.toString();
             return jsonToFavoris(builder.toString());
         }else{
-            //TODO récupérer le msg qui est plus explicite
-            throw new ImpossibleToCreateFavoris("Erreur lors de la tentative de création d'un Favoris ! Status code : "  + responseCode + connection.getResponseMessage());
+            throw new ImpossibleToCreateFavoris(" Status code : "  + responseCode + connection.getResponseMessage());
         }
     }
 

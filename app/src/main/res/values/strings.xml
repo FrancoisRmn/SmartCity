@@ -49,4 +49,7 @@
     <string name="next_image">Image suivante</string>
     <string name="actualite_content">Pas d\'actualitées disponible pour le moment.</string>
     <string name="actualites">Actualité(s)</string>
+    <string name="URL_GET_RESTAURANTS">https://sc-nconnect.azurewebsites.net/api/Commerces?categorie=1</string>
+    <string name="ERROR_GET_RESTAURANTS"></string>
+    <string name="ERROR_ADD_USER">Impossible d\'ajouter un utilisateur !</string>
 </resources>

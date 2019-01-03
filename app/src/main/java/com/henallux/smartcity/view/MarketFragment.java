@@ -13,9 +13,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.MarketDAO;
+import com.henallux.smartcity.exception.ImpossibleToFetchMarketsException;
 import com.henallux.smartcity.listener.FragmentListener;
 import com.henallux.smartcity.model.Market;
 
@@ -47,9 +49,18 @@ public class MarketFragment extends Fragment {
 
             try{
                 markets = marketDAO.getAllMarkets();
-            }catch (Exception e){
-                Log.i("Async",e.getMessage());
-                e.printStackTrace();
+            }
+            catch(final ImpossibleToFetchMarketsException e){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                return null;
+            }
+            catch (final Exception e){
+                System.out.println(e.getMessage());
             }
             Log.i("Async","Fin de doInBackGround (market)");
             return markets;

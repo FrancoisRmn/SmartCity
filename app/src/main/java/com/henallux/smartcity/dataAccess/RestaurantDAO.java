@@ -10,8 +10,12 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 import com.google.gson.internal.bind.SqlDateTypeAdapter;
+import com.henallux.smartcity.R;
 import com.henallux.smartcity.applicationObject.Application;
+import com.henallux.smartcity.exception.ImpossibleToFetchRestaurantsException;
 import com.henallux.smartcity.model.Restaurant;
+import com.henallux.smartcity.utils.Constantes;
+import com.henallux.smartcity.utils.Utils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -19,6 +23,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -37,23 +42,30 @@ public class RestaurantDAO {
 
     public ArrayList<Restaurant> getAllRestaurants() throws Exception{
         application =(Application)this.context;
-        URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Commerces?categorie=1");
+        URL url = new URL(context.getString(R.string.URL_GET_RESTAURANTS));
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
         connection.setRequestProperty("Authorization", "Bearer " + application.getToken());
         Log.i("restaurants","Bearer " + application.getToken());
         connection.setRequestMethod("GET");
-        //connection.connect();
         Log.i("restaurants","Status de connexion RestaurantsController : " + connection.getResponseCode());
-        BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
-        StringBuilder builder = new StringBuilder();
-        String stringJSON = "",line;
-        while ((line = buffer.readLine()) != null){
-            builder.append(line);
+        
+        int responseCode = connection.getResponseCode();
+        if(responseCode == HttpURLConnection.HTTP_OK)
+        {
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder builder = new StringBuilder();
+            String stringJSON = "", line;
+            while ((line = buffer.readLine()) != null) {
+                builder.append(line);
+            }
+            buffer.close();
+            stringJSON = builder.toString();
+            return jsonToRestaurants(stringJSON);
         }
-        buffer.close();
-        stringJSON = builder.toString();
-        return jsonToRestaurants(stringJSON);
+        else
+        {
+            throw new ImpossibleToFetchRestaurantsException(Constantes.ERROR_MESSAGE_RESTAURANT + ", " + Utils.getErrorMessage(responseCode));
+        }
     }
 
         private ArrayList<Restaurant> jsonToRestaurants(String stringJSON) throws Exception{

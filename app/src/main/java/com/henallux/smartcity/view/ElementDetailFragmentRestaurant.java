@@ -203,13 +203,14 @@ public class ElementDetailFragmentRestaurant extends Fragment {
         buttonNextImage = v.findViewById(R.id.buttonNextImageRestaurant);
         if(!this.restaurant.getImageCommerce().isEmpty()){
             Glide.with(this).load(this.restaurant.getImageCommerce().get(0).getUrl()).into(imagesRestaurant);
-            this.indexImage = 1;
+            this.indexImage = 0;
             //quand on click sur l'image on lance un nouveau fragment avec l'image affiché en grand
             imagesRestaurant.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int i = ElementDetailFragmentRestaurant.this.indexImage;
                     Fragment imageFullFragment = new ImageFullFragment();
-                    ((ImageFullFragment) imageFullFragment).setData(ElementDetailFragmentRestaurant.this.restaurant.getImageCommerce().get(0).getUrl());
+                    ((ImageFullFragment) imageFullFragment).setData(ElementDetailFragmentRestaurant.this.restaurant.getImageCommerce().get(i).getUrl());
                     FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container, imageFullFragment);
                     fragmentTransaction.addToBackStack("imageFullFragment");
@@ -219,10 +220,9 @@ public class ElementDetailFragmentRestaurant extends Fragment {
             buttonNextImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(ElementDetailFragmentRestaurant.this.indexImage < ElementDetailFragmentRestaurant.this.restaurant.getImageCommerce().size()) {
-                        int i = ElementDetailFragmentRestaurant.this.indexImage;
+                    if(ElementDetailFragmentRestaurant.this.indexImage +1 < ElementDetailFragmentRestaurant.this.restaurant.getImageCommerce().size()) {
+                        int i = ++ElementDetailFragmentRestaurant.this.indexImage;
                         Glide.with(ElementDetailFragmentRestaurant.this).load(ElementDetailFragmentRestaurant.this.restaurant.getImageCommerce().get(i).getUrl()).into(imagesRestaurant);
-                        ElementDetailFragmentRestaurant.this.indexImage++;
                     }
                     else{
                         Toast.makeText(getActivity(), "Plus d'images disponible !", Toast.LENGTH_SHORT).show();
