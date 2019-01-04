@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.henallux.smartcity.R;
@@ -26,6 +27,8 @@ import java.util.ArrayList;
 public class DrinkFragment extends Fragment {
     private LoadBars loadBars;
     private ListView listViewBarsToDisplay;
+    private SearchView searchView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -39,16 +42,44 @@ public class DrinkFragment extends Fragment {
         listViewBarsToDisplay = (ListView) view.findViewById(R.id.BarsRecyclerView);
         loadBars = new LoadBars();
         loadBars.execute();
+        searchView = view.findViewById(R.id.barSearchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                new LoadBars(query).execute();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                new LoadBars(newText).execute(newText);
+                return true;
+            }
+        });
     }
     private class LoadBars extends AsyncTask<String, Void, ArrayList<Bar>> {
         private BarDAO barDAO;
+        private String query;
+
+        public LoadBars(String query) {
+            this.query = query;
+        }
+
+        public LoadBars() {
+        }
+
         ArrayList<Bar> bars = new ArrayList<>();
         protected ArrayList<Bar> doInBackground(String... urls){
             barDAO = new BarDAO(getActivity().getApplicationContext());
 
             try{
-                bars = barDAO.getAllBars();
-            }catch(final ImpossibleToFetchBarsException e){
+                if(this.query == null){
+                    bars = barDAO.getAllBars("");
+                }else{
+                    bars = barDAO.getAllBars(this.query);
+                }
+            }
+            catch(final ImpossibleToFetchBarsException e){
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

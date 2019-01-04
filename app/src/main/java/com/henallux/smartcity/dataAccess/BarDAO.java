@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.henallux.smartcity.R;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.exception.ImpossibleToFetchBarsException;
 import com.henallux.smartcity.model.Bar;
@@ -29,9 +30,15 @@ public class BarDAO {
         this.context = context;
     }
 
-    public ArrayList<Bar> getAllBars() throws Exception{
+    public ArrayList<Bar> getAllBars(String query) throws Exception{
         application =(Application)this.context;
-        URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Commerces?categorie=3");
+        URL url;
+        if(!query.equals("")){
+            url = new URL(context.getString(R.string.URL_GET_BARS) + "&nom="+query);
+        }
+        else{
+            url = new URL(context.getString(R.string.URL_GET_BARS));
+        }
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
         connection.setRequestProperty("Authorization", "Bearer " + application.getToken());
         connection.setRequestMethod("GET");

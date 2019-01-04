@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <SearchView
-        android:id="@+id/searchView"
+        android:id="@+id/searchViewRestaurant"
         android:layout_width="265dp"
         android:layout_height="62dp"
         android:layout_marginStart="8dp"
@@ -47,6 +47,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView" />
+        app:layout_constraintTop_toBottomOf="@+id/searchViewRestaurant" />
 
 </android.support.constraint.ConstraintLayout>

@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.henallux.smartcity.R;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.exception.ImpossibleToFetchMarketsException;
 import com.henallux.smartcity.model.Market;
@@ -30,10 +31,17 @@ public class MarketDAO {
         this.context = context;
     }
 
-    public ArrayList<Market> getAllMarkets() throws Exception{
+    public ArrayList<Market> getAllMarkets(String query) throws Exception{
         application =(Application)this.context;
         Log.i("Async","Début getAllCommerces");
-        URL url = new URL("https://sc-nconnect.azurewebsites.net/api/Commerces?categorie=2");
+        URL url;
+        if(!query.equals("")){
+            url = new URL(context.getString(R.string.URL_GET_MARKETS) + "&nom="+query);
+        }
+        else{
+            url = new URL(context.getString(R.string.URL_GET_MARKETS));
+        }
+
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
         connection.setRequestProperty("Authorization", "Bearer " + application.getToken());
         Log.i("Commerce","Bearer " + application.getToken());

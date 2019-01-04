@@ -52,4 +52,6 @@
     <string name="URL_GET_RESTAURANTS">https://sc-nconnect.azurewebsites.net/api/Commerces?categorie=1</string>
     <string name="ERROR_GET_RESTAURANTS"></string>
     <string name="ERROR_ADD_USER">Impossible d\'ajouter un utilisateur !</string>
+    <string name="URL_GET_MARKETS">https://sc-nconnect.azurewebsites.net/api/Commerces?categorie=2</string>
+    <string name="URL_GET_BARS">https://sc-nconnect.azurewebsites.net/api/Commerces?categorie=3</string>
 </resources>

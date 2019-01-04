@@ -1,22 +1,17 @@
 package com.henallux.smartcity.view;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.henallux.smartcity.R;
@@ -31,6 +26,7 @@ public class RestaurantFragment extends Fragment {
 
     private ListView listViewRestaurantsToDisplay;
     private LoadRestaurants loadRestaurants;
+    private SearchView searchView;
 
     @Nullable
     @Override
@@ -41,10 +37,13 @@ public class RestaurantFragment extends Fragment {
 
     private ArrayList<String> arrayListRestaurantToArrayListString(ArrayList<Restaurant> restaurantsArrayList) {
         ArrayList<String> restaurants = new ArrayList<String>();
-        for(Restaurant restaurant : restaurantsArrayList)
-        {
-            restaurants.add(restaurant.toString());
+        if(restaurantsArrayList != null){
+            for(Restaurant restaurant : restaurantsArrayList)
+            {
+                restaurants.add(restaurant.toString());
+            }
         }
+
         return restaurants;
     }
 
@@ -55,19 +54,46 @@ public class RestaurantFragment extends Fragment {
         listViewRestaurantsToDisplay = view.findViewById(R.id.RestaurantRecyclerView);
         loadRestaurants = new LoadRestaurants();
         loadRestaurants.execute();
+        searchView = view.findViewById(R.id.searchViewRestaurant);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                new LoadRestaurants(query).execute();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                new LoadRestaurants(newText).execute(newText);
+                return true;
+            }
+        });
     }
 
 
 
     private class LoadRestaurants extends AsyncTask<String, Void, ArrayList<Restaurant>>{
         private RestaurantDAO restaurantDAO;
+        private String query;
+
+        public LoadRestaurants(String query) {
+            this.query = query;
+        }
+
+        public LoadRestaurants() {
+        }
 
         protected ArrayList<Restaurant> doInBackground(String... urls){
             restaurantDAO = new RestaurantDAO(getActivity().getApplicationContext());
 
             ArrayList<Restaurant> restaurants = new ArrayList<>();
             try{
-                restaurants = restaurantDAO.getAllRestaurants();
+                if(this.query == null){
+                    restaurants = restaurantDAO.getAllRestaurants("");
+                }
+                else {
+                    restaurants = restaurantDAO.getAllRestaurants(this.query);
+                }
             }
             catch(final ImpossibleToFetchRestaurantsException e){
                 getActivity().runOnUiThread(new Runnable() {

@@ -40,9 +40,15 @@ public class RestaurantDAO {
         this.context = context;
     }
 
-    public ArrayList<Restaurant> getAllRestaurants() throws Exception{
+    public ArrayList<Restaurant> getAllRestaurants(String query) throws Exception{
         application =(Application)this.context;
-        URL url = new URL(context.getString(R.string.URL_GET_RESTAURANTS));
+        URL url;
+        if(!query.equals("")){
+            url = new URL(context.getString(R.string.URL_GET_RESTAURANTS) + "&nom="+query);
+        }
+        else{
+            url = new URL(context.getString(R.string.URL_GET_RESTAURANTS));
+        }
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
         connection.setRequestProperty("Authorization", "Bearer " + application.getToken());
         Log.i("restaurants","Bearer " + application.getToken());

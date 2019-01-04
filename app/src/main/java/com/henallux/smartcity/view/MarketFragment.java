@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.henallux.smartcity.R;
@@ -26,6 +27,8 @@ import java.util.ArrayList;
 public class MarketFragment extends Fragment {
     private RecyclerView marketsToDisplay;
     private ListView listViewMarketsToDisplay;
+    private SearchView searchView;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,18 +41,43 @@ public class MarketFragment extends Fragment {
         View v = getView();
         listViewMarketsToDisplay = v.findViewById(R.id.MarketsRecyclerView);
         new LoadMarkets().execute();
+        searchView = v.findViewById(R.id.searchViewMarket);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                new LoadMarkets(query).execute();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                new LoadMarkets(newText).execute(newText);
+                return true;
+            }
+        });
     }
 
     private class LoadMarkets extends AsyncTask<String, Void, ArrayList<Market>> {
         private MarketDAO marketDAO;
         ArrayList<Market> markets = new ArrayList<>();
+        private String query;
 
+        public LoadMarkets(String query) {
+            this.query = query;
+        }
+
+        public LoadMarkets() {
+        }
         protected ArrayList<Market> doInBackground(String... urls){
             marketDAO = new MarketDAO(getActivity().getApplicationContext());
 
             try{
-                markets = marketDAO.getAllMarkets();
-            }
+                if(this.query == null){
+                    markets = marketDAO.getAllMarkets("");
+                }
+                else {
+                    markets = marketDAO.getAllMarkets(this.query);
+                }            }
             catch(final ImpossibleToFetchMarketsException e){
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
