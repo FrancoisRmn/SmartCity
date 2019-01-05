@@ -40,7 +40,8 @@ public class MarketFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         View v = getView();
         listViewMarketsToDisplay = v.findViewById(R.id.MarketsRecyclerView);
-        new LoadMarkets().execute();
+        if(getActivity() != null)
+            new LoadMarkets().execute();
         searchView = v.findViewById(R.id.searchViewMarket);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -51,7 +52,7 @@ public class MarketFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                new LoadMarkets(newText).execute(newText);
+                new LoadMarkets(newText).execute();
                 return true;
             }
         });
@@ -69,7 +70,8 @@ public class MarketFragment extends Fragment {
         public LoadMarkets() {
         }
         protected ArrayList<Market> doInBackground(String... urls){
-            marketDAO = new MarketDAO(getActivity().getApplicationContext());
+            if(getActivity() != null)
+                marketDAO = new MarketDAO(getActivity().getApplicationContext());
 
             try{
                 if(this.query == null){
@@ -97,20 +99,23 @@ public class MarketFragment extends Fragment {
         @Override
         protected void onPostExecute(final ArrayList<Market> markets) {
             final ArrayList<String> MarketsDescriptions = arrayListMarketToArrayListString(markets);
-            ArrayAdapter<String> listMarketAdapter= new ArrayAdapter<String>(
-                    getActivity(),
-                    android.R.layout.simple_list_item_1,
-                    MarketsDescriptions
-            );
-            listViewMarketsToDisplay.setAdapter(listMarketAdapter);
-            //gestion des clicks
-            listViewMarketsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    FragmentListener fragmentListener = (FragmentListener)getActivity();
-                    fragmentListener.getMarket(markets.get(position));
-                }
-            });
+            if(getActivity() != null && MarketsDescriptions != null){
+                ArrayAdapter<String> listMarketAdapter= new ArrayAdapter<String>(
+                        getActivity(),
+                        android.R.layout.simple_list_item_1,
+                        MarketsDescriptions
+                );
+                listViewMarketsToDisplay.setAdapter(listMarketAdapter);
+                //gestion des clicks
+                listViewMarketsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        FragmentListener fragmentListener = (FragmentListener)getActivity();
+                        fragmentListener.getMarket(markets.get(position));
+                    }
+                });
+            }
+
         }
     }
     private ArrayList<String> arrayListMarketToArrayListString(ArrayList<Market> marketsArrayList) {

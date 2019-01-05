@@ -3,16 +3,23 @@ package com.henallux.smartcity.view;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.UserDAO;
@@ -23,12 +30,15 @@ import com.henallux.smartcity.utils.JWTUtils;
 
 import org.json.JSONObject;
 
+import static android.support.constraint.Constraints.TAG;
+
 public class SettingsFragment extends Fragment {
     private Button deconnectionbutton;
     private Application applicationContext;
     private Button deleteAccountButton;
     private UserDAO userDAO;
-
+    private Switch switchNotifications;
+    private SharedPreferences sharedPreferences;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -92,6 +102,44 @@ public class SettingsFragment extends Fragment {
                 builder.setMessage("Cette action est irréversible, voulez-vous vraiment supprimer votre compte ?")
                         .setPositiveButton("Oui", dialogClickListener)
                         .setNegativeButton("Non", dialogClickListener).show();
+            }
+        });
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(Constantes.PREFERENCES_NOTIFICATIONS, true);
+        switchNotifications = v.findViewById(R.id.switch1);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        if(sharedPreferences.getBoolean(Constantes.PREFERENCES_NOTIFICATIONS, false)){
+            switchNotifications.setChecked(true);
+        }
+        switchNotifications.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(switchNotifications.isChecked()){
+                    Toast.makeText(getActivity(), Constantes.ACTIVATED_NOTIFICATIONS , Toast.LENGTH_SHORT).show();
+                    FirebaseMessaging.getInstance().subscribeToTopic(Constantes.TOPIC_FIREBASE_NAME)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (!task.isSuccessful()) {
+                                        Toast.makeText(getActivity(), Constantes.ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }
+                            });
+                    //on enregistre dans les préférences l'abonnement aux notifications
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean(Constantes.PREFERENCES_NOTIFICATIONS, true);
+                    editor.commit();
+                }
+                else{
+                    Toast.makeText(getActivity(), Constantes.DISABLED_NOTIFICATIONS, Toast.LENGTH_SHORT).show();
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean(Constantes.PREFERENCES_NOTIFICATIONS, false);
+                    editor.commit();
+                    FirebaseMessaging.getInstance().unsubscribeFromTopic("Commerces");
+                }
             }
         });
         return v;

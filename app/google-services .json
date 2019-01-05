@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "625057873631",
+    "firebase_url": "https://comhenalluxsmartcity.firebaseio.com",
+    "project_id": "comhenalluxsmartcity",
+    "storage_bucket": "comhenalluxsmartcity.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625057873631:android:30b77b7662cde52b",
+        "android_client_info": {
+          "package_name": "com.henallux.smartcity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625057873631-3bcprsg28fecbjgfoa40f6ljmouafnj5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.henallux.smartcity",
+            "certificate_hash": "267ce300c292357d0c4471cb19db495d1677fdcb"
+          }
+        },
+        {
+          "client_id": "625057873631-tst737c9tc43ta1op2kheo0pg243g84r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0lsURUmg_d9x7CT-JYLRztnn9THlCFVI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625057873631-tst737c9tc43ta1op2kheo0pg243g84r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

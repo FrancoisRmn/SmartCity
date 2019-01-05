@@ -39,7 +39,8 @@ public class DrinkFragment extends Fragment {
         View view = getView();
         listViewBarsToDisplay = (ListView) view.findViewById(R.id.BarsRecyclerView);
         loadBars = new LoadBars();
-        loadBars.execute();
+        if(getActivity() != null)
+            loadBars.execute();
         searchView = view.findViewById(R.id.barSearchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -50,7 +51,7 @@ public class DrinkFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                new LoadBars(newText).execute(newText);
+                new LoadBars(newText).execute();
                 return true;
             }
         });
@@ -68,7 +69,8 @@ public class DrinkFragment extends Fragment {
 
         ArrayList<Bar> bars = new ArrayList<>();
         protected ArrayList<Bar> doInBackground(String... urls){
-            barDAO = new BarDAO(getActivity().getApplicationContext());
+            if(getActivity() != null)
+                barDAO = new BarDAO(getActivity().getApplicationContext());
 
             try{
                 if(this.query == null){
@@ -95,20 +97,22 @@ public class DrinkFragment extends Fragment {
         @Override
         protected void onPostExecute(final ArrayList<Bar> bars) {
             final ArrayList<String> barsDescriptions = arrayListBarToArrayListString(bars);
-            ArrayAdapter<String> listBarAdapter= new ArrayAdapter<String>(
-                    getActivity(),
-                    android.R.layout.simple_list_item_1,
-                    barsDescriptions
-            );
-            listViewBarsToDisplay.setAdapter(listBarAdapter);
-            //gestion des clicks
-            listViewBarsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    FragmentListener fragmentListener = (FragmentListener)getActivity();
-                    fragmentListener.getBar(bars.get(position));
-                }
-            });
+            if(getActivity() != null && barsDescriptions != null){
+                ArrayAdapter<String> listBarAdapter= new ArrayAdapter<String>(
+                        getActivity(),
+                        android.R.layout.simple_list_item_1,
+                        barsDescriptions
+                );
+                listViewBarsToDisplay.setAdapter(listBarAdapter);
+                //gestion des clicks
+                listViewBarsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        FragmentListener fragmentListener = (FragmentListener)getActivity();
+                        fragmentListener.getBar(bars.get(position));
+                    }
+                });
+            }
         }
     }
     private ArrayList<String> arrayListBarToArrayListString(ArrayList<Bar> barsArrayList) {

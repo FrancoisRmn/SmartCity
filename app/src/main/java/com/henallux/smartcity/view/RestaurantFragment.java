@@ -53,7 +53,8 @@ public class RestaurantFragment extends Fragment {
         View view = getView();
         listViewRestaurantsToDisplay = view.findViewById(R.id.RestaurantRecyclerView);
         loadRestaurants = new LoadRestaurants();
-        loadRestaurants.execute();
+        if(getActivity() != null)
+            loadRestaurants.execute();
         searchView = view.findViewById(R.id.searchViewRestaurant);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -64,7 +65,7 @@ public class RestaurantFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                new LoadRestaurants(newText).execute(newText);
+                new LoadRestaurants(newText).execute();
                 return true;
             }
         });
@@ -84,7 +85,8 @@ public class RestaurantFragment extends Fragment {
         }
 
         protected ArrayList<Restaurant> doInBackground(String... urls){
-            restaurantDAO = new RestaurantDAO(getActivity().getApplicationContext());
+            if(getActivity() != null)
+                restaurantDAO = new RestaurantDAO(getActivity().getApplicationContext());
 
             ArrayList<Restaurant> restaurants = new ArrayList<>();
             try{
@@ -113,19 +115,21 @@ public class RestaurantFragment extends Fragment {
         @Override
         protected void onPostExecute(final ArrayList<Restaurant> restaurants) {
             final ArrayList<String> restaurantsDescriptions = arrayListRestaurantToArrayListString(restaurants);
-            ArrayAdapter<String> listRestaurantAdapter= new ArrayAdapter<String>(
-                    getActivity(),
-                    android.R.layout.simple_list_item_1,
-                    restaurantsDescriptions
-            );
-            listViewRestaurantsToDisplay.setAdapter(listRestaurantAdapter);
-            listViewRestaurantsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    FragmentListener fragmentListener = (FragmentListener)getActivity();
-                    fragmentListener.getRestaurant(restaurants.get(position));
-                }
-            });
+            if(getActivity() != null && restaurantsDescriptions != null){
+                ArrayAdapter<String> listRestaurantAdapter= new ArrayAdapter<String>(
+                        getActivity(),
+                        android.R.layout.simple_list_item_1,
+                        restaurantsDescriptions
+                );
+                listViewRestaurantsToDisplay.setAdapter(listRestaurantAdapter);
+                listViewRestaurantsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        FragmentListener fragmentListener = (FragmentListener)getActivity();
+                        fragmentListener.getRestaurant(restaurants.get(position));
+                    }
+                });
+            }
         }
     }
     @Override

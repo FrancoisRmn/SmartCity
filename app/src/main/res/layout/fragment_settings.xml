@@ -39,4 +39,15 @@
         android:text="Supprimer mon compte"
         app:layout_constraintStart_toStartOf="@+id/h1Settings"
         app:layout_constraintTop_toBottomOf="@+id/deconnectionbutton" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="44dp"
+        android:text="Notifications"
+        app:layout_constraintStart_toStartOf="@+id/buttonDeleteAccount"
+        app:layout_constraintTop_toBottomOf="@+id/buttonDeleteAccount" />
 </android.support.constraint.ConstraintLayout>

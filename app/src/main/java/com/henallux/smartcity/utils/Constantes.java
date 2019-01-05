@@ -16,4 +16,9 @@ public class Constantes {
     public static final String MESSAGE_DISCONNECTED = "Déconnecté !";
     public static final String MESSAGE_NOT_DISCONNECTED = "Déconnecté !";
     public static final String MESSAGE_USER_CREATED = "Utilisateur créé !";
+    public static final String PREFERENCES_NOTIFICATIONS = "notifications";
+    public static final String ACTIVATED_NOTIFICATIONS = "Notification activée";
+    public static final String DISABLED_NOTIFICATIONS = "Notification désactivée";
+    public static final String ERROR_MESSAGE = "Erreur !";
+    public static final String TOPIC_FIREBASE_NAME = "Commerces";
 }
