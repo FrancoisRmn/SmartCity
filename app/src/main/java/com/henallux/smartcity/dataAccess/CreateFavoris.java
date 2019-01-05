@@ -1,12 +1,10 @@
 package com.henallux.smartcity.dataAccess;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.exception.ImpossibleToCreateFavoris;
-import com.henallux.smartcity.exception.ImpossibleToCreateUser;
 import com.henallux.smartcity.model.Favoris;
 
 

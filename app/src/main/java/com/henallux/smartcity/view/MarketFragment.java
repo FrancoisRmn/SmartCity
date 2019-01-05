@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.MarketDAO;
-import com.henallux.smartcity.exception.ImpossibleToFetchMarketsException;
+import com.henallux.smartcity.exception.ImpossibleToFetchCommercesException;
 import com.henallux.smartcity.listener.FragmentListener;
 import com.henallux.smartcity.model.Market;
 
@@ -78,7 +78,7 @@ public class MarketFragment extends Fragment {
                 else {
                     markets = marketDAO.getAllMarkets(this.query);
                 }            }
-            catch(final ImpossibleToFetchMarketsException e){
+            catch(final ImpossibleToFetchCommercesException e){
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

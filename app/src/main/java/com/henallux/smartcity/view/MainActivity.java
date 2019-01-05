@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.exception.BadLoginPasswordException;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.dataAccess.UserDAO;
 
@@ -47,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
                         userDAO.login(loginInput.getText().toString(), passwordInput.getText().toString());
                     }
 
-                    catch (Exception e){
+                    catch (BadLoginPasswordException e){
                         System.out.println("Exception" + e);
-                        Toast.makeText(MainActivity.this, "Combinaison login / mot de passe incorrecte !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }

@@ -34,8 +34,6 @@ private Button validationInscriptionButton;
         mailInput = (EditText) findViewById(R.id.MailInput);
         passWordInput = (EditText) findViewById(R.id.PasswordInput);
         confirmPassWordInput = (EditText) findViewById(R.id.ConfirmPasswordInput);
-
-
         validationInscriptionButton = (Button) findViewById(R.id.validationInscriptionButton);
         validationInscriptionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,14 +75,7 @@ private Button validationInscriptionButton;
                     }*/
                     //Sans retroFit (marche)
                     UserDAO userDAO = new UserDAO(InfoPersos.this);
-                    try{
-                        userDAO.createUser(user);
-                    }
-                    catch (Exception e){
-                        System.out.println("Exception" + e);
-                        Toast.makeText(InfoPersos.this, "Erreur lors de la création de l'utilisateur", Toast.LENGTH_SHORT).show();
-                    }
-
+                    userDAO.createUser(user);
                 }
 
             }

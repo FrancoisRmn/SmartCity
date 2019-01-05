@@ -3,16 +3,14 @@ package com.henallux.smartcity.dataAccess;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
-import com.google.gson.internal.bind.SqlDateTypeAdapter;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.applicationObject.Application;
-import com.henallux.smartcity.exception.ImpossibleToFetchRestaurantsException;
+import com.henallux.smartcity.exception.ImpossibleToFetchCommercesException;
 import com.henallux.smartcity.model.Restaurant;
 import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.Utils;
@@ -70,7 +68,7 @@ public class RestaurantDAO {
         }
         else
         {
-            throw new ImpossibleToFetchRestaurantsException(Constantes.ERROR_MESSAGE_RESTAURANT + ", " + Utils.getErrorMessage(responseCode));
+            throw new ImpossibleToFetchCommercesException(Constantes.ERROR_MESSAGE_RESTAURANT + ", " + Utils.getErrorMessage(responseCode));
         }
     }
 

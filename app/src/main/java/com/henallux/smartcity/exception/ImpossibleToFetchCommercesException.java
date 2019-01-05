@@ -1,8 +1,8 @@
 package com.henallux.smartcity.exception;
 
-public class ImpossibleToFetchBarsException extends Exception {
+public class ImpossibleToFetchCommercesException extends Exception {
     private String message;
-    public ImpossibleToFetchBarsException(String message) {
+    public ImpossibleToFetchCommercesException(String message) {
         super(message);
         this.message = message;
     }

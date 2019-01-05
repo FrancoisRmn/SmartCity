@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.RestaurantDAO;
-import com.henallux.smartcity.exception.ImpossibleToFetchRestaurantsException;
+import com.henallux.smartcity.exception.ImpossibleToFetchCommercesException;
 import com.henallux.smartcity.listener.FragmentListener;
 import com.henallux.smartcity.model.Restaurant;
 
@@ -95,7 +95,7 @@ public class RestaurantFragment extends Fragment {
                     restaurants = restaurantDAO.getAllRestaurants(this.query);
                 }
             }
-            catch(final ImpossibleToFetchRestaurantsException e){
+            catch(final ImpossibleToFetchCommercesException e){
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

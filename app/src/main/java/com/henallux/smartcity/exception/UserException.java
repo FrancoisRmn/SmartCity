@@ -1,8 +1,8 @@
 package com.henallux.smartcity.exception;
 
-public class ImpossibleToCreateUser extends Exception {
+public class UserException extends Exception {
     private String message;
-    public ImpossibleToCreateUser(String message) {
+    public UserException(String message) {
         super(message);
         this.message = message;
     }

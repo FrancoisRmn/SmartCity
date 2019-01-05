@@ -3,9 +3,7 @@ package com.henallux.smartcity.dataAccess;
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.henallux.smartcity.R;
-import com.henallux.smartcity.exception.ImpossibleToCreateUser;
-import com.henallux.smartcity.exception.ImpossibleToFetchRestaurantsException;
+import com.henallux.smartcity.exception.UserException;
 import com.henallux.smartcity.model.User;
 import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.Utils;
@@ -64,7 +62,7 @@ public class CreateUser {
         }
         else
         {
-            throw new ImpossibleToFetchRestaurantsException(Constantes.ERROR_MESSAGE_CREATE_USER + ", " + Utils.getErrorMessage(responseCode));
+            throw new UserException(Constantes.ERROR_MESSAGE_CREATE_USER + ", " + Utils.getErrorMessage(responseCode));
         }
     }
 

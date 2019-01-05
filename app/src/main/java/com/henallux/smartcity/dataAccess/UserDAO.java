@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.henallux.smartcity.exception.BadLoginPasswordException;
 import com.henallux.smartcity.model.User;
 import com.henallux.smartcity.task.CreateUserAsyncTask;
 import com.henallux.smartcity.task.DeleteUserAsyncTask;
@@ -18,7 +20,7 @@ public class UserDAO {
         this.mainActivity = mainActivity;
     }
 
-    public void login(String username, String password){
+    public void login(String username, String password) throws BadLoginPasswordException {
         Log.i("Login","Début de login dans UserDAO");
         loginUserAsyncTask = new LoginAsyncTask(this.mainActivity.getApplication().getApplicationContext(), username, password, UserDAO.this.mainActivity).execute();
     }

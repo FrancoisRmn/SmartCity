@@ -42,6 +42,7 @@ public class Utils {
         {
             case 401: message = "Votre session est expiré";
                 break;
+            case 403 : message = "Ce contenu ne vous est pas accessible";
              default: message = "Erreur inconnue";
         }
         return message+" (status code :"+statusCode+")";

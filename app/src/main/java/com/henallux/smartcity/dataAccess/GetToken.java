@@ -1,8 +1,6 @@
 package com.henallux.smartcity.dataAccess;
 
-import android.util.Log;
-
-import com.henallux.smartcity.exception.ImpossibleToFetchBarsException;
+import com.henallux.smartcity.exception.BadLoginPasswordException;
 import com.henallux.smartcity.exception.ImpossibleToFetchToken;
 import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.Utils;
@@ -43,7 +41,10 @@ public class GetToken {
         }
         else
         {
-            throw new ImpossibleToFetchToken(Constantes.ERROR_MESSAGE_TOKEN + ", " + Utils.getErrorMessage(responseCode));
+            if(responseCode == HttpURLConnection.HTTP_UNAUTHORIZED)
+                throw new BadLoginPasswordException(Constantes.ERROR_MESSAGE_LOGIN);
+            else
+                throw new ImpossibleToFetchToken(Constantes.ERROR_MESSAGE_TOKEN + ", " + Utils.getErrorMessage(responseCode));
         }
 
     }

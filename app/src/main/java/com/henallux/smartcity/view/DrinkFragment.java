@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +16,7 @@ import android.widget.Toast;
 
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.BarDAO;
-import com.henallux.smartcity.exception.ImpossibleToFetchBarsException;
+import com.henallux.smartcity.exception.ImpossibleToFetchCommercesException;
 import com.henallux.smartcity.listener.FragmentListener;
 import com.henallux.smartcity.model.Bar;
 
@@ -79,7 +77,7 @@ public class DrinkFragment extends Fragment {
                     bars = barDAO.getAllBars(this.query);
                 }
             }
-            catch(final ImpossibleToFetchBarsException e){
+            catch(final ImpossibleToFetchCommercesException e){
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

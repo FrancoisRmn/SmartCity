@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.dataAccess.GetToken;
 import com.henallux.smartcity.dataAccess.UserDAO;
+import com.henallux.smartcity.exception.BadLoginPasswordException;
 import com.henallux.smartcity.exception.ImpossibleToFetchToken;
 import com.henallux.smartcity.view.BottomMenu;
 
@@ -54,7 +55,7 @@ public class LoginAsyncTask extends AsyncTask<String, Void, String> {
 
             return response;
         }
-        catch(final ImpossibleToFetchToken e){
+        catch (final BadLoginPasswordException e){
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -63,18 +64,13 @@ public class LoginAsyncTask extends AsyncTask<String, Void, String> {
             });
             return "";
         }
-        catch (FileNotFoundException e){
+        catch(final ImpossibleToFetchToken e){
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(activity, "Combinaison login/ mdp incorrecte", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
-            Log.i("loginUser", "Catch FileNotFoundException  dans doInBackGound");
-            return "";
-        }
-        catch (IOException ex) {
-            ex.printStackTrace();
             return "";
         }
         catch (Exception e) {

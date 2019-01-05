@@ -6,8 +6,10 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.henallux.smartcity.dataAccess.CreateUser;
-import com.henallux.smartcity.exception.ImpossibleToCreateUser;
+import com.henallux.smartcity.exception.UserException;
 import com.henallux.smartcity.model.User;
+import com.henallux.smartcity.utils.Constantes;
+
 import static com.henallux.smartcity.utils.Constantes.URL_USER;
 
 public class CreateUserAsyncTask extends AsyncTask<String, Void, User> {
@@ -27,7 +29,7 @@ public class CreateUserAsyncTask extends AsyncTask<String, Void, User> {
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(activity, "Utilisateur créé !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, Constantes.MESSAGE_USER_CREATED, Toast.LENGTH_SHORT).show();
                 }
             });
             new LoginAsyncTask(context, user.getUserName(), user.getPassword(), activity).execute();
@@ -41,7 +43,7 @@ public class CreateUserAsyncTask extends AsyncTask<String, Void, User> {
                     user);
             return newUser;
         }
-        catch(final ImpossibleToCreateUser e){
+        catch(final UserException e){
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

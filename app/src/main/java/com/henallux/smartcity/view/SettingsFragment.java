@@ -3,7 +3,6 @@ package com.henallux.smartcity.view;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,9 +17,8 @@ import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.UserDAO;
 import com.henallux.smartcity.exception.CannotRetreiveUserIdException;
-import com.henallux.smartcity.exception.ImpossibleToDeleteUserException;
 import com.henallux.smartcity.model.Payload;
-import com.henallux.smartcity.task.DeleteUserAsyncTask;
+import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.JWTUtils;
 
 import org.json.JSONObject;
@@ -43,9 +41,9 @@ public class SettingsFragment extends Fragment {
                 if (applicationContext.isConnected()) {
                     applicationContext.setToken("");
                     getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
-                    Toast.makeText(getActivity(), "Vous êtes connectés !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), Constantes.MESSAGE_DISCONNECTED, Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getActivity(), "Vous n'êtes pas connectés !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), Constantes.MESSAGE_NOT_DISCONNECTED , Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -73,6 +71,8 @@ public class SettingsFragment extends Fragment {
                                     }
                                     SettingsFragment.this.userDAO = new UserDAO(getActivity());
                                     userDAO.deleteUser(idUser);
+                                    Toast.makeText(getActivity(), Constantes.MESSAGE_ADD_USER, Toast.LENGTH_SHORT).show();
+                                    getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
                                 }
                                 catch(CannotRetreiveUserIdException e){
                                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();

@@ -11,4 +11,9 @@ public class Constantes {
     public static final String ERROR_MESSAGE_BARS = "Impossible de récupérer les bars";
     public static final String ERROR_MESSAGE_TOKEN = "Impossible de récupérer le token";
     public static final String ERROR_MESSAGE_FAVORIS = "Erreur lors de la tentative de création d'un Favoris !";
+    public static final String ERROR_MESSAGE_LOGIN = "Combinaison login/mot de passe incorrecte !";
+    public static final String MESSAGE_ADD_USER = "Utilisateur supprimé !";
+    public static final String MESSAGE_DISCONNECTED = "Déconnecté !";
+    public static final String MESSAGE_NOT_DISCONNECTED = "Déconnecté !";
+    public static final String MESSAGE_USER_CREATED = "Utilisateur créé !";
 }

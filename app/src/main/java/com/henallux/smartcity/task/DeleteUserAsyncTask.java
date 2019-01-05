@@ -5,8 +5,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.henallux.smartcity.dataAccess.DeleteUser;
-import com.henallux.smartcity.dataAccess.UserDAO;
-import com.henallux.smartcity.exception.ImpossibleToDeleteUserException;
+import com.henallux.smartcity.exception.UserException;
 
 public class DeleteUserAsyncTask extends AsyncTask<String, Void, String> {
     private DeleteUser deleteUser;
@@ -23,8 +22,8 @@ public class DeleteUserAsyncTask extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... urls) {
         //TODO modifier parametre constructeur USERDAO
         try {
-            deleteUser.makeDeleteRequest();
-        } catch (final ImpossibleToDeleteUserException e) {
+            deleteUser.makeDeleteRequest(this.idUser);
+        } catch (final UserException e) {
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
