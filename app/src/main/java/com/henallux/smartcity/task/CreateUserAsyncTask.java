@@ -8,8 +8,7 @@ import android.widget.Toast;
 import com.henallux.smartcity.dataAccess.CreateUser;
 import com.henallux.smartcity.exception.ImpossibleToCreateUser;
 import com.henallux.smartcity.model.User;
-
-import static com.henallux.smartcity.utils.Constantes.URL_CREATE_USER;
+import static com.henallux.smartcity.utils.Constantes.URL_USER;
 
 public class CreateUserAsyncTask extends AsyncTask<String, Void, User> {
     private User user;
@@ -38,7 +37,7 @@ public class CreateUserAsyncTask extends AsyncTask<String, Void, User> {
     @Override
     protected User doInBackground(String... params) {
         try {
-            User newUser = CreateUser.makePostCreateUserRequest(URL_CREATE_USER,
+            User newUser = CreateUser.makePostCreateUserRequest(URL_USER,
                     user);
             return newUser;
         }

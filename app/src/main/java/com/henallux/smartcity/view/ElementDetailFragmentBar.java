@@ -139,7 +139,6 @@ public class ElementDetailFragmentBar extends Fragment {
     private void addCommerceToFav() {
         try{
             Application application = (Application)getActivity().getApplicationContext();
-            //int idUser = Utils.getUserId(application.getToken());
             String payload = JWTUtils.decoded(application.getToken());
             int idUser =0;
             Payload payloadModel;

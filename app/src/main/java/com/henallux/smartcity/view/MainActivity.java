@@ -42,10 +42,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(checkForms())
                 {
-                    userDAO = new UserDAO(getApplicationContext(), MainActivity.this);
+                    userDAO = new UserDAO(MainActivity.this);
                     try{
                         userDAO.login(loginInput.getText().toString(), passwordInput.getText().toString());
                     }
+
                     catch (Exception e){
                         System.out.println("Exception" + e);
                         Toast.makeText(MainActivity.this, "Combinaison login / mot de passe incorrecte !", Toast.LENGTH_SHORT).show();
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         withoutConnectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userDAO = new UserDAO(getApplicationContext(), MainActivity.this);
+                userDAO = new UserDAO(MainActivity.this);
                         try{
                             userDAO.loginWithoutConnection();
                         }

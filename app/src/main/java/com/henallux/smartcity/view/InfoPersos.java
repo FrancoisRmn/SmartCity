@@ -76,7 +76,7 @@ private Button validationInscriptionButton;
                         Toast.makeText(InfoPersos.this,"Erreur lors de la tentaive de création de l'utilisateur !",Toast.LENGTH_SHORT).show();
                     }*/
                     //Sans retroFit (marche)
-                    UserDAO userDAO = new UserDAO(getApplicationContext(), InfoPersos.this);
+                    UserDAO userDAO = new UserDAO(InfoPersos.this);
                     try{
                         userDAO.createUser(user);
                     }

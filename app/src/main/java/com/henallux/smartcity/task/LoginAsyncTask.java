@@ -64,8 +64,6 @@ public class LoginAsyncTask extends AsyncTask<String, Void, String> {
             return "";
         }
         catch (FileNotFoundException e){
-            //Toast.makeText(UserDAO.this.mainActivity, "Combinaison login/ mdp incorrecte", Toast.LENGTH_SHORT).show();
-            //impossible d'utiliser içi car pas le thread UI
             activity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
