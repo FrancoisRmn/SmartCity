@@ -25,15 +25,14 @@ import com.henallux.smartcity.R;
 import com.henallux.smartcity.exception.CannotRetreiveUserIdException;
 import com.henallux.smartcity.model.Actualite;
 import com.henallux.smartcity.model.Favoris;
-import com.henallux.smartcity.model.Payload;
 import com.henallux.smartcity.task.CreateFavorisAsyncTask;
 import com.henallux.smartcity.task.DeleteFavorisAsyncTask;
 import com.henallux.smartcity.utils.Constantes;
-import com.henallux.smartcity.utils.JWTUtils;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.model.OpeningPeriod;
 import com.henallux.smartcity.model.Restaurant;
-import org.json.JSONObject;
+
+import static com.henallux.smartcity.utils.Utils.getIdUser;
 
 public class ElementDetailFragmentRestaurant extends Fragment {
     private Restaurant restaurant;
@@ -138,30 +137,18 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                 if(!application.isConnected()){
                     Toast.makeText(getActivity(), Constantes.DELETE_FAVORIS_MUST_BE_CONNECTED, Toast.LENGTH_SHORT).show();
                 }
-                deleteCommerce();
+                deleteCommerceFromFavoris();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private int getIdUser () throws Exception
-    {
-        int idUser =0;
-        String payload = JWTUtils.decoded(application.getToken());
-        Payload payloadModel;
-        if(!payload.contains("uid")){
-            throw new CannotRetreiveUserIdException(Constantes.ERROR_MESSAGE_USERID);
-        }
-        JSONObject jsonPayload = new JSONObject(payload);
-        payloadModel = new Payload(Integer.parseInt(jsonPayload.getString("uid")));
-        idUser = payloadModel.getUid();
-        return idUser;
-    }
 
-    private void deleteCommerce(){
+
+    private void deleteCommerceFromFavoris(){
         try{
-            int idUser = getIdUser();
+            int idUser = getIdUser(getActivity().getApplicationContext());
             new DeleteFavorisAsyncTask(getActivity(), new Favoris(this.restaurant.getIdCommerce(), idUser)).execute();
             //on se désabonne à googleFirebase pour recevoir les notifs quand depuis le backoffice une actualité d'un commerce favoris est créé
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -179,7 +166,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
 
     private void addCommerceToFav() {
         try{
-            int idUser = getIdUser();
+            int idUser = getIdUser(getActivity().getApplicationContext());
             new CreateFavorisAsyncTask(getActivity().getApplicationContext(), getActivity(), new Favoris(this.restaurant.getIdCommerce(), idUser)).execute();
             //on s'abonne à googleFirebase pour recevoir les notifs quand depuis le backoffice une actualité d'un commerce favoris est créé
             SharedPreferences.Editor editor = sharedPreferences.edit();

@@ -27,8 +27,8 @@
             android:id="@+id/titleFragmentElementDetailMarket"
             android:layout_width="wrap_content"
             android:layout_height="17dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginBottom="8dp"
             android:text="@string/descriptionElementDetailTitle"
             android:textStyle="bold"
@@ -141,12 +141,12 @@
             android:id="@+id/titleFragmentElementDetailBar"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginTop="24dp"
             android:text="@string/titleFragmentElementDetail"
             android:textSize="36sp"
-            app:layout_constraintStart_toEndOf="@+id/titleFragmentElementDetailMarket"
+            app:layout_constraintStart_toStartOf="@+id/titleFragmentElementDetailMarket"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button

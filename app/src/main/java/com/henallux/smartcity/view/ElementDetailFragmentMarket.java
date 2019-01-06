@@ -1,8 +1,10 @@
 package com.henallux.smartcity.view;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,20 +21,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.exception.CannotRetreiveUserIdException;
 import com.henallux.smartcity.model.Actualite;
 import com.henallux.smartcity.model.Favoris;
-import com.henallux.smartcity.model.Payload;
 import com.henallux.smartcity.task.CreateFavorisAsyncTask;
+import com.henallux.smartcity.task.DeleteFavorisAsyncTask;
 import com.henallux.smartcity.utils.Constantes;
-import com.henallux.smartcity.utils.JWTUtils;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.model.Market;
 import com.henallux.smartcity.model.OpeningPeriod;
 
-import org.json.JSONObject;
+import static com.henallux.smartcity.utils.Utils.getIdUser;
 
 public class ElementDetailFragmentMarket extends Fragment {
     private Market market;
@@ -43,12 +45,13 @@ public class ElementDetailFragmentMarket extends Fragment {
     private TextView phone;
     private TextView flagshipProduct;
     private TextView localisation;
-    private Application applicationContext;
+    private Application application;
     private TextView scheduleMarket;
     private ImageView imagesMarket;
     private Button buttonNextImage;
     private int indexImage;
     private TextView textViewActualites;
+    private SharedPreferences sharedPreferences;
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -62,6 +65,8 @@ public class ElementDetailFragmentMarket extends Fragment {
         if ((savedInstanceState != null) && (savedInstanceState.getSerializable("market") != null)) {
             this.market = (Market)savedInstanceState.getSerializable("market");
         }
+        application = (Application)getActivity().getApplicationContext();
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
     }
 
     @Override
@@ -121,8 +126,8 @@ public class ElementDetailFragmentMarket extends Fragment {
                 }
                 return true;
             case R.id.itemFavorite:
-                applicationContext = (Application)getActivity().getApplicationContext();
-                if(applicationContext.isConnected()){
+                application = (Application)getActivity().getApplicationContext();
+                if(application.isConnected()){
                     addCommerceToFav();
                     //TODO
                     //changer la couleur de l'icone et ajouté aux favoris de l'utilisateur
@@ -131,24 +136,46 @@ public class ElementDetailFragmentMarket extends Fragment {
                     Toast.makeText(getActivity(), "Vous devez être connecté pour ajouter un commerce aux favoris", Toast.LENGTH_SHORT).show();
                 }
                 return true;
+            case R.id.itemDeleteFavorite :
+                if(!application.isConnected()){
+                    Toast.makeText(getActivity(), Constantes.DELETE_FAVORIS_MUST_BE_CONNECTED, Toast.LENGTH_SHORT).show();
+                }
+                deleteCommerceFromFavoris();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+
+
+    private void deleteCommerceFromFavoris(){
+        try{
+            int idUser = getIdUser(getActivity().getApplicationContext());
+            new DeleteFavorisAsyncTask(getActivity(), new Favoris(this.market.getIdCommerce(), idUser)).execute();
+            //on se désabonne à googleFirebase pour recevoir les notifs quand depuis le backoffice une actualité d'un commerce favoris est créé
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.remove(this.market.getNomCommerce());
+            editor.commit();
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(this.market.getNomCommerce());
+        }
+        catch(CannotRetreiveUserIdException e){
+            Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        catch(Exception e){
+            System.out.print(e.getMessage());
+        }
+    }
+
     private void addCommerceToFav() {
         try{
-            int idUser =0;
-            Application application = (Application)getActivity().getApplicationContext();
-            String payload = JWTUtils.decoded(application.getToken());
-            Payload payloadModel;
-            if(!payload.contains("uid")){
-                throw new CannotRetreiveUserIdException(Constantes.ERROR_MESSAGE_USERID);
-            }
-            JSONObject jsonPayload = new JSONObject(payload);
-            payloadModel = new Payload(Integer.parseInt(jsonPayload.getString("uid")));
-            idUser = payloadModel.getUid();
-            new CreateFavorisAsyncTask(applicationContext, getActivity(), new Favoris(this.market.getIdCommerce(), idUser)).execute();
+            int idUser = getIdUser(getActivity().getApplicationContext());
+            new CreateFavorisAsyncTask(getActivity().getApplicationContext(), getActivity(), new Favoris(this.market.getIdCommerce(), idUser)).execute();
+            //on s'abonne à googleFirebase pour recevoir les notifs quand depuis le backoffice une actualité d'un commerce favoris est créé
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean(this.market.getNomCommerce(), true);
+            editor.commit();
+            FirebaseMessaging.getInstance().subscribeToTopic(this.market.getNomCommerce());
         }
         catch(CannotRetreiveUserIdException e){
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();

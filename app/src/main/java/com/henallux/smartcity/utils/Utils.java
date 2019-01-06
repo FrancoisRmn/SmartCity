@@ -1,11 +1,17 @@
 package com.henallux.smartcity.utils;
 
+import android.content.Context;
 import android.widget.EditText;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.henallux.smartcity.applicationObject.Application;
+import com.henallux.smartcity.exception.CannotRetreiveUserIdException;
+import com.henallux.smartcity.model.Payload;
+
+import org.json.JSONObject;
 
 import java.lang.reflect.Type;
 import java.text.ParseException;
@@ -72,5 +78,20 @@ public class Utils {
                 return null;
             }
         }
+    }
+
+    public static int getIdUser (Context context) throws Exception
+    {
+        Application application = (Application)context;
+        int idUser =0;
+        String payload = JWTUtils.decoded(application.getToken());
+        Payload payloadModel;
+        if(!payload.contains("uid")){
+            throw new CannotRetreiveUserIdException(Constantes.ERROR_MESSAGE_USERID);
+        }
+        JSONObject jsonPayload = new JSONObject(payload);
+        payloadModel = new Payload(Integer.parseInt(jsonPayload.getString("uid")));
+        idUser = payloadModel.getUid();
+        return idUser;
     }
 }
