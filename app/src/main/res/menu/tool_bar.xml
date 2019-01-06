@@ -4,25 +4,25 @@
     <item
         android:id="@+id/itemCallGSMButton"
         android:icon="@drawable/ic_call_button"
-        android:title="Appelez (GSM)"
+        android:title="@string/appelez_gsm"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/itemCallButton"
         android:icon="@drawable/ic_call_button"
-        android:title="Appelez (Fixe)"
+        android:title="@string/appelez_fixe"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/itemSendMail"
         android:icon="@drawable/ic_send_mail"
-        android:title="Envoyer un email"
+        android:title="@string/envoyer_un_email"
         app:showAsAction="never"
         />
     <item
         android:id="@+id/itemRouteButton"
         android:icon="@drawable/ic_route_naviguation"
-        android:title="Itinéraire"
+        android:title="@string/itin_raire"
         app:showAsAction="always"
         />
     <item
@@ -34,7 +34,7 @@
     <item
         android:id="@+id/itemDeleteFavorite"
         android:icon="@drawable/ic_favorite"
-        android:title="Supprimer le favoris"
+        android:title="@string/supprimer_le_favoris"
         app:showAsAction="never"
         />
 </menu>

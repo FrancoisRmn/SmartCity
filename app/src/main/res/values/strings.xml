@@ -64,4 +64,9 @@
     <string name="No_Location">Pas de localisation</string>
     <string name="delete_account">Supprimer mon compte</string>
     <string name="Notifications">Notifications</string>
+    <string name="appelez_gsm">Appelez (GSM)</string>
+    <string name="appelez_fixe">Appelez (Fixe)</string>
+    <string name="envoyer_un_email">Envoyer un email</string>
+    <string name="itin_raire">Itinéraire</string>
+    <string name="supprimer_le_favoris">Supprimer le favoris</string>
 </resources>
