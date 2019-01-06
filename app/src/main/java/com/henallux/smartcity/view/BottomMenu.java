@@ -58,24 +58,24 @@ public class BottomMenu extends AppCompatActivity implements FragmentListener {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    String tag="";
+                    String tag;
                     Fragment selectedFragment = null;
                     switch (menuItem.getItemId()){
                         case R.id.nav_eat:
                             selectedFragment = new RestaurantFragment();
-                            tag="AddFragRestaurant";
+                            tag = "AddFragRestaurant";
                             break;
                         case R.id.nav_drink:
                             selectedFragment = new DrinkFragment();
-                            tag="AddFragBar";
+                            tag = "AddFragBar";
                             break;
                         case R.id.nav_market:
                             selectedFragment = new MarketFragment();
-                            tag="AddFragMarket";
+                            tag = "AddFragMarket";
                             break;
                         case R.id.nav_settings:
                             selectedFragment = new SettingsFragment();
-                            tag="AddFragSettings";
+                            tag = "AddFragSettings";
                             break;
                     }
                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
