@@ -10,10 +10,10 @@ public class ServiceBuilder {
     private  static final String URL ="https://sc-nconnect.azurewebsites.net/api/";
 
     // créer le logger
-    private static HttpLoggingInterceptor loffer =
+    private static HttpLoggingInterceptor logger =
             new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BASIC);
     private static OkHttpClient.Builder okHttp =
-            new OkHttpClient.Builder().addInterceptor(loffer);
+            new OkHttpClient.Builder().addInterceptor(logger);
 
 
     private static Retrofit.Builder builder = new Retrofit.Builder().baseUrl(URL)

@@ -36,14 +36,13 @@ public class RestaurantFragment extends Fragment {
     }
 
     private ArrayList<String> arrayListRestaurantToArrayListString(ArrayList<Restaurant> restaurantsArrayList) {
-        ArrayList<String> restaurants = new ArrayList<String>();
+        ArrayList<String> restaurants = new ArrayList<>();
         if(restaurantsArrayList != null){
             for(Restaurant restaurant : restaurantsArrayList)
             {
                 restaurants.add(restaurant.toString());
             }
         }
-
         return restaurants;
     }
 
@@ -81,8 +80,7 @@ public class RestaurantFragment extends Fragment {
             this.query = query;
         }
 
-        public LoadRestaurants() {
-        }
+        public LoadRestaurants() { }
 
         protected ArrayList<Restaurant> doInBackground(String... urls){
             if(getActivity() != null)

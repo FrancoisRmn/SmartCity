@@ -72,7 +72,7 @@ public class SettingsFragment extends Fragment {
                                 try {
                                     Application application = (Application)getActivity().getApplicationContext();
                                     String payload = JWTUtils.decoded(application.getToken());
-                                    int idUser =0;
+                                    int idUser;
                                     Payload payloadModel;
                                     if(payload.contains("uid")){
                                         JSONObject jsonPayload = new JSONObject(payload);
