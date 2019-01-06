@@ -1,6 +1,7 @@
 package com.henallux.smartcity.applicationObject;
 
 public class Application extends android.app.Application {
+
     private String token;
     private boolean isConnected;
 
@@ -23,6 +24,5 @@ public class Application extends android.app.Application {
 
     public void setToken(String token) {
         this.token = token;
-        this.isConnected = true;
     }
 }

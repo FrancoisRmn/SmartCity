@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.UserDAO;
@@ -29,6 +30,8 @@ import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.JWTUtils;
 
 import org.json.JSONObject;
+
+import java.util.Map;
 
 import static android.support.constraint.Constraints.TAG;
 
@@ -77,7 +80,7 @@ public class SettingsFragment extends Fragment {
                                         idUser = payloadModel.getUid();
                                     }
                                     else{
-                                        throw new CannotRetreiveUserIdException("Impossible de récupérer l'identidiant de l'utilisateur !");
+                                        throw new CannotRetreiveUserIdException(Constantes.ERROR_MESSAGE_USERID);
                                     }
                                     SettingsFragment.this.userDAO = new UserDAO(getActivity());
                                     userDAO.deleteUser(idUser);
@@ -107,38 +110,57 @@ public class SettingsFragment extends Fragment {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(Constantes.PREFERENCES_NOTIFICATIONS, true);
+        //editor.putBoolean(Constantes.PREFERENCES_NOTIFICATIONS, true);
         switchNotifications = v.findViewById(R.id.switch1);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        if(sharedPreferences.getBoolean(Constantes.PREFERENCES_NOTIFICATIONS, false)){
+        /*if(sharedPreferences.getBoolean(Constantes.PREFERENCES_NOTIFICATIONS, false)){
             switchNotifications.setChecked(true);
+        }*/
+        FirebaseMessaging.getInstance().unsubscribeFromTopic("Commerces");
+        Map<String, ?> mapPreferences = sharedPreferences.getAll();
+        for(String key: mapPreferences.keySet())
+        {
+            switchNotifications.setChecked(true);
+            break;
         }
         switchNotifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(switchNotifications.isChecked()){
                     Toast.makeText(getActivity(), Constantes.ACTIVATED_NOTIFICATIONS , Toast.LENGTH_SHORT).show();
-                    FirebaseMessaging.getInstance().subscribeToTopic(Constantes.TOPIC_FIREBASE_NAME)
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (!task.isSuccessful()) {
-                                        Toast.makeText(getActivity(), Constantes.ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
-                                    }
+                    Map<String, ?> mapPreferences = sharedPreferences.getAll();
+                    for(String key: mapPreferences.keySet())
+                    {
+                        FirebaseMessaging.getInstance().subscribeToTopic(key)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (!task.isSuccessful()) {
+                                            Toast.makeText(getActivity(), Constantes.ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                                        }
 
-                                }
-                            });
+                                    }
+                                });
+                    }
+
                     //on enregistre dans les préférences l'abonnement aux notifications
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean(Constantes.PREFERENCES_NOTIFICATIONS, true);
-                    editor.commit();
                 }
                 else{
                     Toast.makeText(getActivity(), Constantes.DISABLED_NOTIFICATIONS, Toast.LENGTH_SHORT).show();
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean(Constantes.PREFERENCES_NOTIFICATIONS, false);
-                    editor.commit();
-                    FirebaseMessaging.getInstance().unsubscribeFromTopic("Commerces");
+                    Map<String, ?> mapPreferences = sharedPreferences.getAll();
+                    for(String key: mapPreferences.keySet())
+                    {
+                        FirebaseMessaging.getInstance().unsubscribeFromTopic(key)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (!task.isSuccessful()) {
+                                            Toast.makeText(getActivity(), Constantes.ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }
+                                });
+                    }
                 }
             }
         });

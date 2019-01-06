@@ -6,10 +6,10 @@ import com.google.gson.Gson;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.exception.FavorisAlreadyExistException;
 import com.henallux.smartcity.exception.ImpossibleToCreateFavoris;
+import com.henallux.smartcity.exception.ImpossibleToDeleteFavoris;
 import com.henallux.smartcity.model.Favoris;
 import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.Utils;
-
 
 import org.json.JSONObject;
 
@@ -23,15 +23,15 @@ import java.net.URL;
 
 import static com.henallux.smartcity.utils.Constantes.ERROR_MESSAGE_FAVORIS;
 
-public class CreateFavoris {
+public class DeleteFavoris {
     private Application application;
     private Context context;
 
-    public CreateFavoris(Context context) {
+    public DeleteFavoris(Context context) {
         this.context = context;
     }
 
-    public Favoris makePostCreateFavorisRequest(String stringUrl, Favoris favoris) throws Exception {
+    public void makePostDeleteFavorisRequest(String stringUrl, Favoris favoris) throws Exception {
         application = (Application)this.context;
         URL url = new URL(stringUrl);
 
@@ -40,7 +40,7 @@ public class CreateFavoris {
         postData.put("idUser",favoris.getIdUser());
 
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("POST");
+        connection.setRequestMethod("DELETE");
         connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
         connection.setRequestProperty("Authorization", "Bearer " + application.getToken());
         connection.setDoInput(true);
@@ -58,7 +58,7 @@ public class CreateFavoris {
         os.close();
 
         int responseCode = connection.getResponseCode();
-        if(responseCode == HttpURLConnection.HTTP_CREATED)
+        if(responseCode == HttpURLConnection.HTTP_OK)
         {
             BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             StringBuilder builder = new StringBuilder("");
@@ -69,21 +69,14 @@ public class CreateFavoris {
                 break;
             }
             buffer.close();
-            //return builder.toString();
-            return jsonToFavoris(builder.toString());
-        }
-        if(responseCode == HttpURLConnection.HTTP_BAD_REQUEST){
-            throw new FavorisAlreadyExistException(Constantes.FAVORIS_ALREADY_EXIST);
         }
         else{
-            throw new ImpossibleToCreateFavoris(ERROR_MESSAGE_FAVORIS + Utils.getErrorMessage(responseCode));
+            if(responseCode == HttpURLConnection.HTTP_BAD_REQUEST){
+                throw new FavorisAlreadyExistException(Constantes.FAVORIS_DONT_EXIST);
+            }
+            else{
+                throw new ImpossibleToDeleteFavoris(ERROR_MESSAGE_FAVORIS + Utils.getErrorMessage(responseCode));
+            }
         }
-    }
-
-    public static Favoris jsonToFavoris(String jsonUser)
-    {
-        Gson g = new Gson();
-        Favoris favoris = g.fromJson(jsonUser,Favoris.class);
-        return favoris;
     }
 }

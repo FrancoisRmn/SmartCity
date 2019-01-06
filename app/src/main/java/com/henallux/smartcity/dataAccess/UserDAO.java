@@ -1,6 +1,7 @@
 package com.henallux.smartcity.dataAccess;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -10,11 +11,13 @@ import com.henallux.smartcity.model.User;
 import com.henallux.smartcity.task.CreateUserAsyncTask;
 import com.henallux.smartcity.task.DeleteUserAsyncTask;
 import com.henallux.smartcity.task.LoginAsyncTask;
+import com.henallux.smartcity.utils.Constantes;
 
 public class UserDAO {
     private AsyncTask loginUserAsyncTask;
     private AsyncTask createUserAsyncTask;
     private Activity mainActivity;
+    private Application application;
 
     public UserDAO(Activity mainActivity) {
         this.mainActivity = mainActivity;
@@ -28,9 +31,10 @@ public class UserDAO {
 
 
     public void loginWithoutConnection() {
-        //TODO déplacer ça dans les constantes et pas utiliser janedoe vu que c'est un admin
-        String userLambda ="janedoe";
-        String passwordLambda="123";
+        String userLambda =Constantes.DEFAULT_USER_NAME;
+        String passwordLambda=Constantes.DEFAULT_USER_PASSWORD;
+        application = (Application)mainActivity.getApplication().getApplicationContext();
+
         loginUserAsyncTask = new LoginAsyncTask(this.mainActivity.getApplication().getApplicationContext(), userLambda, passwordLambda, UserDAO.this.mainActivity).execute();
     }
 

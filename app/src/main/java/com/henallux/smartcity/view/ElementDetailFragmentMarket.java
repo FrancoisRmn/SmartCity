@@ -26,6 +26,7 @@ import com.henallux.smartcity.model.Actualite;
 import com.henallux.smartcity.model.Favoris;
 import com.henallux.smartcity.model.Payload;
 import com.henallux.smartcity.task.CreateFavorisAsyncTask;
+import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.JWTUtils;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.model.Market;
@@ -137,18 +138,16 @@ public class ElementDetailFragmentMarket extends Fragment {
 
     private void addCommerceToFav() {
         try{
+            int idUser =0;
             Application application = (Application)getActivity().getApplicationContext();
             String payload = JWTUtils.decoded(application.getToken());
-            int idUser =0;
             Payload payloadModel;
-            if(payload.contains("uid")){
-                JSONObject jsonPayload = new JSONObject(payload);
-                payloadModel = new Payload(Integer.parseInt(jsonPayload.getString("uid")));
-                idUser = payloadModel.getUid();
+            if(!payload.contains("uid")){
+                throw new CannotRetreiveUserIdException(Constantes.ERROR_MESSAGE_USERID);
             }
-            else{
-                throw new CannotRetreiveUserIdException("Impossible de récupérer l'identidiant de l'utilisateur !");
-            }
+            JSONObject jsonPayload = new JSONObject(payload);
+            payloadModel = new Payload(Integer.parseInt(jsonPayload.getString("uid")));
+            idUser = payloadModel.getUid();
             new CreateFavorisAsyncTask(applicationContext, getActivity(), new Favoris(this.market.getIdCommerce(), idUser)).execute();
         }
         catch(CannotRetreiveUserIdException e){

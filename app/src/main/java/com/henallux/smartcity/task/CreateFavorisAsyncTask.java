@@ -8,8 +8,10 @@ import android.widget.Toast;
 import com.henallux.smartcity.dataAccess.CreateFavoris;
 import com.henallux.smartcity.exception.ImpossibleToCreateFavoris;
 import com.henallux.smartcity.model.Favoris;
+import com.henallux.smartcity.utils.Constantes;
 
-import static com.henallux.smartcity.utils.Constantes.URL_CREATE_FAVORIS;
+import static com.henallux.smartcity.utils.Constantes.URL_FAVORIS;
+
 
 public class CreateFavorisAsyncTask extends AsyncTask<String, Void, Favoris> {
     private Context context;
@@ -25,8 +27,14 @@ public class CreateFavorisAsyncTask extends AsyncTask<String, Void, Favoris> {
     @Override
     protected Favoris doInBackground(String... params) {
         try {
-            Favoris newFavoris= new CreateFavoris(this.context).makePostCreateFavorisRequest(URL_CREATE_FAVORIS,
+            Favoris newFavoris= new CreateFavoris(this.context).makePostCreateFavorisRequest(URL_FAVORIS,
                     favoris);
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(activity, Constantes.MESSAGE_ADD_FAVORIS, Toast.LENGTH_SHORT).show();
+                }
+            });
             return newFavoris;
         }
         catch(final ImpossibleToCreateFavoris e){
@@ -41,18 +49,6 @@ public class CreateFavorisAsyncTask extends AsyncTask<String, Void, Favoris> {
         catch (Exception e) {
             System.out.println(e);
             return null;
-        }
-    }
-
-    @Override
-    protected void onPostExecute(Favoris newFavoris) {
-        if (newFavoris != null) {
-            activity.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(activity, "Commerce ajouté aux favoris", Toast.LENGTH_SHORT).show();
-                }
-            });
         }
     }
 }

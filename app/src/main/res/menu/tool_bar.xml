@@ -31,4 +31,10 @@
         android:title=""
         app:showAsAction="always"
         />
+    <item
+        android:id="@+id/itemDeleteFavorite"
+        android:icon="@drawable/ic_favorite"
+        android:title="Supprimer le favoris"
+        app:showAsAction="never"
+        />
 </menu>

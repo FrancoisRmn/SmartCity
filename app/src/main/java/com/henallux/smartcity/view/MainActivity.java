@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.henallux.smartcity.R;
+import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.exception.BadLoginPasswordException;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.dataAccess.UserDAO;
@@ -20,11 +21,12 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordInput;
     private UserDAO userDAO;
     private Button withoutConnectionButton;
-
+    private Application application;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        application = (Application)getApplicationContext();
 
         inscriptionButton = findViewById(R.id.InscriptionButton);
 
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         inscriptionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                application.setConnected(true);
                 Intent intent = new Intent(MainActivity.this,InfoPersos.class);
                 startActivity(intent);
             }
@@ -45,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 {
                     userDAO = new UserDAO(MainActivity.this);
                     try{
+                        application.setConnected(true);
                         userDAO.login(loginInput.getText().toString(), passwordInput.getText().toString());
                     }
 
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 userDAO = new UserDAO(MainActivity.this);
                         try{
+                            application.setConnected(false);
                             userDAO.loginWithoutConnection();
                         }
                         catch (Exception e){
