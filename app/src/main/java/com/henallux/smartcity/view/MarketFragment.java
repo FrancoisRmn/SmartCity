@@ -67,8 +67,8 @@ public class MarketFragment extends Fragment {
             this.query = query;
         }
 
-        public LoadMarkets() {
-        }
+        public LoadMarkets() { }
+
         protected ArrayList<Market> doInBackground(String... urls){
             if(getActivity() != null)
                 marketDAO = new MarketDAO(getActivity().getApplicationContext());
