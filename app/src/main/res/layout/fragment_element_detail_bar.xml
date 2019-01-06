@@ -74,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="Situé à :"
+            android:text="@string/location"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/descriptionElementDetailTitleBar"
             app:layout_constraintTop_toBottomOf="@+id/descriptionElementDetailBar" />
@@ -86,7 +86,7 @@
             android:layout_marginStart="64dp"
             android:layout_marginLeft="64dp"
             android:layout_marginTop="32dp"
-            android:text="Situé à :"
+            android:text="@string/No_Location"
             app:layout_constraintStart_toStartOf="@+id/descriptionElementDetailBar"
             app:layout_constraintTop_toBottomOf="@+id/localisationTitle" />
 
@@ -96,7 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:text="Produit phare :"
+            android:text="@string/produit_phare"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/imageTitleBar"
             app:layout_constraintTop_toBottomOf="@+id/imageBar" />
@@ -106,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
-            android:text="Pas de produit phare pour se commerce"
+            android:text="@string/No_Produit_Phare"
             app:layout_constraintStart_toStartOf="@+id/imageBar"
             app:layout_constraintTop_toBottomOf="@+id/imageBar" />
 
@@ -129,7 +129,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="24dp"
-            android:text="Email : /"
+            android:text="@string/email"
             app:layout_constraintStart_toStartOf="@+id/flagshipProduct"
             app:layout_constraintTop_toBottomOf="@+id/phoneBar" />
 
@@ -140,7 +140,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="44dp"
-            android:text="Tél mobile : /"
+            android:text="@string/mobile"
             app:layout_constraintStart_toStartOf="@+id/flagshipProduct"
             app:layout_constraintTop_toBottomOf="@+id/flagshipProduct" />
 
@@ -151,7 +151,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text="Tél fixe : /"
+            android:text="@string/fixe"
             app:layout_constraintStart_toStartOf="@+id/flagshipProduct"
             app:layout_constraintTop_toBottomOf="@+id/cellphoneBar" />
 

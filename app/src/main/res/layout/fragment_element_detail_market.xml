@@ -19,7 +19,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="52dp"
-            android:text="Situé à :"
+            android:text="@string/location"
             app:layout_constraintStart_toEndOf="@+id/localisationTitle"
             app:layout_constraintTop_toBottomOf="@+id/descriptionElementDetailMarket" />
 
@@ -75,7 +75,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text="Situé à :"
+            android:text="@string/location"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/titleFragmentElementDetailMarket"
             app:layout_constraintTop_toBottomOf="@+id/descriptionElementDetailMarket" />
@@ -87,7 +87,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text="Produit phare :"
+            android:text="@string/produit_phare"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/imageTitleMarket"
             app:layout_constraintTop_toBottomOf="@+id/imageMarket" />
@@ -99,7 +99,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="52dp"
-            android:text="Pas de produit phare pour se commerce"
+            android:text="@string/No_Produit_Phare"
             app:layout_constraintStart_toStartOf="@+id/imageMarket"
             app:layout_constraintTop_toBottomOf="@+id/imageMarket" />
 
@@ -122,7 +122,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="60dp"
-            android:text="Tél mobile : /"
+            android:text="@string/mobile"
             app:layout_constraintStart_toStartOf="@+id/flagshipProduct"
             app:layout_constraintTop_toBottomOf="@+id/flagshipProduct" />
 
@@ -133,7 +133,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="32dp"
-            android:text="Tél fixe : /"
+            android:text="@string/fixe"
             app:layout_constraintStart_toStartOf="@+id/flagshipProduct"
             app:layout_constraintTop_toBottomOf="@+id/cellphoneMarket" />
 
@@ -202,7 +202,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="36dp"
-            android:text="Email : /"
+            android:text="@string/mail"
             app:layout_constraintStart_toStartOf="@+id/flagshipProduct"
             app:layout_constraintTop_toBottomOf="@+id/phoneMarket" />
 

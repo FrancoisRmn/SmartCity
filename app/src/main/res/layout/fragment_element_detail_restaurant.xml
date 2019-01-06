@@ -97,7 +97,7 @@
             android:layout_marginStart="27dp"
             android:layout_marginLeft="27dp"
             android:layout_marginTop="33dp"
-            android:text="Situé à :"
+            android:text="@string/location"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descriptionElementDetailRestaurant" />
@@ -109,7 +109,7 @@
             android:layout_marginStart="18dp"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="12dp"
-            android:text="Pas de localisation:"
+            android:text="@string/No_Location"
             app:layout_constraintStart_toStartOf="@+id/localisationTitle"
             app:layout_constraintTop_toBottomOf="@+id/localisationTitle" />
 
@@ -120,7 +120,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text="Produit phare :"
+            android:text="@string/produit_phare"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/imageTitleRestaurant"
             app:layout_constraintTop_toBottomOf="@+id/imageRestaurant" />
@@ -132,7 +132,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
-            android:text="Pas de produit phare pour se commerce"
+            android:text="@string/No_Produit_Phare"
             app:layout_constraintEnd_toStartOf="@+id/buttonNextImageRestaurant"
             app:layout_constraintTop_toBottomOf="@+id/imageRestaurant" />
 
@@ -157,7 +157,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text="Email : /"
+            android:text="@string/mail"
             app:layout_constraintEnd_toEndOf="@+id/flagshipProduct"
             app:layout_constraintHorizontal_bias="0.523"
             app:layout_constraintStart_toStartOf="@+id/contactTitleRestaurant"
@@ -172,7 +172,7 @@
             android:layout_marginTop="80dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text="Tél mobile : /"
+            android:text="@string/mobile"
             app:layout_constraintEnd_toEndOf="@+id/flagshipProduct"
             app:layout_constraintHorizontal_bias="0.595"
             app:layout_constraintStart_toStartOf="@+id/contactTitleRestaurant"
@@ -187,7 +187,7 @@
             android:layout_marginTop="48dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text="Tél fixe : /"
+            android:text="@string/fixe"
             app:layout_constraintEnd_toEndOf="@+id/flagshipProduct"
             app:layout_constraintStart_toStartOf="@+id/contactTitleRestaurant"
             app:layout_constraintTop_toTopOf="@+id/emailRestaurant" />
