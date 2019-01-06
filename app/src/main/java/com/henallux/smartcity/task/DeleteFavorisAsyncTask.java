@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.henallux.smartcity.dataAccess.DeleteFavoris;
+import com.henallux.smartcity.dataAccess.FavorisDAO;
 import com.henallux.smartcity.exception.FavorisAlreadyExistException;
 import com.henallux.smartcity.exception.ImpossibleToDeleteFavoris;
 import com.henallux.smartcity.model.Favoris;
@@ -24,7 +24,7 @@ public class DeleteFavorisAsyncTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         try {
-            new DeleteFavoris(this.activity.getApplication().getApplicationContext()).makePostDeleteFavorisRequest(URL_FAVORIS,
+            new FavorisDAO(activity.getApplication().getApplicationContext()).makePostDeleteFavorisRequest(URL_FAVORIS,
                     favoris);
             activity.runOnUiThread(new Runnable() {
                 @Override

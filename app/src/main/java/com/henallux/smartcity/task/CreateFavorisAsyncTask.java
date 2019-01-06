@@ -4,8 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
-
-import com.henallux.smartcity.dataAccess.CreateFavoris;
+import com.henallux.smartcity.dataAccess.FavorisDAO;
 import com.henallux.smartcity.exception.ImpossibleToCreateFavoris;
 import com.henallux.smartcity.model.Favoris;
 import com.henallux.smartcity.utils.Constantes;
@@ -27,7 +26,7 @@ public class CreateFavorisAsyncTask extends AsyncTask<String, Void, Favoris> {
     @Override
     protected Favoris doInBackground(String... params) {
         try {
-            Favoris newFavoris= new CreateFavoris(this.context).makePostCreateFavorisRequest(URL_FAVORIS,
+            Favoris newFavoris= new FavorisDAO(this.context).makePostCreateFavorisRequest(URL_FAVORIS,
                     favoris);
             activity.runOnUiThread(new Runnable() {
                 @Override

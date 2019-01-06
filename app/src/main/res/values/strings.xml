@@ -36,7 +36,7 @@
     <string name="descriptionElementDetailTitle">Description</string>
     <string name="descriptionElementDetail">Pas de description disponible pour ce commerce.</string>
     <string name="scheduleTitle">Heure d\'ouverture</string>
-    <string name="schedule">Pas d\'horaire disponible pour ce commerce/</string>
+    <string name="schedule">Pas d\'horaire disponible pour ce commerce</string>
     <string name="imageTitle">Image(s)</string>
     <string name="contactTitle">Contact</string>
     <string name="contact">Tél: 0475 45 78 96 \nFixe: 081 74 52 20\nEmail : burgerKing@hotmail.com</string>
