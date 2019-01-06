@@ -1,10 +1,7 @@
 package com.henallux.smartcity.utils;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.widget.EditText;
 
-import java.util.Base64;
 
 public class Utils {
     public static boolean isEmpty(EditText editText)
@@ -45,6 +42,6 @@ public class Utils {
             case 403 : message = "Ce contenu ne vous est pas accessible";
              default: message = "Erreur inconnue";
         }
-        return message+" (status code :"+statusCode+")";
+        return message + " (status code :"+statusCode+")";
     }
 }
