@@ -76,11 +76,11 @@ public class RestaurantFragment extends Fragment {
         private RestaurantDAO restaurantDAO;
         private String query;
 
-        public LoadRestaurants(String query) {
+        private LoadRestaurants(String query) {
             this.query = query;
         }
 
-        public LoadRestaurants() { }
+        private LoadRestaurants() { }
 
         protected ArrayList<Restaurant> doInBackground(String... urls){
             if(getActivity() != null)

@@ -25,7 +25,6 @@ import com.henallux.smartcity.model.Market;
 import java.util.ArrayList;
 
 public class MarketFragment extends Fragment {
-    private RecyclerView marketsToDisplay;
     private ListView listViewMarketsToDisplay;
     private SearchView searchView;
 
@@ -63,11 +62,11 @@ public class MarketFragment extends Fragment {
         ArrayList<Market> markets = new ArrayList<>();
         private String query;
 
-        public LoadMarkets(String query) {
+        private LoadMarkets(String query) {
             this.query = query;
         }
 
-        public LoadMarkets() { }
+        private LoadMarkets() { }
 
         protected ArrayList<Market> doInBackground(String... urls){
             if(getActivity() != null)

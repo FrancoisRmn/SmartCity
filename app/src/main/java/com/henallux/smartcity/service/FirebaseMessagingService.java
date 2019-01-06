@@ -20,10 +20,15 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     public void onMessageReceived(RemoteMessage remoteMessage) {
         String title="";
         String message="";
-        if(remoteMessage.getNotification().getTitle() != null)
-            title = remoteMessage.getNotification().getTitle();
-        if(remoteMessage.getNotification().getBody() != null)
-            message = remoteMessage.getNotification().getBody();
+        try{
+            if(remoteMessage.getNotification().getTitle() != null)
+                title = remoteMessage.getNotification().getTitle();
+            if(remoteMessage.getNotification().getBody() != null)
+                message = remoteMessage.getNotification().getBody();
+        }
+        catch(NullPointerException e){
+            System.out.println(e.getMessage());
+        }
         sendNotification(title, message);
     }
 

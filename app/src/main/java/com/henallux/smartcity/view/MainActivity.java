@@ -62,24 +62,20 @@ public class MainActivity extends AppCompatActivity {
         withoutConnectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        try{
-                            application.setConnected(false);
-                            String userLambda =Constantes.DEFAULT_USER_NAME;
-                            String passwordLambda=Constantes.DEFAULT_USER_PASSWORD;
-                            new LoginAsyncTask(userLambda, passwordLambda, MainActivity.this).execute();
-                        }
-                        catch (Exception e){
-                            System.out.println("Exception" + e);
-                        }
+                try{
+                    application.setConnected(false);
+                    String userLambda =Constantes.DEFAULT_USER_NAME;
+                    String passwordLambda=Constantes.DEFAULT_USER_PASSWORD;
+                    new LoginAsyncTask(userLambda, passwordLambda, MainActivity.this).execute();
+                }
+                catch (Exception e){
+                    System.out.println("Exception" + e);
+                }
             }
         });
     }
 
-
-
-
     public boolean checkForms() {
-        boolean isValid = true;
         if(Utils.isEmpty(loginInput)){
             Toast.makeText(this, "Login vide !", Toast.LENGTH_SHORT).show();
             return false;
@@ -88,17 +84,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Vous devez rentez un mot de passe !", Toast.LENGTH_SHORT).show();
             return false;
         }
-        return isValid;
-    }
-
-    @Override
-    public void onActivityResult (int requestCode, int resultCode, Intent intent){
-        super.onActivityResult(requestCode, resultCode, intent);
-        if (requestCode == 1){
-            switch (resultCode){
-                case 1 : Toast.makeText(MainActivity.this, "Result code = 1", Toast.LENGTH_LONG).show();
-                    break;
-            }
-        }
+        return true;
     }
 }

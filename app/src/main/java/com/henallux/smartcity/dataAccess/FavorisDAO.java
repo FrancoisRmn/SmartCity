@@ -82,7 +82,7 @@ public class FavorisDAO {
         }
     }
 
-    public static Favoris jsonToFavoris(String jsonUser)
+    private static Favoris jsonToFavoris(String jsonUser)
     {
         Gson g = new Gson();
         Favoris favoris = g.fromJson(jsonUser,Favoris.class);

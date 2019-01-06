@@ -8,18 +8,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.henallux.smartcity.R;
-import com.henallux.smartcity.dataAccess.UserDAO;
 import com.henallux.smartcity.model.User;
-import com.henallux.smartcity.service.APINConnectService;
-import com.henallux.smartcity.service.ServiceBuilder;
 import com.henallux.smartcity.task.CreateUserAsyncTask;
 import com.henallux.smartcity.utils.Utils;
 
-import retrofit2.Call;
-import retrofit2.Response;
-
 public class InfoPersos extends AppCompatActivity {
-private Button validateButton;
 private EditText nameInput;
 private EditText firstNameInput;
 private EditText passWordInput;
@@ -52,7 +45,6 @@ private Button validationInscriptionButton;
     }
     public boolean checkForms()
     {
-        boolean isValid = true;
         if(Utils.isEmpty(nameInput)){
             Toast.makeText(this, "Vous n'avez pas entré de nom", Toast.LENGTH_SHORT).show();
             return false;
@@ -81,6 +73,6 @@ private Button validationInscriptionButton;
             Toast.makeText(this, "Vous devez insérer deux fois le même mot de passe !", Toast.LENGTH_SHORT).show();
             return false;
         }
-        return isValid;
+        return true;
     }
 }

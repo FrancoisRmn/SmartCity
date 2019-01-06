@@ -28,4 +28,7 @@ public class Constantes {
     public static final String DELETE_FAVORIS_MUST_BE_CONNECTED = "Vous devez être connecté pour ajouter un commerce aux favoris";
     public static final String MESSAGE_DELETE_FAVORIS = "Favoris correctement supprimé";
     public static final String MESSAGE_ADD_FAVORIS = "Commerce ajouté aux favoris";
+    public static final String ULTIMATUM_DELETE_USER = "Cette action est irréversible, voulez-vous vraiment supprimer votre compte ?";
+    public static final String POSITIVE_MESSAGE = "Oui";
+    public static final String NEGATIVE_MESSAGE= "Non";
 }

@@ -45,7 +45,7 @@ public class Utils {
     }
     public static String getErrorMessage(int statusCode)
     {
-        String message="";
+        String message;
         switch (statusCode)
         {
             case 401: message = "Votre session est expiré";

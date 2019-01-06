@@ -22,9 +22,7 @@ import javax.net.ssl.HttpsURLConnection;
 import static com.henallux.smartcity.utils.Constantes.URL_USER;
 
 public class UserDAO {
-    public UserDAO() {
-
-    }
+    public UserDAO() {}
 
     public static String makePostTokenRequest(String stringUrl, String payload) throws Exception {
         URL url = new URL(stringUrl);
@@ -61,7 +59,7 @@ public class UserDAO {
 
     }
 
-    public static String JsonToStringToken(String stringJson) throws Exception
+    private static String JsonToStringToken(String stringJson) throws Exception
     {
         String token="";
         JSONObject jsonToken = new JSONObject(stringJson);
@@ -116,7 +114,7 @@ public class UserDAO {
         }
     }
 
-    public static User jsonToUser(String jsonUser)
+    private static User jsonToUser(String jsonUser)
     {
         Gson g = new Gson();
         User user = g.fromJson(jsonUser,User.class);
@@ -132,18 +130,14 @@ public class UserDAO {
         connection.setRequestMethod("DELETE");
         int responseCode = connection.getResponseCode();
         if(responseCode != HttpURLConnection.HTTP_OK)
-        {
             throw new UserException(Constantes.ERROR_MESSAGE_DELETE_USER + ", " + Utils.getErrorMessage(responseCode));
-        }
-        else{
-            BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder builder = new StringBuilder();
-            String stringJSON = "", line;
-            while ((line = buffer.readLine()) != null) {
-                builder.append(line);
-            }
-            buffer.close();
-            stringJSON = builder.toString();
+
+        BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        StringBuilder builder = new StringBuilder();
+        String stringJSON = "", line;
+        while ((line = buffer.readLine()) != null) {
+            builder.append(line);
+        buffer.close();
         }
     }
 }

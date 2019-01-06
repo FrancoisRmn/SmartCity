@@ -9,7 +9,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +19,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.messaging.FirebaseMessagingService;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.UserDAO;
@@ -34,10 +32,8 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-import static android.support.constraint.Constraints.TAG;
-
 public class SettingsFragment extends Fragment {
-    private Button deconnectionbutton;
+    private Button deconnectionButton;
     private Application applicationContext;
     private Button deleteAccountButton;
     private UserDAO userDAO;
@@ -47,8 +43,8 @@ public class SettingsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_settings, container, false);
-        deconnectionbutton = v.findViewById(R.id.deconnectionbutton);
-        deconnectionbutton.setOnClickListener(new View.OnClickListener() {
+        deconnectionButton = v.findViewById(R.id.deconnectionbutton);
+        deconnectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 applicationContext = (Application) getActivity().getApplicationContext();
@@ -91,32 +87,22 @@ public class SettingsFragment extends Fragment {
                                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                                 catch (Exception e){
-                                    System.out.print(e.getMessage());
-                                }
-                                break;
-
-                            case DialogInterface.BUTTON_NEGATIVE:
+                                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();                                }
                                 break;
                         }
                     }
                 };
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getView().getContext());
-                builder.setMessage("Cette action est irréversible, voulez-vous vraiment supprimer votre compte ?")
-                        .setPositiveButton("Oui", dialogClickListener)
-                        .setNegativeButton("Non", dialogClickListener).show();
+                builder.setMessage(Constantes.ULTIMATUM_DELETE_USER)
+                        .setPositiveButton(Constantes.POSITIVE_MESSAGE, dialogClickListener)
+                        .setNegativeButton(Constantes.NEGATIVE_MESSAGE, dialogClickListener).show();
             }
         });
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        //editor.putBoolean(Constantes.PREFERENCES_NOTIFICATIONS, true);
         switchNotifications = v.findViewById(R.id.switch1);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        /*if(sharedPreferences.getBoolean(Constantes.PREFERENCES_NOTIFICATIONS, false)){
-            switchNotifications.setChecked(true);
-        }*/
-        FirebaseMessaging.getInstance().unsubscribeFromTopic("Commerces");
         Map<String, ?> mapPreferences = sharedPreferences.getAll();
         for(String key: mapPreferences.keySet())
         {
@@ -142,8 +128,6 @@ public class SettingsFragment extends Fragment {
                                     }
                                 });
                     }
-
-                    //on enregistre dans les préférences l'abonnement aux notifications
                 }
                 else{
                     Toast.makeText(getActivity(), Constantes.DISABLED_NOTIFICATIONS, Toast.LENGTH_SHORT).show();
