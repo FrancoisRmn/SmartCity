@@ -6,9 +6,6 @@ import java.util.List;
 
 public class Commerce implements Serializable {
     private Integer idCommerce;
-
-
-
     private String nomCommerce;
     private String rue;
     private Integer numero;

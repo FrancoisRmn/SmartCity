@@ -2,8 +2,6 @@ package com.henallux.smartcity.model;
 
 import android.arch.lifecycle.ViewModel;
 
-import com.henallux.smartcity.model.Restaurant;
-
 import java.util.ArrayList;
 
 public class RestaurantViewModel extends ViewModel {
