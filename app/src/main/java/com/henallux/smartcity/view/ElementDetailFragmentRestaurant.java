@@ -170,7 +170,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
             new CreateFavorisAsyncTask(getActivity().getApplicationContext(), getActivity(), new Favoris(this.restaurant.getIdCommerce(), idUser)).execute();
             //on s'abonne à googleFirebase pour recevoir les notifs quand depuis le backoffice une actualité d'un commerce favoris est créé
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(this.restaurant.getNomCommerce(), true);
+            editor.putBoolean(this.restaurant.getNomCommerce().replace(" ", ""), true);
             editor.commit();
             FirebaseMessaging.getInstance().subscribeToTopic(this.restaurant.getNomCommerce());
         }
