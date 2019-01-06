@@ -1,33 +1,25 @@
 package com.henallux.smartcity.task;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.henallux.smartcity.applicationObject.Application;
-import com.henallux.smartcity.dataAccess.GetToken;
 import com.henallux.smartcity.dataAccess.UserDAO;
 import com.henallux.smartcity.exception.BadLoginPasswordException;
 import com.henallux.smartcity.exception.ImpossibleToFetchToken;
 import com.henallux.smartcity.view.BottomMenu;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import static com.henallux.smartcity.utils.Constantes.URL_TOKEN;
 
 public class LoginAsyncTask extends AsyncTask<String, Void, String> {
-    private Context context;
     private Application application;
     private String username;
     private String password;
     private Activity activity;
 
-    public LoginAsyncTask(Context context, String username, String password, Activity activity) {
-        this.context = context;
+    public LoginAsyncTask(String username, String password, Activity activity) {
         this.username = username;
         this.password = password;
         this.activity = activity;
@@ -35,7 +27,7 @@ public class LoginAsyncTask extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String response){
-        application = (Application)this.context;
+        application = (Application)this.activity.getApplication().getApplicationContext();
         if(!response.isEmpty())
         {
             application.setToken(response);
@@ -47,7 +39,7 @@ public class LoginAsyncTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         try {
-            String response = GetToken.makePostRequest(URL_TOKEN,
+            String response = UserDAO.makePostTokenRequest(URL_TOKEN,
                     "{\n" +
                             "\t\"Username\":\""+this.username+"\",\n" +
                             "\t\"Password\":\""+this.password+"\"\n" +

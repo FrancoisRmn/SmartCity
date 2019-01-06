@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.henallux.smartcity.dataAccess.DeleteUser;
+import com.henallux.smartcity.dataAccess.UserDAO;
 import com.henallux.smartcity.exception.UserException;
 
 public class DeleteUserAsyncTask extends AsyncTask<String, Void, String> {
-    private DeleteUser deleteUser;
+
     private int idUser;
     private Activity activity;
 
@@ -16,13 +16,12 @@ public class DeleteUserAsyncTask extends AsyncTask<String, Void, String> {
     public DeleteUserAsyncTask(Activity activity, int idUser) {
         this.activity = activity;
         this.idUser = idUser;
-        deleteUser = new DeleteUser(activity.getApplication().getApplicationContext());
     }
 
     protected String doInBackground(String... urls) {
-        //TODO modifier parametre constructeur USERDAO
         try {
-            deleteUser.makeDeleteRequest(this.idUser);
+
+            UserDAO.makeDeleteUserRequest(this.idUser, activity.getApplication().getApplicationContext());
         } catch (final UserException e) {
             activity.runOnUiThread(new Runnable() {
                 @Override

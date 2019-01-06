@@ -12,6 +12,7 @@ import com.henallux.smartcity.dataAccess.UserDAO;
 import com.henallux.smartcity.model.User;
 import com.henallux.smartcity.service.APINConnectService;
 import com.henallux.smartcity.service.ServiceBuilder;
+import com.henallux.smartcity.task.CreateUserAsyncTask;
 import com.henallux.smartcity.utils.Utils;
 
 import retrofit2.Call;
@@ -40,48 +41,15 @@ private Button validationInscriptionButton;
             public void onClick(View v) {
                 if(checkForms())
                 {
-                    //on cree un user
                     String userName= nameInput.getText().toString() + firstNameInput.getText().toString();
-
                     User user = new User(userName, passWordInput.getText().toString(), mailInput.getText().toString());
-                    //avec Retrofit (marche)
-                   /* try{
-                        APINConnectService apinConnectService = ServiceBuilder.buildService(APINConnectService.class);
-                        Call<User> createRequest = apinConnectService.createUser(user);
-                        createRequest.enqueue(new retrofit2.Callback<User>() {
-                            @Override
-                            public void onResponse(Call<User> call, Response<User> response) {
-                                // Inscription faite, dirige vers le profil
-                                if (response.isSuccessful())
-                                {
-                                    User user = response.body();
-                                    //ajouter l'utilisateur dans les préférences
-                                    Toast.makeText(InfoPersos.this,"Utilisateur ajouté !",Toast.LENGTH_SHORT).show();
-                                }
-                                else {
-                                    Toast.makeText(InfoPersos.this,"Impossible d'ajouter cet utilisateur !",Toast.LENGTH_SHORT).show();
-                                }
-                            }
+                    new CreateUserAsyncTask(user, InfoPersos.this).execute();
 
-                            @Override
-                            public void onFailure(Call<User> call, Throwable t) {
-
-                            }
-                        });
-                    }
-                    catch(Exception e){
-                        System.out.println(e);
-                        Toast.makeText(InfoPersos.this,"Erreur lors de la tentaive de création de l'utilisateur !",Toast.LENGTH_SHORT).show();
-                    }*/
-                    //Sans retroFit (marche)
-                    UserDAO userDAO = new UserDAO(InfoPersos.this);
-                    userDAO.createUser(user);
                 }
 
             }
         });
     }
-    //TODO Verif formulaire
     public boolean checkForms()
     {
         boolean isValid = true;

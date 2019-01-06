@@ -10,6 +10,8 @@ import android.widget.Toast;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.exception.BadLoginPasswordException;
+import com.henallux.smartcity.task.LoginAsyncTask;
+import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.Utils;
 import com.henallux.smartcity.dataAccess.UserDAO;
 
@@ -19,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private Button connectionButton;
     private EditText loginInput;
     private EditText passwordInput;
-    private UserDAO userDAO;
     private Button withoutConnectionButton;
     private Application application;
     @Override
@@ -46,15 +47,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(checkForms())
                 {
-                    userDAO = new UserDAO(MainActivity.this);
                     try{
                         application.setConnected(true);
-                        userDAO.login(loginInput.getText().toString(), passwordInput.getText().toString());
+                        new LoginAsyncTask(loginInput.getText().toString(), passwordInput.getText().toString(), MainActivity.this).execute();
                     }
-
-                    catch (BadLoginPasswordException e){
+                    catch (Exception e){
                         System.out.println("Exception" + e);
-                        Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -64,10 +62,11 @@ public class MainActivity extends AppCompatActivity {
         withoutConnectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                userDAO = new UserDAO(MainActivity.this);
                         try{
                             application.setConnected(false);
-                            userDAO.loginWithoutConnection();
+                            String userLambda =Constantes.DEFAULT_USER_NAME;
+                            String passwordLambda=Constantes.DEFAULT_USER_PASSWORD;
+                            new LoginAsyncTask(userLambda, passwordLambda, MainActivity.this).execute();
                         }
                         catch (Exception e){
                             System.out.println("Exception" + e);

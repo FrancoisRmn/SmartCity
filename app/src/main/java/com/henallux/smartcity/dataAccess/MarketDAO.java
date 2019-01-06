@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -71,8 +72,10 @@ public class MarketDAO {
         JSONArray jsonArray = new JSONArray(stringJSON);
         for (int i=0; i<jsonArray.length(); i++){
             JSONObject jsonMarket = jsonArray.getJSONObject(i);
-            Gson object = new GsonBuilder().create();
-            market = object.fromJson(jsonMarket.toString(), Market.class);
+            /*Gson object = new GsonBuilder().create();
+            market = object.fromJson(jsonMarket.toString(), Market.class);*/
+            GsonBuilder gsonBuilder = new GsonBuilder().registerTypeAdapter(Date.class, new Utils.DateDeserializer());
+            market = gsonBuilder.create().fromJson(jsonMarket.toString(), Market.class);
             markets.add(market);
         }
         return markets;

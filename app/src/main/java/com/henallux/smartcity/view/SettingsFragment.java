@@ -26,6 +26,7 @@ import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.UserDAO;
 import com.henallux.smartcity.exception.CannotRetreiveUserIdException;
 import com.henallux.smartcity.model.Payload;
+import com.henallux.smartcity.task.DeleteUserAsyncTask;
 import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.JWTUtils;
 
@@ -82,8 +83,7 @@ public class SettingsFragment extends Fragment {
                                     else{
                                         throw new CannotRetreiveUserIdException(Constantes.ERROR_MESSAGE_USERID);
                                     }
-                                    SettingsFragment.this.userDAO = new UserDAO(getActivity());
-                                    userDAO.deleteUser(idUser);
+                                    new DeleteUserAsyncTask(getActivity(), idUser).execute();
                                     Toast.makeText(getActivity(), Constantes.MESSAGE_ADD_USER, Toast.LENGTH_SHORT).show();
                                     getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
                                 }

@@ -14,10 +14,8 @@ import com.henallux.smartcity.exception.ImpossibleToFetchCommercesException;
 import com.henallux.smartcity.model.Restaurant;
 import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.Utils;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
@@ -28,7 +26,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
-
 import javax.net.ssl.HttpsURLConnection;
 
 public class RestaurantDAO {
@@ -80,7 +77,7 @@ public class RestaurantDAO {
                 JSONObject jsonRestaurant = jsonArray.getJSONObject(i);
                 //Gson object = new GsonBuilder().setDateFormat("HH:mm:ss").create();
                 //final Gson object = new GsonBuilder().registerTypeAdapter(Date.class, new JsonDateDeserializer()).create();
-                GsonBuilder gsonBuilder = new GsonBuilder().registerTypeAdapter(Date.class, new DateDeserializer());
+                GsonBuilder gsonBuilder = new GsonBuilder().registerTypeAdapter(Date.class, new Utils.DateDeserializer());
                 restaurant = gsonBuilder.create().fromJson(jsonRestaurant.toString(), Restaurant.class);
 
                 restaurants.add(restaurant);
@@ -88,21 +85,5 @@ public class RestaurantDAO {
             return restaurants;
         }
 
-    public class DateDeserializer implements JsonDeserializer<Date> {
 
-        @Override
-        public Date deserialize(JsonElement element, Type arg1, JsonDeserializationContext arg2) throws JsonParseException {
-            String date = element.getAsString();
-
-            SimpleDateFormat formatter = new SimpleDateFormat("hh:mm:ss");
-            formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
-
-            try {
-                return formatter.parse(date);
-            } catch (ParseException e) {
-
-                return null;
-            }
-        }
-    }
 }

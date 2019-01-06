@@ -19,6 +19,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -66,8 +67,10 @@ public class BarDAO {
         JSONArray jsonArray = new JSONArray(stringJSON);
         for (int i=0; i<jsonArray.length(); i++){
             JSONObject jsonBar = jsonArray.getJSONObject(i);
-            Gson object = new GsonBuilder().create();
-            bar = object.fromJson(jsonBar.toString(), Bar.class);
+            /*Gson object = new GsonBuilder().create();
+            bar = object.fromJson(jsonBar.toString(), Bar.class);*/
+            GsonBuilder gsonBuilder = new GsonBuilder().registerTypeAdapter(Date.class, new Utils.DateDeserializer());
+            bar = gsonBuilder.create().fromJson(jsonBar.toString(), Bar.class);
             bars.add(bar);
         }
         return bars;
