@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/h1Settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginLeft="29dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/settingsTitle"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/deconnectionbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/deconnexion"
+        app:layout_constraintStart_toStartOf="@+id/h1Settings"
+        app:layout_constraintTop_toBottomOf="@+id/h1Settings" />
+
+    <Button
+        android:id="@+id/buttonDeleteAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="76dp"
+        android:layout_marginLeft="76dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/delete_user_account"
+        app:layout_constraintStart_toStartOf="@+id/h1Settings"
+        app:layout_constraintTop_toBottomOf="@+id/deconnectionbutton" />
+
+    <Switch
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="124dp"
+        android:layout_marginLeft="124dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/notifications"
+        app:layout_constraintBottom_toTopOf="@+id/buttonDeleteAccount"
+        app:layout_constraintStart_toEndOf="@+id/deconnectionbutton" />
+</android.support.constraint.ConstraintLayout>

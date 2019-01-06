@@ -37,7 +37,7 @@ public class DrinkFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         View view = getView();
-        listViewBarsToDisplay = (ListView) view.findViewById(R.id.BarsRecyclerView);
+        listViewBarsToDisplay = view.findViewById(R.id.BarsRecyclerView);
         loadBars = new LoadBars();
         if(getActivity() != null)
             loadBars.execute();
@@ -60,11 +60,11 @@ public class DrinkFragment extends Fragment {
         private BarDAO barDAO;
         private String query;
 
-        public LoadBars(String query) {
+        private LoadBars(String query) {
             this.query = query;
         }
 
-        public LoadBars() {
+        private LoadBars() {
         }
 
         ArrayList<Bar> bars = new ArrayList<>();
@@ -98,7 +98,7 @@ public class DrinkFragment extends Fragment {
         protected void onPostExecute(final ArrayList<Bar> bars) {
             final ArrayList<String> barsDescriptions = arrayListBarToArrayListString(bars);
             if(getActivity() != null && barsDescriptions != null){
-                ArrayAdapter<String> listBarAdapter= new ArrayAdapter<String>(
+                ArrayAdapter<String> listBarAdapter= new ArrayAdapter<>(
                         getActivity(),
                         android.R.layout.simple_list_item_1,
                         barsDescriptions
@@ -116,7 +116,7 @@ public class DrinkFragment extends Fragment {
         }
     }
     private ArrayList<String> arrayListBarToArrayListString(ArrayList<Bar> barsArrayList) {
-        ArrayList<String> bars = new ArrayList<String>();
+        ArrayList<String> bars = new ArrayList<>();
         for(Bar bar : barsArrayList)
         {
             bars.add(bar.toString());
