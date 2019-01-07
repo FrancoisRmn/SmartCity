@@ -156,9 +156,9 @@ public class ElementDetailFragmentBar extends Fragment {
             new DeleteFavorisAsyncTask(getActivity(), new Favoris(this.bar.getIdCommerce(), idUser)).execute();
             //on se désabonne à googleFirebase pour recevoir les notifs quand depuis le backoffice une actualité d'un commerce favoris est créé
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.remove(this.bar.getNomCommerce());
+            editor.remove(this.bar.getNomCommerce().replace(" ", ""));
             editor.commit();
-            FirebaseMessaging.getInstance().unsubscribeFromTopic(this.bar.getNomCommerce());
+            //FirebaseMessaging.getInstance().unsubscribeFromTopic(this.bar.getNomCommerce());
         }
         catch(CannotRetreiveUserIdException e){
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -174,9 +174,9 @@ public class ElementDetailFragmentBar extends Fragment {
             new CreateFavorisAsyncTask(getActivity().getApplicationContext(), getActivity(), new Favoris(this.bar.getIdCommerce(), idUser)).execute();
             //on s'abonne à googleFirebase pour recevoir les notifs quand depuis le backoffice une actualité d'un commerce favoris est créé
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(this.bar.getNomCommerce(), true);
+            editor.putBoolean(this.bar.getNomCommerce().replace(" ", ""), true);
             editor.commit();
-            FirebaseMessaging.getInstance().subscribeToTopic(this.bar.getNomCommerce());
+            //FirebaseMessaging.getInstance().subscribeToTopic(this.bar.getNomCommerce());
         }
         catch(CannotRetreiveUserIdException e){
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();

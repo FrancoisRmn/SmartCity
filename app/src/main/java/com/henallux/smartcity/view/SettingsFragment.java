@@ -101,53 +101,74 @@ public class SettingsFragment extends Fragment {
         });
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove("Burger king");
+        editor.commit();
         switchNotifications = v.findViewById(R.id.switch1);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        Map<String, ?> mapPreferences = sharedPreferences.getAll();
+        /*Map<String, ?> mapPreferences = sharedPreferences.getAll();
         for(String key: mapPreferences.keySet())
         {
             switchNotifications.setChecked(true);
             break;
+        }*/
+        boolean isChecked = sharedPreferences.getBoolean("estActive", false);
+        if(isChecked) {
+            switchNotifications.setChecked(true);
+            subscribeToAllCommerces();
         }
         switchNotifications.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(switchNotifications.isChecked()){
                     Toast.makeText(getActivity(), Constantes.ACTIVATED_NOTIFICATIONS , Toast.LENGTH_SHORT).show();
-                    Map<String, ?> mapPreferences = sharedPreferences.getAll();
-                    for(String key: mapPreferences.keySet())
-                    {
-                        FirebaseMessaging.getInstance().subscribeToTopic(key)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (!task.isSuccessful()) {
-                                            Toast.makeText(getActivity(), Constantes.ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
-                                        }
-
-                                    }
-                                });
-                    }
+                    subscribeToAllCommerces();
+                    editor.putBoolean("estActive", true);
                 }
                 else{
                     Toast.makeText(getActivity(), Constantes.DISABLED_NOTIFICATIONS, Toast.LENGTH_SHORT).show();
-                    Map<String, ?> mapPreferences = sharedPreferences.getAll();
-                    for(String key: mapPreferences.keySet())
-                    {
-                        FirebaseMessaging.getInstance().unsubscribeFromTopic(key)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (!task.isSuccessful()) {
-                                            Toast.makeText(getActivity(), Constantes.ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
-                                        }
-
-                                    }
-                                });
-                    }
+                    unsubscribeToAllCommerces();
+                    editor.putBoolean("estActive", false);
                 }
+                editor.commit();
             }
         });
         return v;
+    }
+
+    public void subscribeToAllCommerces()
+    {
+        Map<String, ?> mapPreferences = sharedPreferences.getAll();
+        for(String key: mapPreferences.keySet())
+        {
+            FirebaseMessaging.getInstance().subscribeToTopic(key)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(getActivity(), Constantes.ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    });
+        }
+    }
+
+    public void unsubscribeToAllCommerces()
+    {
+        Map<String, ?> mapPreferences = sharedPreferences.getAll();
+        for(String key: mapPreferences.keySet())
+        {
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(key)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (!task.isSuccessful()) {
+                                Toast.makeText(getActivity(), Constantes.ERROR_MESSAGE, Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    });
+        }
     }
 }
