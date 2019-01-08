@@ -34,11 +34,18 @@ import java.util.Map;
 
 public class SettingsFragment extends Fragment {
     private Button deconnectionButton;
-    private Application applicationContext;
+    private Application application;
     private Button deleteAccountButton;
     private UserDAO userDAO;
     private Switch switchNotifications;
     private SharedPreferences sharedPreferences;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        application = (Application)getActivity().getApplicationContext();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,9 +54,8 @@ public class SettingsFragment extends Fragment {
         deconnectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                applicationContext = (Application) getActivity().getApplicationContext();
-                if (applicationContext.isConnected()) {
-                    applicationContext.setToken("");
+                if (application.isConnected()) {
+                    application.setToken("");
                     getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
                     Toast.makeText(getActivity(), Constantes.MESSAGE_DISCONNECTED, Toast.LENGTH_SHORT).show();
                 } else {
@@ -102,18 +108,9 @@ public class SettingsFragment extends Fragment {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         final SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.remove("Burger king");
-        editor.commit();
         switchNotifications = v.findViewById(R.id.switch1);
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
-        /*Map<String, ?> mapPreferences = sharedPreferences.getAll();
-        for(String key: mapPreferences.keySet())
-        {
-            switchNotifications.setChecked(true);
-            break;
-        }*/
-        boolean isChecked = sharedPreferences.getBoolean("estActive", false);
-        if(isChecked) {
+        if(application.isActivateNotifications()) {
             switchNotifications.setChecked(true);
             subscribeToAllCommerces();
         }
@@ -123,12 +120,12 @@ public class SettingsFragment extends Fragment {
                 if(switchNotifications.isChecked()){
                     Toast.makeText(getActivity(), Constantes.ACTIVATED_NOTIFICATIONS , Toast.LENGTH_SHORT).show();
                     subscribeToAllCommerces();
-                    editor.putBoolean("estActive", true);
+                    application.setActivateNotifications(true);
                 }
                 else{
                     Toast.makeText(getActivity(), Constantes.DISABLED_NOTIFICATIONS, Toast.LENGTH_SHORT).show();
                     unsubscribeToAllCommerces();
-                    editor.putBoolean("estActive", false);
+                    application.setActivateNotifications(false);
                 }
                 editor.commit();
             }

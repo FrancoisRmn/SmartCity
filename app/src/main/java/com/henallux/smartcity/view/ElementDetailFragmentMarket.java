@@ -156,8 +156,9 @@ public class ElementDetailFragmentMarket extends Fragment {
             //on se désabonne à googleFirebase pour recevoir les notifs quand depuis le backoffice une actualité d'un commerce favoris est créé
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.remove(this.market.getNomCommerce().replace(" ", ""));
+            editor.remove(Utils.removeSpacesAndAccent(this.market.getNomCommerce()));
             editor.commit();
-            //FirebaseMessaging.getInstance().unsubscribeFromTopic(this.market.getNomCommerce());
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(this.market.getNomCommerce());
         }
         catch(CannotRetreiveUserIdException e){
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -173,9 +174,10 @@ public class ElementDetailFragmentMarket extends Fragment {
             new CreateFavorisAsyncTask(getActivity().getApplicationContext(), getActivity(), new Favoris(this.market.getIdCommerce(), idUser)).execute();
             //on s'abonne à googleFirebase pour recevoir les notifs quand depuis le backoffice une actualité d'un commerce favoris est créé
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(this.market.getNomCommerce().replace(" ", ""), true);
+            editor.putBoolean(Utils.removeSpacesAndAccent(this.market.getNomCommerce()), true);
             editor.commit();
-            //FirebaseMessaging.getInstance().subscribeToTopic(this.market.getNomCommerce());
+            if(application.isActivateNotifications())
+                FirebaseMessaging.getInstance().subscribeToTopic(Utils.removeSpacesAndAccent(this.market.getNomCommerce()));
         }
         catch(CannotRetreiveUserIdException e){
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();

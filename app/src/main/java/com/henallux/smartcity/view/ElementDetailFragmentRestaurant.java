@@ -152,9 +152,9 @@ public class ElementDetailFragmentRestaurant extends Fragment {
             new DeleteFavorisAsyncTask(getActivity(), new Favoris(this.restaurant.getIdCommerce(), idUser)).execute();
             //on se désabonne à googleFirebase pour recevoir les notifs quand depuis le backoffice une actualité d'un commerce favoris est créé
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.remove(this.restaurant.getNomCommerce().replace(" ", ""));
+            editor.remove(Utils.removeSpacesAndAccent(this.restaurant.getNomCommerce()));
             editor.commit();
-            //FirebaseMessaging.getInstance().unsubscribeFromTopic(this.restaurant.getNomCommerce());
+            FirebaseMessaging.getInstance().unsubscribeFromTopic(this.restaurant.getNomCommerce());
         }
         catch(CannotRetreiveUserIdException e){
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -170,9 +170,10 @@ public class ElementDetailFragmentRestaurant extends Fragment {
             new CreateFavorisAsyncTask(getActivity().getApplicationContext(), getActivity(), new Favoris(this.restaurant.getIdCommerce(), idUser)).execute();
             //on s'abonne à googleFirebase pour recevoir les notifs quand depuis le backoffice une actualité d'un commerce favoris est créé
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(this.restaurant.getNomCommerce().replace(" ", ""), true);
+            editor.putBoolean(Utils.removeSpacesAndAccent(this.restaurant.getNomCommerce()), true);
             editor.commit();
-            //FirebaseMessaging.getInstance().subscribeToTopic(this.restaurant.getNomCommerce());
+            if(application.isActivateNotifications())
+                FirebaseMessaging.getInstance().subscribeToTopic(Utils.removeSpacesAndAccent(this.restaurant.getNomCommerce()));
         }
         catch(CannotRetreiveUserIdException e){
             Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();

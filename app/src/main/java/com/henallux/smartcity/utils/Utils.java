@@ -14,6 +14,7 @@ import com.henallux.smartcity.model.Payload;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.text.Normalizer;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -93,5 +94,19 @@ public class Utils {
         payloadModel = new Payload(Integer.parseInt(jsonPayload.getString("uid")));
         idUser = payloadModel.getUid();
         return idUser;
+    }
+
+    public static String stripAccents(String s)
+    {
+        s = Normalizer.normalize(s, Normalizer.Form.NFD);
+        s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+        return s;
+    }
+
+    public static String removeSpacesAndAccent(String s)
+    {
+        s = stripAccents(s);
+        s = s.replaceAll("\\s+","");
+        return s;
     }
 }

@@ -4,6 +4,15 @@ public class Application extends android.app.Application {
 
     private String token;
     private boolean isConnected;
+    private boolean activateNotifications;
+
+    public boolean isActivateNotifications() {
+        return activateNotifications;
+    }
+
+    public void setActivateNotifications(boolean activateNotifications) {
+        this.activateNotifications = activateNotifications;
+    }
 
     public boolean isConnected() {
         return isConnected;
