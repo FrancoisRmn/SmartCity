@@ -39,7 +39,7 @@ public class SettingsFragment extends Fragment {
     private UserDAO userDAO;
     private Switch switchNotifications;
     private SharedPreferences sharedPreferences;
-
+    private DeleteUserAsyncTask deleteUserAsyncTask;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +89,8 @@ public class SettingsFragment extends Fragment {
                                     else{
                                         throw new CannotRetreiveUserIdException(Constantes.ERROR_MESSAGE_USERID);
                                     }
-                                    new DeleteUserAsyncTask(getActivity(), idUser).execute();
+                                    deleteUserAsyncTask = new DeleteUserAsyncTask(getActivity(), idUser);
+                                    deleteUserAsyncTask.execute();
                                     Toast.makeText(getActivity(), Constantes.MESSAGE_ADD_USER, Toast.LENGTH_SHORT).show();
                                     getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
                                 }
@@ -116,7 +117,7 @@ public class SettingsFragment extends Fragment {
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         if(application.isActivateNotifications()) {
             switchNotifications.setChecked(true);
-            subscribeToAllCommerces();
+            //subscribeToAllCommerces();
         }
         switchNotifications.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,6 +171,14 @@ public class SettingsFragment extends Fragment {
 
                         }
                     });
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(deleteUserAsyncTask!= null){
+            deleteUserAsyncTask.cancel(true);
         }
     }
 }

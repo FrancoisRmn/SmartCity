@@ -46,7 +46,7 @@ public class Utils {
                 break;
             case 6 : day="Samedi";
                 break;
-            default: day="Pas de jour disponible";
+            default: day=Constantes.NO_DAY_UNAVAILABLE;
         }
         return day;
     }
@@ -55,10 +55,10 @@ public class Utils {
         String message;
         switch (statusCode)
         {
-            case 401: message = "Votre session est expiré";
+            case 401: message = Constantes.SESSION_EXPIRED;
                 break;
-            case 403 : message = "Ce contenu ne vous est pas accessible";
-             default: message = "Erreur inconnue";
+            case 403 : message = Constantes.CONTENT_UNAVAILABLE;
+             default: message = Constantes.ERROR_MESSAGE;
         }
         return message + " (status code :"+statusCode+")";
     }
