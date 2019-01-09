@@ -64,6 +64,8 @@ public class SettingsFragment extends Fragment {
             }
         });
         deleteAccountButton = v.findViewById(R.id.buttonDeleteAccount);
+        if(!application.isConnected())
+            deleteAccountButton.setVisibility(View.GONE);
         deleteAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

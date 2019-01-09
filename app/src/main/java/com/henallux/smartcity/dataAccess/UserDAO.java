@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.exception.BadLoginPasswordException;
 import com.henallux.smartcity.exception.ImpossibleToFetchToken;
+import com.henallux.smartcity.exception.UnauthorizedException;
 import com.henallux.smartcity.exception.UserException;
 import com.henallux.smartcity.model.User;
 import com.henallux.smartcity.utils.Constantes;
@@ -129,15 +130,24 @@ public class UserDAO {
         connection.setRequestProperty("Authorization", "Bearer " + application.getToken());
         connection.setRequestMethod("DELETE");
         int responseCode = connection.getResponseCode();
-        if(responseCode != HttpURLConnection.HTTP_OK)
-            throw new UserException(Constantes.ERROR_MESSAGE_DELETE_USER + ", " + Utils.getErrorMessage(responseCode));
-
-        BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-        StringBuilder builder = new StringBuilder();
-        String stringJSON = "", line;
-        while ((line = buffer.readLine()) != null) {
-            builder.append(line);
-        buffer.close();
+        if(responseCode == HttpURLConnection.HTTP_OK){
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            StringBuilder builder = new StringBuilder();
+            String stringJSON = "", line;
+            while ((line = buffer.readLine()) != null) {
+                builder.append(line);
+                buffer.close();
+            }
         }
+        else{
+            if(responseCode == HttpURLConnection.HTTP_UNAUTHORIZED){
+                throw new UnauthorizedException(Constantes.EXPIRED_SESSION+ ", " + Utils.getErrorMessage(responseCode));
+            }
+            else{
+                throw new UserException(Constantes.ERROR_MESSAGE_DELETE_USER + ", " + Utils.getErrorMessage(responseCode));
+            }
+        }
+
+
     }
 }

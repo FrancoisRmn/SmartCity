@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.exception.ImpossibleToFetchCommercesException;
+import com.henallux.smartcity.exception.UnauthorizedException;
 import com.henallux.smartcity.model.Market;
 import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.Utils;
@@ -60,7 +61,12 @@ public class MarketDAO {
             return jsonToCommerces(stringJSON);
         }
         else{
-            throw new ImpossibleToFetchCommercesException(Constantes.ERROR_MESSAGE_MARKETS + ", " + Utils.getErrorMessage(responseCode));
+            if(responseCode == HttpURLConnection.HTTP_UNAUTHORIZED){
+                throw new UnauthorizedException(Constantes.EXPIRED_SESSION + ", " + Utils.getErrorMessage(responseCode));
+            }
+            else{
+                throw new ImpossibleToFetchCommercesException(Constantes.ERROR_MESSAGE_MARKETS + ", " + Utils.getErrorMessage(responseCode));
+            }
         }
     }
 

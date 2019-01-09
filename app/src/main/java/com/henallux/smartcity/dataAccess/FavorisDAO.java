@@ -9,6 +9,7 @@ import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.exception.FavorisAlreadyExistException;
 import com.henallux.smartcity.exception.ImpossibleToCreateFavoris;
 import com.henallux.smartcity.exception.ImpossibleToDeleteFavoris;
+import com.henallux.smartcity.exception.UnauthorizedException;
 import com.henallux.smartcity.model.Favoris;
 import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.Utils;
@@ -74,11 +75,16 @@ public class FavorisDAO {
             //return builder.toString();
             return jsonToFavoris(builder.toString());
         }
-        if(responseCode == HttpURLConnection.HTTP_BAD_REQUEST){
-            throw new FavorisAlreadyExistException(Constantes.FAVORIS_ALREADY_EXIST);
+        if(responseCode == HttpURLConnection.HTTP_UNAUTHORIZED){
+            throw new UnauthorizedException(Constantes.EXPIRED_SESSION+ ", " + Utils.getErrorMessage(responseCode));
         }
         else{
-            throw new ImpossibleToCreateFavoris(ERROR_MESSAGE_FAVORIS + Utils.getErrorMessage(responseCode));
+            if(responseCode == HttpURLConnection.HTTP_BAD_REQUEST){
+                throw new FavorisAlreadyExistException(Constantes.FAVORIS_ALREADY_EXIST);
+            }
+            else{
+                throw new ImpossibleToCreateFavoris(ERROR_MESSAGE_FAVORIS + Utils.getErrorMessage(responseCode));
+            }
         }
     }
 
@@ -129,11 +135,16 @@ public class FavorisDAO {
             buffer.close();
         }
         else{
-            if(responseCode == HttpURLConnection.HTTP_BAD_REQUEST){
-                throw new FavorisAlreadyExistException(Constantes.FAVORIS_DONT_EXIST);
+            if(responseCode == HttpURLConnection.HTTP_UNAUTHORIZED){
+                throw new UnauthorizedException(Constantes.EXPIRED_SESSION+ ", " + Utils.getErrorMessage(responseCode));
             }
             else{
-                throw new ImpossibleToDeleteFavoris(ERROR_MESSAGE_FAVORIS + Utils.getErrorMessage(responseCode));
+                if(responseCode == HttpURLConnection.HTTP_BAD_REQUEST){
+                    throw new FavorisAlreadyExistException(Constantes.FAVORIS_DONT_EXIST);
+                }
+                else{
+                    throw new ImpossibleToDeleteFavoris(ERROR_MESSAGE_FAVORIS + Utils.getErrorMessage(responseCode));
+                }
             }
         }
     }

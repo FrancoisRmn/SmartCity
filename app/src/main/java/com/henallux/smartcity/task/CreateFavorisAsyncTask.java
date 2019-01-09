@@ -2,12 +2,15 @@ package com.henallux.smartcity.task;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 import com.henallux.smartcity.dataAccess.FavorisDAO;
 import com.henallux.smartcity.exception.ImpossibleToCreateFavoris;
+import com.henallux.smartcity.exception.UnauthorizedException;
 import com.henallux.smartcity.model.Favoris;
 import com.henallux.smartcity.utils.Constantes;
+import com.henallux.smartcity.view.MainActivity;
 
 import static com.henallux.smartcity.utils.Constantes.URL_FAVORIS;
 
@@ -35,6 +38,16 @@ public class CreateFavorisAsyncTask extends AsyncTask<String, Void, Favoris> {
                 }
             });
             return newFavoris;
+        }
+        catch(final UnauthorizedException e){
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+            activity.startActivity(new Intent(activity, MainActivity.class));
+            return null;
         }
         catch(final ImpossibleToCreateFavoris e){
             activity.runOnUiThread(new Runnable() {

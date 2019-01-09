@@ -47,13 +47,15 @@ public class DrinkFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                new LoadBars(query).execute();
+                loadBars = new LoadBars(query);
+                loadBars.execute();
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                new LoadBars(newText).execute();
+                loadBars =  new LoadBars(newText);
+                loadBars.execute();
                 return true;
             }
         });
@@ -136,5 +138,13 @@ public class DrinkFragment extends Fragment {
             bars.add(bar.toString());
         }
         return bars;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if ( loadBars != null) {
+            loadBars.cancel(true);
+        }
     }
 }

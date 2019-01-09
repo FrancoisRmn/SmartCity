@@ -3,6 +3,7 @@ package com.henallux.smartcity.view;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText passwordInput;
     private Button withoutConnectionButton;
     private Application application;
+    private LoginAsyncTask loginAsyncTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +51,8 @@ public class MainActivity extends AppCompatActivity {
                 {
                     try{
                         application.setConnected(true);
-                        new LoginAsyncTask(loginInput.getText().toString(), passwordInput.getText().toString(), MainActivity.this).execute();
+                        loginAsyncTask = new LoginAsyncTask(loginInput.getText().toString(), passwordInput.getText().toString(), MainActivity.this);
+                        loginAsyncTask.execute();
                     }
                     catch (Exception e){
                         System.out.println("Exception" + e);
@@ -85,5 +88,13 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(loginAsyncTask != null){
+            loginAsyncTask.cancel(true);
+        }
     }
 }

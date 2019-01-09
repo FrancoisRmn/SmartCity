@@ -29,7 +29,7 @@ import java.util.ArrayList;
 public class MarketFragment extends Fragment {
     private ListView listViewMarketsToDisplay;
     private SearchView searchView;
-
+    private LoadMarkets loadMarkets;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,19 +41,23 @@ public class MarketFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         View v = getView();
         listViewMarketsToDisplay = v.findViewById(R.id.MarketsRecyclerView);
-        if (getActivity() != null)
-            new LoadMarkets().execute();
+        if (getActivity() != null){
+            loadMarkets = new LoadMarkets();
+            loadMarkets.execute();
+        }
         searchView = v.findViewById(R.id.searchViewMarket);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                new LoadMarkets(query).execute();
+                loadMarkets = new LoadMarkets(query);
+                loadMarkets.execute();
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                new LoadMarkets(newText).execute();
+                loadMarkets = new LoadMarkets(newText);
+                loadMarkets.execute();
                 return true;
             }
         });
@@ -135,5 +139,13 @@ public class MarketFragment extends Fragment {
             markets.add(market.toString());
         }
         return markets;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if ( loadMarkets != null) {
+            loadMarkets.cancel(true);
+        }
     }
 }

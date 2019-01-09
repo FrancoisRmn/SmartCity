@@ -64,7 +64,7 @@ public class RestaurantDAO {
         }
         else{
             if(responseCode == HttpURLConnection.HTTP_UNAUTHORIZED){
-                throw new UnauthorizedException("Votre session est expiré !" + ", " + Utils.getErrorMessage(responseCode));
+                throw new UnauthorizedException(Constantes.EXPIRED_SESSION+ ", " + Utils.getErrorMessage(responseCode));
             }
             else{
                 throw new ImpossibleToFetchCommercesException(Constantes.ERROR_MESSAGE_RESTAURANT + ", " + Utils.getErrorMessage(responseCode));

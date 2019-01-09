@@ -19,6 +19,7 @@ private EditText passWordInput;
 private EditText confirmPassWordInput;
 private EditText mailInput;
 private Button validationInscriptionButton;
+private CreateUserAsyncTask createUserAsyncTask;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,8 +37,8 @@ private Button validationInscriptionButton;
                 {
                     String userName= nameInput.getText().toString() + firstNameInput.getText().toString();
                     User user = new User(userName, passWordInput.getText().toString(), mailInput.getText().toString());
-                    new CreateUserAsyncTask(user, InfoPersos.this).execute();
-
+                    createUserAsyncTask = new CreateUserAsyncTask(user, InfoPersos.this);
+                    createUserAsyncTask.execute();
                 }
 
             }
@@ -74,5 +75,13 @@ private Button validationInscriptionButton;
             return false;
         }
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(this.createUserAsyncTask != null){
+            this.createUserAsyncTask.cancel(true);
+        }
     }
 }
