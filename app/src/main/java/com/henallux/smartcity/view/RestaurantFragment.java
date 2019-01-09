@@ -59,13 +59,15 @@ public class RestaurantFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                new LoadRestaurants(query).execute();
+                loadRestaurants = new LoadRestaurants(query);
+                loadRestaurants.execute();
                 return true;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                new LoadRestaurants(newText).execute();
+                loadRestaurants = new LoadRestaurants(newText);
+                loadRestaurants.execute();
                 return true;
             }
         });

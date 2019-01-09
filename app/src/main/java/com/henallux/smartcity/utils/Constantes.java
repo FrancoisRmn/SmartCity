@@ -34,4 +34,6 @@ public class Constantes {
     public static final String EXPIRED_SESSION = "Votre session est expiré !";
     public static final String EMPTY_LOGIN = "Login vide !";
     public static final String EMPTY_PASSWORD = "Vous devez rentez un mot de passe !";
+    public static final String PHONE_NUMBER_UNAVAILABLE = "Numéro de téléphone non disponible !";
+    public static final String MAIL_ADDRESS_UNAVAILABLE = "Adresse email non disponible !";
 }

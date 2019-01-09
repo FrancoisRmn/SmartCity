@@ -80,7 +80,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(getActivity(), "Numéro de téléphone non disponible !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), Constantes.PHONE_NUMBER_UNAVAILABLE, Toast.LENGTH_SHORT).show();
                 }
                 return true;
             case R.id.itemCallButton :
@@ -91,7 +91,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(getActivity(), "Numéro de téléphone non disponible !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), Constantes.PHONE_NUMBER_UNAVAILABLE, Toast.LENGTH_SHORT).show();
                 }
                 return true;
             case R.id.itemSendMail :
@@ -109,7 +109,7 @@ public class ElementDetailFragmentRestaurant extends Fragment {
                     }
                 }
                 else{
-                    Toast.makeText(getActivity(), "Adresse email non disponible !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), Constantes.MAIL_ADDRESS_UNAVAILABLE , Toast.LENGTH_SHORT).show();
                 }
                 return true;
             case R.id.itemRouteButton:

@@ -70,4 +70,11 @@
     <string name="itin_raire">Itinéraire</string>
     <string name="supprimer_le_favoris">Supprimer le favoris</string>
     <string name="localisation_title">Situé à</string>
+    <string name="nameInputEmpty">Vous n\'avez pas entré de nom</string>
+    <string name="firstNameEmpty">Vous n\'avez pas entré de prénom</string>
+    <string name="emailEmpty">Vous n\'avez pas insérer d\'email</string>
+    <string name="passwordEmpty">Vous n\'avez pas entré de mot de passe</string>
+    <string name="passwordTooShort">Votre mot de passe doit contenir plus de 6 caractères !</string>
+    <string name="confirmPasswordInput">Vous n\'avez pas entré de mot de passe</string>
+    <string name="NotSamePassword">Vous devez insérer deux fois le même mot de passe !</string>
 </resources>

@@ -47,31 +47,31 @@ private CreateUserAsyncTask createUserAsyncTask;
     public boolean checkForms()
     {
         if(Utils.isEmpty(nameInput)){
-            Toast.makeText(this, "Vous n'avez pas entré de nom", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.nameInputEmpty, Toast.LENGTH_SHORT).show();
             return false;
         }
         if(Utils.isEmpty(firstNameInput)){
-            Toast.makeText(this, "Vous n'avez pas entré de prénom", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.firstNameEmpty, Toast.LENGTH_SHORT).show();
             return false;
         }
         if(Utils.isEmpty(mailInput)){
-            Toast.makeText(this, "Vous n'avez pas insérer d'email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.emailEmpty, Toast.LENGTH_SHORT).show();
             return false;
         }
         if(Utils.isEmpty(passWordInput)){
-            Toast.makeText(this, "Vous n'avez pas entré de mot de passe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.passwordEmpty, Toast.LENGTH_SHORT).show();
             return false;
         }
         if(passWordInput.getText().length() <  6){
-            Toast.makeText(this, "Votre mot de passe doit contenir plus de 6 caractères !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.passwordTooShort, Toast.LENGTH_SHORT).show();
             return false;
         }
         if(Utils.isEmpty(confirmPassWordInput)){
-            Toast.makeText(this, "Vous n'avez pas entré de mot de passe", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.confirmPasswordInput, Toast.LENGTH_SHORT).show();
             return false;
         }
         if(!confirmPassWordInput.getText().toString().equals(passWordInput.getText().toString())){
-            Toast.makeText(this, "Vous devez insérer deux fois le même mot de passe !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.NotSamePassword, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

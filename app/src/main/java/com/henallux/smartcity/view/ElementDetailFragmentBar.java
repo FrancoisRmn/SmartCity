@@ -82,7 +82,7 @@ public class ElementDetailFragmentBar extends Fragment {
                     startActivity(intent);
                 }
                 else{
-                    Toast.makeText(getActivity(), "Numéro de téléphone non disponible !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), Constantes.PHONE_NUMBER_UNAVAILABLE, Toast.LENGTH_SHORT).show();
                 }
                 return true;
             case R.id.itemCallButton :
@@ -94,7 +94,7 @@ public class ElementDetailFragmentBar extends Fragment {
 
                 }
                 else{
-                    Toast.makeText(getActivity(), "Numéro de téléphone non disponible !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), Constantes.PHONE_NUMBER_UNAVAILABLE, Toast.LENGTH_SHORT).show();
                 }
                 return true;
             case R.id.itemSendMail :
@@ -112,7 +112,7 @@ public class ElementDetailFragmentBar extends Fragment {
                     }
                 }
                 else{
-                    Toast.makeText(getActivity(), "Adresse email non disponible !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), Constantes.MAIL_ADDRESS_UNAVAILABLE, Toast.LENGTH_SHORT).show();
                 }
                 return true;
             case R.id.itemRouteButton:
@@ -134,7 +134,7 @@ public class ElementDetailFragmentBar extends Fragment {
                     //changer la couleur de l'icone et ajouté aux favoris de l'utilisateur
                 }
                 else{
-                    Toast.makeText(getActivity(), "Vous devez être connecté pour ajouter un commerce aux favoris", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), Constantes.ADD_FAVORIS_MUST_BE_CONNECTED, Toast.LENGTH_SHORT).show();
                 }
                 return true;
             case R.id.itemDeleteFavorite :
