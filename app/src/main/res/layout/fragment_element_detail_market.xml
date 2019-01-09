@@ -14,8 +14,8 @@
 
         <TextView
             android:id="@+id/localisation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="157dp"
+            android:layout_height="32dp"
             android:layout_marginStart="12dp"
             android:layout_marginLeft="12dp"
             android:layout_marginTop="52dp"
@@ -75,7 +75,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/location"
+            android:text="@string/localisation_title"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/titleFragmentElementDetailMarket"
             app:layout_constraintTop_toBottomOf="@+id/descriptionElementDetailMarket" />

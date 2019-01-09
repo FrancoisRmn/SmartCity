@@ -74,19 +74,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/location"
+            android:text="@string/localisation_title"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="@+id/descriptionElementDetailTitleBar"
             app:layout_constraintTop_toBottomOf="@+id/descriptionElementDetailBar" />
 
         <TextView
             android:id="@+id/localisation"
-            android:layout_width="78dp"
-            android:layout_height="20dp"
+            android:layout_width="163dp"
+            android:layout_height="26dp"
             android:layout_marginStart="64dp"
             android:layout_marginLeft="64dp"
             android:layout_marginTop="32dp"
-            android:text="@string/No_Location"
+            android:text="@string/location"
             app:layout_constraintStart_toStartOf="@+id/descriptionElementDetailBar"
             app:layout_constraintTop_toBottomOf="@+id/localisationTitle" />
 
@@ -206,7 +206,9 @@
             android:layout_height="80dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/actualite_content"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textViewActualiteTitle"
             app:layout_constraintTop_toBottomOf="@+id/textViewActualiteTitle" />
     </android.support.constraint.ConstraintLayout>

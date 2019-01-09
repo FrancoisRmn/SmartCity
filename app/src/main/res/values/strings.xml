@@ -55,7 +55,7 @@
     <string name="URL_GET_BARS">https://sc-nconnect.azurewebsites.net/api/Commerces?categorie=3</string>
     <string name="delete_user_account">Supprimer mon compte</string>
     <string name="notifications">Notifications</string>
-    <string name="location">Situé à :</string>
+    <string name="location">Pas d\'adresse disponible</string>
     <string name="produit_phare">Produit phare :</string>
     <string name="No_Produit_Phare">Pas de produit phare pour se commerce</string>
     <string name="email">Email : /</string>
@@ -69,4 +69,5 @@
     <string name="envoyer_un_email">Envoyer un email</string>
     <string name="itin_raire">Itinéraire</string>
     <string name="supprimer_le_favoris">Supprimer le favoris</string>
+    <string name="localisation_title">Situé à</string>
 </resources>

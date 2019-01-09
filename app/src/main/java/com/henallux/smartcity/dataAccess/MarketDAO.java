@@ -34,7 +34,6 @@ public class MarketDAO {
 
     public ArrayList<Market> getAllMarkets(String query) throws Exception{
         application =(Application)this.context;
-        Log.i("Async","Début getAllCommerces");
         URL url;
         if(!query.equals("")){
             url = new URL(context.getString(R.string.URL_GET_MARKETS) + "&nom="+query);
@@ -45,9 +44,7 @@ public class MarketDAO {
 
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
         connection.setRequestProperty("Authorization", "Bearer " + application.getToken());
-        Log.i("Commerce","Bearer " + application.getToken());
         connection.setRequestMethod("GET");
-        Log.i("Commerce","Status de connexion CommerceController : " + connection.getResponseCode());
         int responseCode = connection.getResponseCode();
         if(responseCode == HttpURLConnection.HTTP_OK)
         {
@@ -58,6 +55,7 @@ public class MarketDAO {
                 builder.append(line);
             }
             buffer.close();
+            connection.disconnect();
             stringJSON = builder.toString();
             return jsonToCommerces(stringJSON);
         }

@@ -1,5 +1,6 @@
 package com.henallux.smartcity.view;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.RestaurantDAO;
 import com.henallux.smartcity.exception.ImpossibleToFetchCommercesException;
+import com.henallux.smartcity.exception.UnauthorizedException;
 import com.henallux.smartcity.listener.FragmentListener;
 import com.henallux.smartcity.model.Restaurant;
 
@@ -37,9 +39,8 @@ public class RestaurantFragment extends Fragment {
 
     private ArrayList<String> arrayListRestaurantToArrayListString(ArrayList<Restaurant> restaurantsArrayList) {
         ArrayList<String> restaurants = new ArrayList<>();
-        if(restaurantsArrayList != null){
-            for(Restaurant restaurant : restaurantsArrayList)
-            {
+        if (restaurantsArrayList != null) {
+            for (Restaurant restaurant : restaurantsArrayList) {
                 restaurants.add(restaurant.toString());
             }
         }
@@ -52,7 +53,7 @@ public class RestaurantFragment extends Fragment {
         View view = getView();
         listViewRestaurantsToDisplay = view.findViewById(R.id.RestaurantRecyclerView);
         loadRestaurants = new LoadRestaurants();
-        if(getActivity() != null)
+        if (getActivity() != null)
             loadRestaurants.execute();
         searchView = view.findViewById(R.id.searchViewRestaurant);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -71,8 +72,7 @@ public class RestaurantFragment extends Fragment {
     }
 
 
-
-    private class LoadRestaurants extends AsyncTask<String, Void, ArrayList<Restaurant>>{
+    private class LoadRestaurants extends AsyncTask<String, Void, ArrayList<Restaurant>> {
         private RestaurantDAO restaurantDAO;
         private String query;
 
@@ -80,22 +80,31 @@ public class RestaurantFragment extends Fragment {
             this.query = query;
         }
 
-        private LoadRestaurants() { }
+        private LoadRestaurants() {
+        }
 
-        protected ArrayList<Restaurant> doInBackground(String... urls){
-            if(getActivity() != null)
+        protected ArrayList<Restaurant> doInBackground(String... urls) {
+            if (getActivity() != null)
                 restaurantDAO = new RestaurantDAO(getActivity().getApplicationContext());
 
             ArrayList<Restaurant> restaurants = new ArrayList<>();
-            try{
-                if(this.query == null){
+            try {
+                if (this.query == null) {
                     restaurants = restaurantDAO.getAllRestaurants("");
-                }
-                else {
+                } else {
                     restaurants = restaurantDAO.getAllRestaurants(this.query);
                 }
             }
-            catch(final ImpossibleToFetchCommercesException e){
+            catch(final UnauthorizedException e){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
+            }
+            catch (final ImpossibleToFetchCommercesException e) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -103,8 +112,7 @@ public class RestaurantFragment extends Fragment {
                     }
                 });
                 return null;
-            }
-            catch (final Exception e){
+            } catch (final Exception e) {
                 System.out.println(e.getMessage());
             }
             return restaurants;
@@ -112,24 +120,27 @@ public class RestaurantFragment extends Fragment {
 
         @Override
         protected void onPostExecute(final ArrayList<Restaurant> restaurants) {
-            final ArrayList<String> restaurantsDescriptions = arrayListRestaurantToArrayListString(restaurants);
-            if(getActivity() != null && restaurantsDescriptions != null){
-                ArrayAdapter<String> listRestaurantAdapter= new ArrayAdapter<String>(
-                        getActivity(),
-                        android.R.layout.simple_list_item_1,
-                        restaurantsDescriptions
-                );
-                listViewRestaurantsToDisplay.setAdapter(listRestaurantAdapter);
-                listViewRestaurantsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        FragmentListener fragmentListener = (FragmentListener)getActivity();
-                        fragmentListener.getRestaurant(restaurants.get(position));
-                    }
-                });
+            if (restaurants != null) {
+                final ArrayList<String> restaurantsDescriptions = arrayListRestaurantToArrayListString(restaurants);
+                if (getActivity() != null && restaurantsDescriptions != null) {
+                    ArrayAdapter<String> listRestaurantAdapter = new ArrayAdapter<String>(
+                            getActivity(),
+                            android.R.layout.simple_list_item_1,
+                            restaurantsDescriptions
+                    );
+                    listViewRestaurantsToDisplay.setAdapter(listRestaurantAdapter);
+                    listViewRestaurantsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            FragmentListener fragmentListener = (FragmentListener) getActivity();
+                            fragmentListener.getRestaurant(restaurants.get(position));
+                        }
+                    });
+                }
             }
         }
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();

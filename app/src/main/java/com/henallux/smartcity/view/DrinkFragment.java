@@ -39,7 +39,7 @@ public class DrinkFragment extends Fragment {
         View view = getView();
         listViewBarsToDisplay = view.findViewById(R.id.BarsRecyclerView);
         loadBars = new LoadBars();
-        if(getActivity() != null)
+        if (getActivity() != null)
             loadBars.execute();
         searchView = view.findViewById(R.id.barSearchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -56,6 +56,7 @@ public class DrinkFragment extends Fragment {
             }
         });
     }
+
     private class LoadBars extends AsyncTask<String, Void, ArrayList<Bar>> {
         private BarDAO barDAO;
         private String query;
@@ -68,18 +69,18 @@ public class DrinkFragment extends Fragment {
         }
 
         ArrayList<Bar> bars = new ArrayList<>();
-        protected ArrayList<Bar> doInBackground(String... urls){
-            if(getActivity() != null)
+
+        protected ArrayList<Bar> doInBackground(String... urls) {
+            if (getActivity() != null)
                 barDAO = new BarDAO(getActivity().getApplicationContext());
 
-            try{
-                if(this.query == null){
+            try {
+                if (this.query == null) {
                     bars = barDAO.getAllBars("");
-                }else{
+                } else {
                     bars = barDAO.getAllBars(this.query);
                 }
-            }
-            catch(final ImpossibleToFetchCommercesException e){
+            } catch (final ImpossibleToFetchCommercesException e) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -87,8 +88,7 @@ public class DrinkFragment extends Fragment {
                     }
                 });
                 return null;
-            }
-            catch (final Exception e){
+            } catch (final Exception e) {
                 System.out.println(e.getMessage());
             }
             return bars;
@@ -96,29 +96,31 @@ public class DrinkFragment extends Fragment {
 
         @Override
         protected void onPostExecute(final ArrayList<Bar> bars) {
-            final ArrayList<String> barsDescriptions = arrayListBarToArrayListString(bars);
-            if(getActivity() != null && barsDescriptions != null){
-                ArrayAdapter<String> listBarAdapter= new ArrayAdapter<>(
-                        getActivity(),
-                        android.R.layout.simple_list_item_1,
-                        barsDescriptions
-                );
-                listViewBarsToDisplay.setAdapter(listBarAdapter);
-                //gestion des clicks
-                listViewBarsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        FragmentListener fragmentListener = (FragmentListener)getActivity();
-                        fragmentListener.getBar(bars.get(position));
-                    }
-                });
+            if (bars != null) {
+                final ArrayList<String> barsDescriptions = arrayListBarToArrayListString(bars);
+                if (getActivity() != null && barsDescriptions != null) {
+                    ArrayAdapter<String> listBarAdapter = new ArrayAdapter<>(
+                            getActivity(),
+                            android.R.layout.simple_list_item_1,
+                            barsDescriptions
+                    );
+                    listViewBarsToDisplay.setAdapter(listBarAdapter);
+                    //gestion des clicks
+                    listViewBarsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            FragmentListener fragmentListener = (FragmentListener) getActivity();
+                            fragmentListener.getBar(bars.get(position));
+                        }
+                    });
+                }
             }
         }
     }
+
     private ArrayList<String> arrayListBarToArrayListString(ArrayList<Bar> barsArrayList) {
         ArrayList<String> bars = new ArrayList<>();
-        for(Bar bar : barsArrayList)
-        {
+        for (Bar bar : barsArrayList) {
             bars.add(bar.toString());
         }
         return bars;

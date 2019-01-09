@@ -53,6 +53,7 @@ public class BarDAO {
                 builder.append(line);
             }
             buffer.close();
+            connection.disconnect();
             stringJSON = builder.toString();
             return jsonToBars(stringJSON);
         }

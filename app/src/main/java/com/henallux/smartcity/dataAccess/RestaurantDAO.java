@@ -11,6 +11,7 @@ import com.google.gson.JsonParseException;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.applicationObject.Application;
 import com.henallux.smartcity.exception.ImpossibleToFetchCommercesException;
+import com.henallux.smartcity.exception.UnauthorizedException;
 import com.henallux.smartcity.model.Restaurant;
 import com.henallux.smartcity.utils.Constantes;
 import com.henallux.smartcity.utils.Utils;
@@ -46,10 +47,7 @@ public class RestaurantDAO {
         }
         HttpsURLConnection connection =  (HttpsURLConnection)url.openConnection();
         connection.setRequestProperty("Authorization", "Bearer " + application.getToken());
-        Log.i("restaurants","Bearer " + application.getToken());
         connection.setRequestMethod("GET");
-        Log.i("restaurants","Status de connexion RestaurantsController : " + connection.getResponseCode());
-        
         int responseCode = connection.getResponseCode();
         if(responseCode == HttpURLConnection.HTTP_OK)
         {
@@ -60,12 +58,17 @@ public class RestaurantDAO {
                 builder.append(line);
             }
             buffer.close();
+            connection.disconnect();
             stringJSON = builder.toString();
             return jsonToRestaurants(stringJSON);
         }
-        else
-        {
-            throw new ImpossibleToFetchCommercesException(Constantes.ERROR_MESSAGE_RESTAURANT + ", " + Utils.getErrorMessage(responseCode));
+        else{
+            if(responseCode == HttpURLConnection.HTTP_UNAUTHORIZED){
+                throw new UnauthorizedException("Votre session est expiré !" + ", " + Utils.getErrorMessage(responseCode));
+            }
+            else{
+                throw new ImpossibleToFetchCommercesException(Constantes.ERROR_MESSAGE_RESTAURANT + ", " + Utils.getErrorMessage(responseCode));
+            }
         }
     }
 

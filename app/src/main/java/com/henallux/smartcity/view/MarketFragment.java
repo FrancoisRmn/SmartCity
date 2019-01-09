@@ -39,7 +39,7 @@ public class MarketFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         View v = getView();
         listViewMarketsToDisplay = v.findViewById(R.id.MarketsRecyclerView);
-        if(getActivity() != null)
+        if (getActivity() != null)
             new LoadMarkets().execute();
         searchView = v.findViewById(R.id.searchViewMarket);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -66,20 +66,20 @@ public class MarketFragment extends Fragment {
             this.query = query;
         }
 
-        private LoadMarkets() { }
+        private LoadMarkets() {
+        }
 
-        protected ArrayList<Market> doInBackground(String... urls){
-            if(getActivity() != null)
+        protected ArrayList<Market> doInBackground(String... urls) {
+            if (getActivity() != null)
                 marketDAO = new MarketDAO(getActivity().getApplicationContext());
 
-            try{
-                if(this.query == null){
+            try {
+                if (this.query == null) {
                     markets = marketDAO.getAllMarkets("");
-                }
-                else {
+                } else {
                     markets = marketDAO.getAllMarkets(this.query);
-                }            }
-            catch(final ImpossibleToFetchCommercesException e){
+                }
+            } catch (final ImpossibleToFetchCommercesException e) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -87,40 +87,39 @@ public class MarketFragment extends Fragment {
                     }
                 });
                 return null;
-            }
-            catch (final Exception e){
+            } catch (final Exception e) {
                 System.out.println(e.getMessage());
             }
-            Log.i("Async","Fin de doInBackGround (market)");
             return markets;
         }
 
         @Override
         protected void onPostExecute(final ArrayList<Market> markets) {
-            final ArrayList<String> MarketsDescriptions = arrayListMarketToArrayListString(markets);
-            if(getActivity() != null && MarketsDescriptions != null){
-                ArrayAdapter<String> listMarketAdapter= new ArrayAdapter<String>(
-                        getActivity(),
-                        android.R.layout.simple_list_item_1,
-                        MarketsDescriptions
-                );
-                listViewMarketsToDisplay.setAdapter(listMarketAdapter);
-                //gestion des clicks
-                listViewMarketsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        FragmentListener fragmentListener = (FragmentListener)getActivity();
-                        fragmentListener.getMarket(markets.get(position));
-                    }
-                });
+            if (markets != null) {
+                final ArrayList<String> MarketsDescriptions = arrayListMarketToArrayListString(markets);
+                if (getActivity() != null && MarketsDescriptions != null) {
+                    ArrayAdapter<String> listMarketAdapter = new ArrayAdapter<String>(
+                            getActivity(),
+                            android.R.layout.simple_list_item_1,
+                            MarketsDescriptions
+                    );
+                    listViewMarketsToDisplay.setAdapter(listMarketAdapter);
+                    listViewMarketsToDisplay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            FragmentListener fragmentListener = (FragmentListener) getActivity();
+                            fragmentListener.getMarket(markets.get(position));
+                        }
+                    });
+                }
             }
 
         }
     }
+
     private ArrayList<String> arrayListMarketToArrayListString(ArrayList<Market> marketsArrayList) {
         ArrayList<String> markets = new ArrayList<String>();
-        for(Market market: marketsArrayList)
-        {
+        for (Market market : marketsArrayList) {
             markets.add(market.toString());
         }
         return markets;
