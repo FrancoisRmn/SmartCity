@@ -49,14 +49,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(checkForms())
                 {
-                    try{
-                        application.setConnected(true);
-                        loginAsyncTask = new LoginAsyncTask(loginInput.getText().toString(), passwordInput.getText().toString(), MainActivity.this);
-                        loginAsyncTask.execute();
-                    }
-                    catch (Exception e){
-                        System.out.println("Exception" + e);
-                    }
+                    application.setConnected(true);
+                    loginAsyncTask = new LoginAsyncTask(loginInput.getText().toString(), passwordInput.getText().toString(), MainActivity.this);
+                    loginAsyncTask.execute();
                 }
             }
         });
@@ -65,26 +60,22 @@ public class MainActivity extends AppCompatActivity {
         withoutConnectionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
-                    application.setConnected(false);
-                    String userLambda =Constantes.DEFAULT_USER_NAME;
-                    String passwordLambda=Constantes.DEFAULT_USER_PASSWORD;
-                    new LoginAsyncTask(userLambda, passwordLambda, MainActivity.this).execute();
-                }
-                catch (Exception e){
-                    System.out.println("Exception" + e);
-                }
+                application.setConnected(false);
+                String userLambda =Constantes.DEFAULT_USER_NAME;
+                String passwordLambda=Constantes.DEFAULT_USER_PASSWORD;
+                loginAsyncTask = new LoginAsyncTask(userLambda, passwordLambda, MainActivity.this);
+                loginAsyncTask.execute();
             }
         });
     }
 
     public boolean checkForms() {
         if(Utils.isEmpty(loginInput)){
-            Toast.makeText(this, "Login vide !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, Constantes.EMPTY_LOGIN, Toast.LENGTH_SHORT).show();
             return false;
         }
         if(Utils.isEmpty(passwordInput)){
-            Toast.makeText(this, "Vous devez rentez un mot de passe !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, Constantes.EMPTY_PASSWORD, Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

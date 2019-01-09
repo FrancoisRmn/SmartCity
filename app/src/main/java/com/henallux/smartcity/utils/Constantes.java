@@ -32,4 +32,6 @@ public class Constantes {
     public static final String POSITIVE_MESSAGE = "Oui";
     public static final String NEGATIVE_MESSAGE= "Non";
     public static final String EXPIRED_SESSION = "Votre session est expiré !";
+    public static final String EMPTY_LOGIN = "Login vide !";
+    public static final String EMPTY_PASSWORD = "Vous devez rentez un mot de passe !";
 }
