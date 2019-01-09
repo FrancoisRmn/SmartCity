@@ -58,6 +58,10 @@ private CreateUserAsyncTask createUserAsyncTask;
             Toast.makeText(this, R.string.emailEmpty, Toast.LENGTH_SHORT).show();
             return false;
         }
+        if(!Utils.verificationEmail(mailInput.getText().toString())){
+            Toast.makeText(this, R.string.invalid_email, Toast.LENGTH_SHORT).show();
+            return false;
+        }
         if(Utils.isEmpty(passWordInput)){
             Toast.makeText(this, R.string.passwordEmpty, Toast.LENGTH_SHORT).show();
             return false;
