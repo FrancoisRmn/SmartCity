@@ -1,5 +1,6 @@
 package com.henallux.smartcity.view;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.henallux.smartcity.R;
 import com.henallux.smartcity.dataAccess.BarDAO;
 import com.henallux.smartcity.exception.ImpossibleToFetchCommercesException;
+import com.henallux.smartcity.exception.UnauthorizedException;
 import com.henallux.smartcity.listener.FragmentListener;
 import com.henallux.smartcity.model.Bar;
 
@@ -80,7 +82,17 @@ public class DrinkFragment extends Fragment {
                 } else {
                     bars = barDAO.getAllBars(this.query);
                 }
-            } catch (final ImpossibleToFetchCommercesException e) {
+            }
+            catch(final UnauthorizedException e){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                getActivity().startActivity(new Intent(getActivity(), MainActivity.class));
+            }
+            catch (final ImpossibleToFetchCommercesException e) {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
