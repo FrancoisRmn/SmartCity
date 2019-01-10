@@ -16,14 +16,11 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginBottom="293dp"
             android:text="@string/personalInformations"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/ValidationInscriptionButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             app:layout_constraintVertical_chainStyle="spread_inside" />
 
         <TextView
@@ -84,12 +81,9 @@
             android:layout_marginStart="189dp"
             android:layout_marginLeft="189dp"
             android:layout_marginTop="3dp"
-            android:layout_marginEnd="43dp"
-            android:layout_marginRight="43dp"
             android:ems="10"
             android:inputType="textPassword"
             android:selectAllOnFocus="false"
-            app:layout_constraintEnd_toStartOf="@+id/ValidationInscriptionButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/MailInput" />
 
@@ -137,16 +131,14 @@
             app:layout_constraintTop_toBottomOf="@+id/NameInput" />
 
         <Button
-            android:id="@+id/ValidationInscriptionButton"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="45dp"
-            android:layout_marginEnd="33dp"
-            android:layout_marginRight="33dp"
-            android:layout_marginBottom="45dp"
-            android:text="@string/nextTitle"
-            app:layout_constraintBottom_toBottomOf="@+id/ConfirmPasswordTextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/PasswordInput"
-            app:layout_constraintTop_toBottomOf="@+id/FirstNameTextView" />
-    </android.support.constraint.ConstraintLayout>
+            android:id="@+id/validationInscriptionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="40dp"
+            android:text="@string/ValidationInscriptionButton"
+            app:layout_constraintBottom_toTopOf="@+id/ConfirmPasswordInput"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

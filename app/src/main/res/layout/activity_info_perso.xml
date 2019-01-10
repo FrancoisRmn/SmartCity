@@ -118,7 +118,6 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:selectAllOnFocus="false"
-        app:layout_constraintBottom_toTopOf="@+id/ValidationInscriptionButton"
         app:layout_constraintStart_toStartOf="@+id/NameTextView"
         app:layout_constraintTop_toTopOf="parent" />
 
